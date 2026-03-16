@@ -1110,3 +1110,52 @@ header("Location: contact.php");
 exit();
 
 }
+
+include 'connection/config.php';
+
+/* ADD FAQ */
+
+if(isset($_POST['add_faq'])){
+
+$question = $_POST['question'];
+$answer = $_POST['answer'];
+
+$stmt = $pdo->prepare("INSERT INTO faq(question,answer) VALUES(?,?)");
+$stmt->execute([$question,$answer]);
+
+header("Location: faq.php");
+exit;
+
+}
+
+
+/* UPDATE FAQ */
+
+if(isset($_POST['update_faq'])){
+
+$id = $_POST['id'];
+$question = $_POST['question'];
+$answer = $_POST['answer'];
+
+$stmt = $pdo->prepare("UPDATE faq SET question=?, answer=? WHERE id=?");
+$stmt->execute([$question,$answer,$id]);
+
+header("Location: faq.php");
+exit;
+
+}
+
+
+/* DELETE FAQ */
+
+if(isset($_GET['delete_faq'])){
+
+$id = $_GET['delete_faq'];
+
+$stmt = $pdo->prepare("DELETE FROM faq WHERE id=?");
+$stmt->execute([$id]);
+
+header("Location: faq.php");
+exit;
+
+}

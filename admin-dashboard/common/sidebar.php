@@ -98,6 +98,17 @@
             </div>
           </li>
           <li class="nav-item">
+            <a class="nav-link " href="#collapsefaq" data-bs-toggle="collapse" aria-expanded="true">
+              <span class="nav-icon"><i class="fas fa-quote-right"></i></span> FAQ
+            </a>
+            <div class="collapse " id="collapsefaq">
+              <div class="sidebar-submenu">
+                <a class="nav-link " href="addfaq.php">Add FAQ</a>
+                <a class="nav-link active" href="faq.php">All FAQ</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
             <a class="nav-link " href="#collapseTeam" data-bs-toggle="collapse" aria-expanded="false">
               <span class="nav-icon"><i class="fas fa-users"></i></span> Team
             </a>
