@@ -105,7 +105,7 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
                                             <i class="fas fa-edit"></i>
                                         </a>
 
-                                        <a href="function_service.php?action=delete_service&id=<?= $service['id'] ?>"
+                                        <a href="function.php?action=delete_service&id=<?= $service['id'] ?>"
                                             class="btn-icon delete"
                                             onclick="return confirm('Delete this service?')">
 
