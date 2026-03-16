@@ -132,6 +132,19 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_service") {
                 </div>
               </div>
               <div class="col-md-12">
+<div class="mb-3">
+
+<label class="form-label">Slug (SEO URL)</label>
+
+<input type="text"
+class="form-control"
+name="slug"
+value="<?= $editMode ? htmlspecialchars($row['slug'] ?? '') : '' ?>"
+placeholder="example-blog-title">
+
+</div>
+</div>
+              <div class="col-md-12">
                 <div class="mb-3">
 
                   <label class="form-label">Meta Title</label>

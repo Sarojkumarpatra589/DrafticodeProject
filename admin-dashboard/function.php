@@ -400,6 +400,7 @@ if(isset($_POST['add_project'])){
 $title = $_POST['title'];
 $short_description = $_POST['short_description'];
 $description = $_POST['description'];
+$slug = $_POST['slug'];
 $meta_title = $_POST['meta_title'];
 $meta_keywords = $_POST['meta_keywords'];
 $meta_description = $_POST['meta_description'];
@@ -419,9 +420,9 @@ $image = time().rand(100,999).".".$ext;
 
 move_uploaded_file($_FILES['image']['tmp_name'],$uploadDir.$image);
 
-$stmt=$pdo->prepare("INSERT INTO projects(title,image,short_description,description,meta_title,meta_keywords,meta_description) VALUES(?,?,?,?)");
+$stmt=$pdo->prepare("INSERT INTO projects(title,image,short_description,description,slug,meta_title,meta_keywords,meta_description) VALUES(?,?,?,?)");
 
-$stmt->execute([$title,$image,$short_description,$description,$meta_title,$meta_keywords,$meta_description]);
+$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description]);
 $pdo->prepare("INSERT INTO activity_logs(action,module,user,status)
 VALUES ('Added new project','Projects','Admin','Success')")->execute();
 header("Location: project.php");
@@ -439,7 +440,7 @@ $id=$_POST['id'];
 $title=$_POST['title'];
 $short_description=$_POST['short_description'];
 $description=$_POST['description'];
-
+$slug = $_POST['slug'];
 $meta_title = $_POST['meta_title'];
 $meta_keywords = $_POST['meta_keywords'];
 $meta_description = $_POST['meta_description'];
@@ -468,9 +469,9 @@ unlink($old);
 
 }
 
-$stmt=$pdo->prepare("UPDATE projects SET title=?,image=?,short_description=?,description=?,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
+$stmt=$pdo->prepare("UPDATE projects SET title=?,image=?,short_description=?,description=?,$slug,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
 
-$stmt->execute([$title,$image,$short_description,$description,$meta_title,$meta_keywords,$meta_description,$id]);
+$stmt->execute([$title,$image,$short_description,$description,$meta_title,$slug,$meta_keywords,$meta_description,$id]);
 
 header("Location: project.php");
 exit();
@@ -515,7 +516,7 @@ if(isset($_POST['add_service'])){
 $title = $_POST['title'];
 $short_description = $_POST['short_description'];
 $description = $_POST['description'];
-
+$slug = $_POST['slug'];
 $meta_title = $_POST['meta_title'];
 $meta_keywords = $_POST['meta_keywords'];
 $meta_description = $_POST['meta_description'];
@@ -535,9 +536,9 @@ $image = time().rand(100,999).".".$ext;
 
 move_uploaded_file($_FILES['image']['tmp_name'],$uploadDir.$image);
 
-$stmt=$pdo->prepare("INSERT INTO services(title,image,short_description,description,meta_title,meta_keywords,meta_description) VALUES(?,?,?,?)");
+$stmt=$pdo->prepare("INSERT INTO services(title,image,short_description,description,slug,meta_title,meta_keywords,meta_description) VALUES(?,?,?,?)");
 
-$stmt->execute([$title,$image,$short_description,$description,$meta_title,$meta_keywords,$meta_description]);
+$stmt->execute([$title,$image,$short_description,$description,$meta_title,$slug,$meta_keywords,$meta_description]);
 
 header("Location: service.php");
 exit();
@@ -554,7 +555,7 @@ $id=$_POST['id'];
 $title=$_POST['title'];
 $short_description=$_POST['short_description'];
 $description=$_POST['description'];
-
+$slug = $_POST['slug'];
 $meta_title = $_POST['meta_title'];
 $meta_keywords = $_POST['meta_keywords'];
 $meta_description = $_POST['meta_description'];
@@ -584,9 +585,9 @@ unlink($old);
 
 }
 
-$stmt=$pdo->prepare("UPDATE services SET title=?,image=?,short_description=?,description=?,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
+$stmt=$pdo->prepare("UPDATE services SET title=?,image=?,short_description=?,description=?,$slug,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
 
-$stmt->execute([$title,$image,$short_description,$description,$meta_title,$meta_keywords,$meta_description,$id]);
+$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description,$id]);
 
 header("Location: service.php");
 exit();
@@ -637,6 +638,7 @@ if(isset($_POST['add_product'])){
 $title = $_POST['title'];
 $short_description = $_POST['short_description'];
 $description = $_POST['description'];
+$slug = $_POST['slug'];
 $meta_title = $_POST['meta_title'];
 $meta_keywords = $_POST['meta_keywords'];
 $meta_description = $_POST['meta_description'];
@@ -656,9 +658,9 @@ $image = time().rand(100,999).".".$ext;
 
 move_uploaded_file($_FILES['image']['tmp_name'],$uploadDir.$image);
 
-$stmt=$pdo->prepare("INSERT INTO products(title,image,short_description,description,meta_title,meta_keywords,meta_description) VALUES(?,?,?,?)");
+$stmt=$pdo->prepare("INSERT INTO products(title,image,short_description,description,slug,meta_title,meta_keywords,meta_description) VALUES(?,?,?,?)");
 
-$stmt->execute([$title,$image,$short_description,$description,$meta_title,$meta_keywords,$meta_description]);
+$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description]);
 
 header("Location: product.php");
 exit();
@@ -675,6 +677,7 @@ $id=$_POST['id'];
 $title=$_POST['title'];
 $short_description=$_POST['short_description'];
 $description=$_POST['description'];
+$slug = $_POST['slug'];
 $meta_title = $_POST['meta_title'];
 $meta_keywords = $_POST['meta_keywords'];
 $meta_description = $_POST['meta_description'];
@@ -703,9 +706,9 @@ unlink($old);
 
 }
 
-$stmt=$pdo->prepare("UPDATE products SET title=?,image=?,short_description=?,description=?,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
+$stmt=$pdo->prepare("UPDATE products SET title=?,image=?,short_description=?,description=?,slug=?,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
 
-$stmt->execute([$title,$image,$short_description,$description,$meta_title,$meta_keywords,$meta_description,$id]);
+$stmt->execute([$title,$image,$short_description,$description,,$slug,$meta_title,$meta_keywords,$meta_description,$id]);
 
 header("Location: product.php");
 exit();
@@ -749,6 +752,7 @@ if(isset($_POST['add_blog'])){
 $title = $_POST['title'];
 $short_description = $_POST['short_description'];
 $description = $_POST['description'];
+$slug = $_POST['slug'];
 $meta_title = $_POST['meta_title'];
 $meta_keywords = $_POST['meta_keywords'];
 $meta_description = $_POST['meta_description'];
@@ -768,9 +772,9 @@ $image = time().rand(100,999).".".$ext;
 
 move_uploaded_file($_FILES['image']['tmp_name'],$uploadDir.$image);
 
-$stmt = $pdo->prepare("INSERT INTO blogs(title,image,short_description,description,meta_title,meta_keywords,meta_description) VALUES(?,?,?,?)");
+$stmt = $pdo->prepare("INSERT INTO blogs(title,image,short_description,description,slug,meta_title,meta_keywords,meta_description) VALUES(?,?,?,?)");
 
-$stmt->execute([$title,$image,$short_description,$description,$meta_title,$meta_keywords,$meta_description]);
+$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description]);
 
 header("Location: blog.php");
 exit();
@@ -786,6 +790,7 @@ $id = $_POST['id'];
 $title = $_POST['title'];
 $short_description = $_POST['short_description'];
 $description = $_POST['description'];
+$slug = $_POST['slug'];
 $meta_title = $_POST['meta_title'];
 $meta_keywords = $_POST['meta_keywords'];
 $meta_description = $_POST['meta_description'];
@@ -815,9 +820,9 @@ unlink($old);
 
 }
 
-$stmt = $pdo->prepare("UPDATE blogs SET title=?,image=?,short_description=?,description=?,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
+$stmt = $pdo->prepare("UPDATE blogs SET title=?,image=?,short_description=?,description=?,slug=?,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
 
-$stmt->execute([$title,$image,$short_description,$description,$meta_title,$meta_keywords,$meta_description,$id]);
+$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description,$id]);
 
 header("Location: blog.php");
 exit();

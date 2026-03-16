@@ -101,7 +101,7 @@ $blogs = $pdo->query("SELECT * FROM blogs ORDER BY id DESC")->fetchAll();
                                             <i class="fas fa-edit"></i>
                                         </a>
 
-                                        <a href="function_blog.php?action=delete_blog&id=<?= $blog['id'] ?>"
+                                        <a href="function.php?action=delete_blog&id=<?= $blog['id'] ?>"
                                             class="btn-icon delete"
                                             onclick="return confirm('Delete this blog?')">
 

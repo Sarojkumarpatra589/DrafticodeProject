@@ -999,18 +999,27 @@
 </section>
 <!-- End Benefit Section -->
  
+<?php
+include 'connection/config.php';
+
+$stmt = $pdo->prepare("SELECT * FROM blogs ORDER BY id DESC");
+$stmt->execute();
+$blogs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 
 <!-- News Section -->
 <section class="news-section">
     <div class="shape-12"></div>
     <div class="shape-13"></div>
     <div class="bg bg-pattern-6"></div>
+
     <div class="auto-container">
         <div class="row">
 
             <!-- Content Column -->
             <div class="content-column col-xl-4 col-lg-12 col-md-12 col-sm-12">
                 <div class="inner-column">
+
                     <div class="sec-title">
                         <div class="sub-title">Blog posts</div>
                         <h2 class="text-reveal-anim">Recent Updates & Insights from Our Blog</h2>
@@ -1018,144 +1027,108 @@
 
                     <div class="outer-box">
                         <div class="nav-box">
-                            <div class="swiper-button-prev"><span class="icon fal fa-long-arrow-left "></span>
+                            <div class="swiper-button-prev">
+                                <span class="icon fal fa-long-arrow-left"></span>
                             </div>
-                            <div class="swiper-button-next"><span class="icon fal fa-long-arrow-right "></span>
+
+                            <div class="swiper-button-next">
+                                <span class="icon fal fa-long-arrow-right"></span>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
             <!-- Blocks Column -->
             <div class="blocks-column col-xl-8 col-lg-12 col-md-12 col-sm-12">
+
                 <div class="inner-column">
+
                     <div class="swiper news-swiper-two">
+
                         <div class="swiper-wrapper">
 
-                            <!-- News Block -->
-                            <div class="news-block swiper-slide">
-                                <div class="inner-box">
-                                    <div class="image-box">
-                                        <figure class="image"><a href="blog-details.html"><img
-                                                    src="images/resource/news1-1.jpg" alt="Image"></a></figure>
-                                        <div class="date-box">
-                                            <div class="date">20</div>
-                                            <div class="month">Jan</div>
-                                        </div>
-                                    </div>
-                                    <div class="content-box">
-                                        <div class="content">
-                                            <ul class="post-meta">
-                                                <li><i class="icon fa fa-comment"></i> 2 Comment</li>
-                                            </ul>
-                                            <h4 class="title"><a href="blog-details.html">10 Easy Strategies to
-                                                    Harness the Power of AI</a></h4>
-                                            <div class="text">There are many variations of passages of one Lorem
-                                                Ipsum available</div>
-                                        </div>
-                                        <div class="btn-box">
-                                            <a href="blog-details.html" class="text">Read More</a>
-                                            <a href="blog-details.html" class="readmore"><i
-                                                    class="fa fa-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <?php foreach($blogs as $blog): ?>
 
                             <!-- News Block -->
                             <div class="news-block swiper-slide">
+
                                 <div class="inner-box">
+
                                     <div class="image-box">
-                                        <figure class="image"><a href="blog-details.html"><img
-                                                    src="images/resource/news1-2.jpg" alt="Image"></a></figure>
+
+                                        <figure class="image">
+                                            <a href="blog-details.php?id=<?= $blog['id'] ?>">
+                                                <img src="upload/<?= htmlspecialchars($blog['image']) ?>" alt="Image">
+                                            </a>
+                                        </figure>
+
+                                        <?php
+                                        $date = date("d", strtotime($blog['id']));
+                                        $month = date("M", strtotime($blog['id']));
+                                        ?>
+
                                         <div class="date-box">
-                                            <div class="date">26</div>
-                                            <div class="month">Jan</div>
+                                            <div class="date"><?= $date ?></div>
+                                            <div class="month"><?= $month ?></div>
                                         </div>
+
                                     </div>
+
                                     <div class="content-box">
+
                                         <div class="content">
+
                                             <ul class="post-meta">
-                                                <li><i class="icon fa fa-comment"></i> 6 Comment</li>
+                                                <li><i class="icon fa fa-comment"></i> 0 Comment</li>
                                             </ul>
-                                            <h4 class="title"><a href="blog-details.html">Web Accessibility Not
-                                                    Just a Trend, Necessity</a></h4>
-                                            <div class="text">There are many variations of passages of one Lorem
-                                                Ipsum available</div>
+
+                                            <h4 class="title">
+                                                <a href="blog-details.php?id=<?= $blog['id'] ?>">
+                                                    <?= htmlspecialchars($blog['title']) ?>
+                                                </a>
+                                            </h4>
+
+                                            <div class="text">
+                                            <?php
+                                            $text = strip_tags($blog['short_description']);
+                                            $words = explode(" ", $text);
+                                            echo implode(" ", array_slice($words, 0, 8));
+                                            if(count($words) > 8) echo "...";
+                                            ?>
+                                            </div>
+
                                         </div>
+
                                         <div class="btn-box">
-                                            <a href="blog-details.html" class="text">Read More</a>
-                                            <a href="blog-details.html" class="readmore"><i
-                                                    class="fa fa-arrow-right"></i></a>
+
+                                            <a href="blog-details.php?id=<?= $blog['id'] ?>" class="text">
+                                                Read More
+                                            </a>
+
+                                            <a href="blog-details.php?id=<?= $blog['id'] ?>" class="readmore">
+                                                <i class="fa fa-arrow-right"></i>
+                                            </a>
+
                                         </div>
+
                                     </div>
+
                                 </div>
+
                             </div>
 
-                            <!-- News Block -->
-                            <div class="news-block swiper-slide">
-                                <div class="inner-box">
-                                    <div class="image-box">
-                                        <figure class="image"><a href="blog-details.html"><img
-                                                    src="images/resource/news1-3.jpg" alt="Image"></a></figure>
-                                        <div class="date-box">
-                                            <div class="date">30</div>
-                                            <div class="month">Jan</div>
-                                        </div>
-                                    </div>
-                                    <div class="content-box">
-                                        <div class="content">
-                                            <ul class="post-meta">
-                                                <li><i class="icon fa fa-comment"></i> 4 Comment</li>
-                                            </ul>
-                                            <h4 class="title"><a href="blog-details.html">The Power of
-                                                    Storytelling in Digital Branding</a></h4>
-                                            <div class="text">There are many variations of passages of one Lorem
-                                                Ipsum available</div>
-                                        </div>
-                                        <div class="btn-box">
-                                            <a href="blog-details.html" class="text">Read More</a>
-                                            <a href="blog-details.html" class="readmore"><i
-                                                    class="fa fa-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <?php endforeach; ?>
 
-                            <!-- News Block -->
-                            <div class="news-block swiper-slide">
-                                <div class="inner-box">
-                                    <div class="image-box">
-                                        <figure class="image"><a href="blog-details.html"><img
-                                                    src="images/resource/news1-3.jpg" alt="Image"></a></figure>
-                                        <div class="date-box">
-                                            <div class="date">30</div>
-                                            <div class="month">Jan</div>
-                                        </div>
-                                    </div>
-                                    <div class="content-box">
-                                        <div class="content">
-                                            <ul class="post-meta">
-                                                <li><i class="icon fa fa-comment"></i> 4 Comment</li>
-                                            </ul>
-                                            <h4 class="title"><a href="blog-details.html">The Power of
-                                                    Storytelling in Digital Branding</a></h4>
-                                            <div class="text">There are many variations of passages of one Lorem
-                                                Ipsum available</div>
-                                        </div>
-                                        <div class="btn-box">
-                                            <a href="blog-details.html" class="text">Read More</a>
-                                            <a href="blog-details.html" class="readmore"><i
-                                                    class="fa fa-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
     </div>
 </section>
