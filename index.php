@@ -20,6 +20,7 @@
   <!-- Responsive -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 <div class="page-wrapper">
@@ -36,50 +37,29 @@
 <section class="banner-section-four">
     <div class="swiper banner-swiper-four">
         <div class="swiper-wrapper">
+            <?php
+            $stmt = $pdo->prepare("SELECT * FROM slider ORDER BY id DESC");
+            $stmt->execute();
+            $sliders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach($sliders as $slider){ ?>
             <!-- Banner Slide -->
             <div class="banner-slide swiper-slide">
                 <div class="outer-box">
                     <div class="inner-box">
-                        <div class="bg bg-pattern-15"></div>
-                        <div class="row">
-                            <!-- Content Column -->
-                            <div class="content-column col-lg-12 col-md-12 col-sm-12">
-                                <div class="inner-column">
-                                    <h1 class="title-sp animate-2">Business</h1>
-                                    <h1 class="title animate-2">Grow Your Business <br> Bigger & <span
-                                            class="color">Better</span></h1>
-                                    <div class="text animate-3">An award -wining CEO agency with disciplines in
-                                        digital marketing design and <br> website development. focused
-                                        understanding you</div>
-                                    <div class="btn-box animate-4">
-                                        <a class="theme-btn-main" href="page-contact.html">
-                                            <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
-                                            <span class="theme-btn">Discover More</span>
-                                            <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>
-                                        </a>
-                                    </div>
-                                </div>
+                        <div class="bg bg-pattern-15"
+                            style="background-image:url('upload/<?php echo $slider['image']; ?>'); 
+                            background-size:cover;
+                            background-position:center;
+                            background-repeat:no-repeat;">
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Banner Slide -->
-            <div class="banner-slide swiper-slide">
-                <div class="outer-box">
-                    <div class="inner-box">
-                        <div class="bg bg-pattern-15"></div>
                         <div class="row">
 
                             <!-- Content Column -->
                             <div class="content-column col-lg-12 col-md-12 col-sm-12">
                                 <div class="inner-column">
                                     <h1 class="title-sp animate-2">Business</h1>
-                                    <h1 class="title animate-2">Grow Your Business <br> Bigger & <span
-                                            class="color">Better</span></h1>
-                                    <div class="text animate-3">An award -wining CEO agency with disciplines in
-                                        digital marketing design and <br> website development. focused
-                                        understanding you</div>
+                                    <h1 class="title animate-2"><?= htmlspecialchars($slider['title']) ?></h1>
+                                    <div class="text animate-3"><?= $slider['description'] ?></div>
                                     <div class="btn-box animate-4">
                                         <a class="theme-btn-main" href="page-contact.html">
                                             <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
@@ -93,8 +73,10 @@
                     </div>
                 </div>
             </div>
+<?php } ?>
         </div>
     </div>
+    
 
     <div class="nav-box">
         <div class="swiper-button-prev"><span class="icon fa fa-angle-left "></span></div>
@@ -107,76 +89,44 @@
 <!-- Client Section -->
 <section class="client-section pb-0 mb-4 ">
     <div class="shape-4"></div>
+
     <div class="auto-container">
         <div class="outer-box">
+
             <div class="title-box">
                 <h5 class="title">Trusted By <br>Top Companies</h5>
                 <i class="icon fa fa-arrow-up-right"></i>
             </div>
+
             <div class="marquee-box">
                 <div class="marquee">
+
+                <?php
+                include 'connection/config.php';
+
+                $stmt = $pdo->prepare("SELECT * FROM clients ORDER BY id DESC");
+                $stmt->execute();
+                $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach($clients as $client):
+                ?>
+
                     <!-- Client Block -->
                     <div class="client-block">
                         <div class="inner-box">
-                            <figure class="image"><img src="images/clients/1.png" alt="Image"></figure>
-                        </div>
+    <figure class="image">
+        <img src="upload/<?= htmlspecialchars($client['image']) ?>" 
+             alt="Client Logo" 
+             style="height:60px; width:auto; object-fit:contain;">
+    </figure>
+</div>
                     </div>
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/2.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/3.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/4.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/5.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/1.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/2.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/3.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/4.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/5.png" alt="Image"></figure>
-                        </div>
-                    </div>
+
+                <?php endforeach; ?>
+
                 </div>
             </div>
+
         </div>
     </div>
 </section>
@@ -675,69 +625,56 @@
 <section class="team-section">
     <div class="bg bg-pattern-10"></div>
     <div class="icon-19 bounce-x"></div>
+
     <div class="auto-container">
+
         <div class="sec-title text-center">
             <div class="sub-title">Our Team</div>
             <h2 class="text-reveal-anim">What Success Looks <br> From the Back</h2>
         </div>
+
         <div class="row">
 
-            <!-- Team Block -->
+        <?php
+        include 'connection/config.php';
+
+        $stmt = $pdo->prepare("SELECT * FROM teams ORDER BY id ASC");
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($data as $row):
+        ?>
+
             <div class="team-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp">
                 <div class="inner-box">
+
                     <div class="image-box">
-                        <figure class="image"><a href="team-details.html"><img src="images/resource/team1-1.jpg"
-                                    alt="Image"></a></figure>
+                        <figure class="image">
+                            <a href="team-details.php?id=<?= $row['id'] ?>">
+                                <img src="upload/<?= htmlspecialchars($row['image']) ?>" alt="Image">
+                            </a>
+                        </figure>
                     </div>
+
                     <div class="content-box">
-                        <h5 class="name"><a href="team-details.html">Danial Brown</a></h5>
-                        <div class="designation">MARKETING</div>
+                        <h5 class="name">
+                            <a href="team-details.php?id=<?= $row['id'] ?>">
+                                <?= htmlspecialchars($row['name']) ?>
+                            </a>
+                        </h5>
+
+                        <div class="designation">
+                            <?= htmlspecialchars($row['designation']) ?>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
-            <!-- Team Block -->
-            <div class="team-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="200ms">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="team-details.html"><img src="images/resource/team1-2.jpg"
-                                    alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <h5 class="name"><a href="team-details.html">Wade Warren</a></h5>
-                        <div class="designation">MARKETING</div>
-                    </div>
-                </div>
-            </div>
+        <?php endforeach; ?>
 
-            <!-- Team Block -->
-            <div class="team-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="400ms">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="team-details.html"><img src="images/resource/team1-3.jpg"
-                                    alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <h5 class="name"><a href="team-details.html">Russel Haipner</a></h5>
-                        <div class="designation">MARKETING</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Team Block -->
-            <div class="team-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="600ms">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="team-details.html"><img src="images/resource/team1-4.jpg"
-                                    alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <h5 class="name"><a href="team-details.html">Robert Grodge</a></h5>
-                        <div class="designation">MARKETING</div>
-                    </div>
-                </div>
-            </div>
         </div>
+
     </div>
 </section>
 <!-- End Team Section -->

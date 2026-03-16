@@ -63,7 +63,7 @@ if (isset($_POST['update_team'])) {
     $stmt->execute([$name, $designation, $id]);
   }
 
-  header("Location: teams.php");
+  header("Location: team.php");
   exit();
 }
 ?>

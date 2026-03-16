@@ -171,6 +171,46 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_project") {
                   });
                 </script>
               </div>
+              <div class="col-md-12">
+<div class="mb-3">
+
+<label class="form-label">Meta Title</label>
+
+<input type="text"
+class="form-control"
+name="meta_title"
+value="<?= $editMode ? htmlspecialchars($row['meta_title'] ?? '') : '' ?>">
+
+</div>
+</div>
+
+
+<div class="col-md-12">
+<div class="mb-3">
+
+<label class="form-label">Meta Keywords</label>
+
+<textarea
+class="form-control"
+name="meta_keywords"
+rows="2"><?= $editMode ? htmlspecialchars($row['meta_keywords'] ?? '') : '' ?></textarea>
+
+</div>
+</div>
+
+
+<div class="col-md-12">
+<div class="mb-3">
+
+<label class="form-label">Meta Description</label>
+
+<textarea
+class="form-control"
+name="meta_description"
+rows="3"><?= $editMode ? htmlspecialchars($row['meta_description'] ?? '') : '' ?></textarea>
+
+</div>
+</div>
 
               <div class="d-flex gap-2 pt-2">
 

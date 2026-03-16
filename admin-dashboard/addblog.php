@@ -23,7 +23,7 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_blog") {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $editMode ? 'Update Blog' : 'Add Blog' ?></title>
 
- <!-- Favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/fav.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -81,28 +81,28 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_blog") {
 
 
               <div class="col-12">
-  <div class="mb-3">
+                <div class="mb-3">
 
-    <label class="form-label">Featured Image</label>
+                  <label class="form-label">Featured Image</label>
 
-    <input type="file"
-      class="form-control"
-      name="image"
-      id="featuredImageUpload"
-      accept="image/*">
+                  <input type="file"
+                    class="form-control"
+                    name="image"
+                    id="featuredImageUpload"
+                    accept="image/*">
 
-    <div class="mt-2" id="featuredPreview">
+                  <div class="mt-2" id="featuredPreview">
 
-      <?php if ($editMode && !empty($row['image'])) { ?>
+                    <?php if ($editMode && !empty($row['image'])) { ?>
 
-        <img src="../upload/<?= $row['image'] ?>" width="200">
+                      <img src="../upload/<?= $row['image'] ?>" width="200">
 
-      <?php } ?>
+                    <?php } ?>
 
-    </div>
+                  </div>
 
-  </div>
-</div>
+                </div>
+              </div>
 
 
               <div class="col-12">
@@ -120,34 +120,74 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_blog") {
 
 
               <div class="col-12">
-  <div class="mb-3">
-    <label class="form-label">Blog Content</label>
+                <div class="mb-3">
+                  <label class="form-label">Blog Content</label>
 
-    <textarea
-      id="description"
-      class="form-control"
-      name="description"
-      rows="5"
-      style="min-height:140px"><?= $editMode ? htmlspecialchars($row['description'] ?? '') : '' ?></textarea>
+                  <textarea
+                    id="description"
+                    class="form-control"
+                    name="description"
+                    rows="5"
+                    style="min-height:140px"><?= $editMode ? htmlspecialchars($row['description'] ?? '') : '' ?></textarea>
 
-  </div>
-</div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="mb-3">
+
+                  <label class="form-label">Meta Title</label>
+
+                  <input type="text"
+                    class="form-control"
+                    name="meta_title"
+                    value="<?= $editMode ? htmlspecialchars($row['meta_title'] ?? '') : '' ?>">
+
+                </div>
+              </div>
 
 
-<script src="ckeditor/ckeditor.js"></script>
+              <div class="col-md-12">
+                <div class="mb-3">
 
-<script>
-CKEDITOR.replace('description', {
-    height: 300
-});
+                  <label class="form-label">Meta Keywords</label>
 
-// update textarea when form submits
-document.querySelector("form").addEventListener("submit", function () {
-    for (let instance in CKEDITOR.instances) {
-        CKEDITOR.instances[instance].updateElement();
-    }
-});
-</script>
+                  <textarea
+                    class="form-control"
+                    name="meta_keywords"
+                    rows="2"><?= $editMode ? htmlspecialchars($row['meta_keywords'] ?? '') : '' ?></textarea>
+
+                </div>
+              </div>
+
+
+              <div class="col-md-12">
+                <div class="mb-3">
+
+                  <label class="form-label">Meta Description</label>
+
+                  <textarea
+                    class="form-control"
+                    name="meta_description"
+                    rows="3"><?= $editMode ? htmlspecialchars($row['meta_description'] ?? '') : '' ?></textarea>
+
+                </div>
+              </div>
+
+
+              <script src="ckeditor/ckeditor.js"></script>
+
+              <script>
+                CKEDITOR.replace('description', {
+                  height: 300
+                });
+
+                // update textarea when form submits
+                document.querySelector("form").addEventListener("submit", function() {
+                  for (let instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                  }
+                });
+              </script>
 
             </div>
 
@@ -173,32 +213,30 @@ document.querySelector("form").addEventListener("submit", function () {
         </div>
       </div>
     </div>
-<script>
+    <script>
+      document.getElementById("featuredImageUpload").addEventListener("change", function() {
 
-document.getElementById("featuredImageUpload").addEventListener("change", function(){
+        let preview = document.getElementById("featuredPreview");
+        preview.innerHTML = "";
 
-let preview = document.getElementById("featuredPreview");
-preview.innerHTML = "";
+        let file = this.files[0];
 
-let file = this.files[0];
+        if (file) {
 
-if(file){
+          let reader = new FileReader();
 
-let reader = new FileReader();
+          reader.onload = function(e) {
 
-reader.onload = function(e){
+            preview.innerHTML = '<img src="' + e.target.result + '" width="200">';
 
-preview.innerHTML = '<img src="'+e.target.result+'" width="200">';
+          }
 
-}
+          reader.readAsDataURL(file);
 
-reader.readAsDataURL(file);
+        }
 
-}
-
-});
-
-</script>
+      });
+    </script>
     <?php include 'common/footer.php' ?>
 
 </body>

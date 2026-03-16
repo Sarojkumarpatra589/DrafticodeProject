@@ -120,34 +120,74 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_product") {
               </div>
 
               <div class="col-12">
-  <div class="mb-3">
-    <label class="form-label">Project Description</label>
+                <div class="mb-3">
+                  <label class="form-label">Project Description</label>
 
-    <textarea
-      id="description"
-      class="form-control"
-      name="description"
-      rows="5"
-      style="min-height:140px"><?= $editMode ? htmlspecialchars($row['description'] ?? '') : '' ?></textarea>
+                  <textarea
+                    id="description"
+                    class="form-control"
+                    name="description"
+                    rows="5"
+                    style="min-height:140px"><?= $editMode ? htmlspecialchars($row['description'] ?? '') : '' ?></textarea>
 
-  </div>
-</div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="mb-3">
+
+                  <label class="form-label">Meta Title</label>
+
+                  <input type="text"
+                    class="form-control"
+                    name="meta_title"
+                    value="<?= $editMode ? htmlspecialchars($row['meta_title'] ?? '') : '' ?>">
+
+                </div>
+              </div>
 
 
-<script src="ckeditor/ckeditor.js"></script>
+              <div class="col-md-12">
+                <div class="mb-3">
 
-<script>
-CKEDITOR.replace('description', {
-    height: 300
-});
+                  <label class="form-label">Meta Keywords</label>
 
-// update textarea when form submits
-document.querySelector("form").addEventListener("submit", function () {
-    for (let instance in CKEDITOR.instances) {
-        CKEDITOR.instances[instance].updateElement();
-    }
-});
-</script>
+                  <textarea
+                    class="form-control"
+                    name="meta_keywords"
+                    rows="2"><?= $editMode ? htmlspecialchars($row['meta_keywords'] ?? '') : '' ?></textarea>
+
+                </div>
+              </div>
+
+
+              <div class="col-md-12">
+                <div class="mb-3">
+
+                  <label class="form-label">Meta Description</label>
+
+                  <textarea
+                    class="form-control"
+                    name="meta_description"
+                    rows="3"><?= $editMode ? htmlspecialchars($row['meta_description'] ?? '') : '' ?></textarea>
+
+                </div>
+              </div>
+
+
+              <script src="ckeditor/ckeditor.js"></script>
+
+              <script>
+                CKEDITOR.replace('description', {
+                  height: 300
+                });
+
+                // update textarea when form submits
+                document.querySelector("form").addEventListener("submit", function() {
+                  for (let instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                  }
+                });
+              </script>
 
             </div>
 

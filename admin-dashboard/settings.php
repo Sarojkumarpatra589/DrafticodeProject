@@ -26,6 +26,7 @@ if (isset($_POST['update_settings'])) {
     $instagram = $_POST['instagram'];
     $linkedin = $_POST['linkedin'];
     $twitter = $_POST['twitter'];
+    $youtube=$_POST['youtube'];
     $meta_title = $_POST['meta_title'];
     $meta_keyword = $_POST['meta_keyword'];
     $meta_description = $_POST['meta_description'];
@@ -67,7 +68,7 @@ if (isset($_POST['update_settings'])) {
         UPDATE settings SET
         site_title=?, favicon=?, logo=?, email=?, phone=?, whatsapp=?,
         address=?, tagline=?, map_link=?,
-        facebook=?, instagram=?, linkedin=?, twitter=?,
+        facebook=?, instagram=?, linkedin=?, twitter=?,youtube=?,
         meta_title=?, meta_keyword=?, meta_description=?
         WHERE id=1
     ");
@@ -86,6 +87,7 @@ if (isset($_POST['update_settings'])) {
         $instagram,
         $linkedin,
         $twitter,
+        $youtube,
         $meta_title,
         $meta_keyword,
         $meta_description
@@ -218,6 +220,11 @@ if (isset($_POST['update_settings'])) {
                     <div class="col-md-6">
                         <label class="form-label">Twitter</label>
                         <input type="url" class="form-control" name="twitter" value="<?= htmlspecialchars($row['twitter']) ?>">
+                    </div>
+
+                     <div class="col-md-6">
+                        <label class="form-label">Youtube</label>
+                        <input type="url" class="form-control" name="youtube" value="<?= htmlspecialchars($row['youtube']) ?>">
                     </div>
 
                     <!-- SEO -->

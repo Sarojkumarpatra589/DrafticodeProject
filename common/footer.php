@@ -7,21 +7,21 @@
 					<div class="icon-box"><i class="icon fa fa-map-marker-alt"></i></div>
 					<div class="content">
 						<div class="subtitle">office address</div>
-						<div class="text">4648 Rocky Road Philadelphia PA, 1920</div>
+						<div class="text"><?php echo $settings['address']; ?></div>
 					</div>
 				</li>
 				<li>
 					<div class="icon-box"><i class="icon fa fa-envelope"></i></div>
 					<div class="content">
 						<div class="subtitle">send email</div>
-						<div class="text"><a href="mailto:info@yourtheme.com">info@yourtheme.com</a></div>
+						<div class="text"><a href="mailto:<?php echo $settings['email']; ?>"><?php echo $settings['email']; ?></a></div>
 					</div>
 				</li>
 				<li>
 					<div class="icon-box"><i class="icon fa fa-phone"></i></div>
 					<div class="content">
 						<div class="subtitle">call emergency</div>
-						<div class="text"><a href="tel:+88012365499">+88 0123 654 99</a></div>
+						<div class="text"><a href="tel:<?php echo $settings['phone']; ?>"><?php echo $settings['phone']; ?></a></div>
 					</div>
 				</li>
 			</ul>
@@ -29,15 +29,26 @@
 				<!-- Footer Column -->
 				<div class="footer-column col-lg-3 col-md-6 col-sm-6">
 					<div class="footer-widget about-widget">
-						<figure class="image"><a href="index-2.html"><img src="images/logo-2.png" alt="Image"></a>
+						<figure class="image bg-white d-flex justify-content-center"><a href="index-2.html"><img src="upload/<?php echo $settings['logo']; ?>" alt="Image"></a>
 						</figure>
 						<div class="text">Empowering brands with cutting-edge digital solutions to drive growth
 							and innovation.</div>
 						<ul class="social-icon-two">
-							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-							<li><a href="#"><i class="fab fa-youtube"></i></a></li>
+							<li><a href="<?php echo $settings['facebook']; ?>"  target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="<?php echo $settings['twitter']; ?>"  target="_blank"><i class="fab fa-x-twitter"></i></a></li>
+							<li>
+								<a href="<?php echo $settings['linkedin']; ?>" target="_blank">
+									<i class="fab fa-linkedin-in"></i>
+								</a>
+							</li>
+
+							<li>
+								<a href="<?php echo $settings['instagram']; ?>" target="_blank">
+									<i class="fab fa-instagram"></i>
+								</a>
+							</li>
+							<li><a href="<?php echo $settings['youtube']; ?>"  target="_blank"><i class="fab fa-youtube"></i></a></li>
+							
 						</ul>
 					</div>
 				</div>
@@ -101,7 +112,11 @@
 	<div class="footer-bottom">
 		<div class="auto-container">
 			<div class="inner-container">
-				<div class="copyright-text">© Copyright 2025 by Company.com</div>
+				<div class="copyright-text">
+					© <?php echo date('Y'); ?> Company.com. All Rights Reserved. 
+					Designed & Developed by 
+					<a class="text-warning fw-bold" href="https://drafticode.com/" target="_blank" rel="noopener">Drafticode</a>
+				</div>
 				<div class="right-box">
 					<ul class="footer-nav">
 						<li><a href="term_condition.php">Terms & Conditions</a></li>

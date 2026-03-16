@@ -12,7 +12,7 @@
 
       <link href="css/style.css" rel="stylesheet">
   
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
   <link rel="icon" href="images/favicon.png" type="image/x-icon" />
 
@@ -107,23 +107,32 @@
 				<div class="inner-column">
 						<div class="inner-box">
 						<h6 class="title">Number</h6>
-						<div class="text">+(208) 555-0112 2222</div>
-						<div class="text">+(229) 555-0109</div>
+						<div class="text"><?php echo $settings['phone']; ?></div>\
 						</div>
 						<div class="inner-box">
 						<h6 class="title">Address</h6>
-						<div class="text">4517 Washington Ave. Manchester,</div>
-						<div class="text">Kentucky 39495</div>
+						<div class="text"><?php echo $settings['address']; ?></div>
 						</div>
 						<div class="inner-box">
 						<h6 class="title">Email</h6>
-						<div class="text">Support@Innovatek.com</div>
+						<div class="text"><?php echo $settings['email']; ?></div>
 						</div>
 						<ul class="social-icon-four">
-						<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-						<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-						<li><a href="#"><i class="fab fa-youtube"></i></a></li>
+							<li><a href="<?php echo $settings['facebook']; ?>"  target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="<?php echo $settings['twitter']; ?>"  target="_blank"><i class="fab fa-x-twitter"></i></a></li>
+							<li>
+								<a href="<?php echo $settings['linkedin']; ?>" target="_blank">
+									<i class="fab fa-linkedin-in"></i>
+								</a>
+							</li>
+
+							<li>
+								<a href="<?php echo $settings['instagram']; ?>" target="_blank">
+									<i class="fab fa-instagram"></i>
+								</a>
+							</li>
+							<li><a href="<?php echo $settings['youtube']; ?>"  target="_blank"><i class="fab fa-youtube"></i></a></li>
+							
 						</ul>
 				</div>
 			</div>
@@ -135,7 +144,7 @@
 
 <!-- Map Section -->
 <section class="map-section-three">
-	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805184.6331292129!2d144.49266890254142!3d-37.97123689954809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1574408946759!5m2!1sen!2s" allowfullscreen=""></iframe>
+	<iframe src="<?php echo $settings['map_link']; ?>" allowfullscreen=""></iframe>
 </section>
 <!-- End Map Section --> 
  

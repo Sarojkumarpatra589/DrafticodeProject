@@ -1,3 +1,13 @@
+<?php
+include 'connection/config.php';
+
+// Fetch current settings (single row id=1)
+$stmt = $pdo->prepare("SELECT * FROM settings WHERE id=1");
+$stmt->execute();
+$settings = $stmt->fetch(PDO::FETCH_ASSOC);
+?>
+
+
 <!-- Main Header -->
 <header class="main-header header-style-three">
     <div class="header-lower">
@@ -5,7 +15,7 @@
         <div class="main-box">
             <div class="logo-box">
                 <div class="logo">
-                    <a href="index.php" title=""><img src="upload/logo.png" alt="" title="Drafticode"></a>
+                    <a href="index.php" title=""><img src="upload/<?php echo $settings['logo']; ?>" alt="" title="Drafticode"></a>
                 </div>
             </div>
             <!--Nav Box-->
@@ -94,7 +104,7 @@
         <div class="menu-backdrop"></div>
         <nav class="menu-box">
             <div class="upper-box">
-                <div class="nav-logo"><a href="index.php"><img src="upload/logo.png" alt="" title=""></a></div>
+                <div class="nav-logo"><a href="index.php"><img src="upload/<?php echo $settings['logo']; ?>" alt="" title=""></a></div>
                 <div class="close-btn"><i class="icon fa fa-times"></i></div>
             </div>
             <ul class="navigation clearfix">
@@ -146,7 +156,7 @@
         <div class="auto-container">
             <div class="inner-container">
                 <div class="logo">
-                    <a href="index-2.html" title=""><img src="upload/logo.png" alt="" title=""></a>
+                    <a href="index-2.html" title=""><img src="upload/<?php echo $settings['logo']; ?>" alt="" title=""></a>
                 </div>
                 <div class="nav-outer">
                     <nav class="main-menu">
