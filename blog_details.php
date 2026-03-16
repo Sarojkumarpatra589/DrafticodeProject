@@ -256,24 +256,7 @@
                         </div>
                     </div>                      
                 </div>
-                <div class="blog-media">
-                    <h3 class="title">Social Media</h3>
-                    <ul>
-                        <li><i class="icon fab fa-instagram"></i>By Rovert</li>
-                        <p class="text">Instralation accecories of tyree  of readroom starline of shits ofline by 
-                            at http/www.tweeter feeds/story.</p>
-                    </ul>
-                    <ul>
-                        <li><i class="icon fab fa-instagram"></i>By Steven</li>
-                        <p class="text">Instralation accecories of tyree  of readroom starline of shits ofline by 
-                            at http/www.tweeter feeds/story.</p>
-                    </ul>
-                    <ul>
-                        <li><i class="icon fab fa-instagram"></i>By Richard</li>
-                        <p class="text">Instralation accecories of tyree  of readroom starline of shits ofline by 
-                            at http/www.tweeter feeds/story.</p>
-                    </ul>
-                </div>
+                
                     <div class="blog-categories">
                     <h3 class="title">Archive</h3>
                     <ul>

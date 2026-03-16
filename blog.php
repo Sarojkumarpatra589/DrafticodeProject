@@ -75,7 +75,7 @@
                         <div class="news-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><a href="blog-details.php?id=<?= $blog['id'] ?>">
+                                    <figure class="image"><a href="blog_details.php?slug=<?= htmlspecialchars($blog['slug']) ?>">
                                             <img src="upload/<?= htmlspecialchars($blog['image']) ?>" alt="Image">
                                         </a></figure>
                                     <?php
@@ -94,7 +94,7 @@
                                             <li><i class="icon fa fa-comment"></i> 2 Comment</li>
                                         </ul>
                                         <h4 class="title">
-                                            <a href="blog-details.php?id=<?= $blog['id'] ?>">
+                                            <a href="blog_details.php?slug=<?= htmlspecialchars($blog['slug']) ?>">
                                                 <?= htmlspecialchars($blog['title']) ?>
                                             </a>
                                         </h4>
@@ -109,11 +109,11 @@
                                     </div>
                                     <div class="btn-box">
 
-                                        <a href="blog-details.php?id=<?= $blog['id'] ?>" class="text">
+                                        <a href="blog_details.php?slug=<?= htmlspecialchars($blog['slug']) ?>" class="text">
                                             Read More
                                         </a>
 
-                                        <a href="blog-details.php?id=<?= $blog['id'] ?>" class="readmore">
+                                        <a href="blog_details.php?slug=<?= htmlspecialchars($blog['slug']) ?>" class="readmore">
                                             <i class="fa fa-arrow-right"></i>
                                         </a>
 

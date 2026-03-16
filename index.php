@@ -1,176 +1,378 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <!-- Mirrored from php.kodesolution.com/2025/onicx-php/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Mar 2026 05:49:14 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
 <head>
-  <meta charset="utf-8" />
-  <title>Onicx - Digital Agency PHP Template | Home Page 01</title>
+    <meta charset="utf-8" />
+    <title>Onicx - Digital Agency PHP Template | Home Page 01</title>
 
-  <!-- Stylesheets -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-      <link href="css/style.css" rel="stylesheet">
-  
-  
-  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-  <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+    <link href="css/style.css" rel="stylesheet">
 
-  <!-- Responsive -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
-<div class="page-wrapper">
-<!-- Preloader -->
-<div class="preloader">
-    <div class="loader"></div>
-</div> 
+    <div class="page-wrapper">
+        <!-- Preloader -->
+        <div class="preloader">
+            <div class="loader"></div>
+        </div>
 
 
-<?php include "common/header.php"; ?>
+        <?php include "common/header.php"; ?>
 
 
-<!-- Banner Section -->
-<section class="banner-section-four">
-    <div class="swiper banner-swiper-four">
-        <div class="swiper-wrapper">
-            <?php
-            $stmt = $pdo->prepare("SELECT * FROM slider ORDER BY id DESC");
-            $stmt->execute();
-            $sliders = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            foreach($sliders as $slider){ ?>
-            <!-- Banner Slide -->
-            <div class="banner-slide swiper-slide">
-                <div class="outer-box">
-                    <div class="inner-box">
-                        <div class="bg bg-pattern-15"
-                            style="background-image:url('upload/<?php echo $slider['image']; ?>'); 
+        <!-- Banner Section -->
+        <section class="banner-section-four">
+            <div class="swiper banner-swiper-four">
+                <div class="swiper-wrapper">
+                    <?php
+                    $stmt = $pdo->prepare("SELECT * FROM slider ORDER BY id DESC");
+                    $stmt->execute();
+                    $sliders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($sliders as $slider) { ?>
+                        <!-- Banner Slide -->
+                        <div class="banner-slide swiper-slide">
+                            <div class="outer-box">
+                                <div class="inner-box">
+                                    <div class="bg bg-pattern-15"
+                                        style="background-image:url('upload/<?php echo $slider['image']; ?>'); 
                             background-size:cover;
                             background-position:center;
                             background-repeat:no-repeat;">
-                            </div>
-                        <div class="row">
+                                    </div>
+                                    <div class="row">
 
-                            <!-- Content Column -->
-                            <div class="content-column col-lg-12 col-md-12 col-sm-12">
-                                <div class="inner-column">
-                                    <h1 class="title-sp animate-2">Business</h1>
-                                    <h1 class="title animate-2"><?= htmlspecialchars($slider['title']) ?></h1>
-                                    <div class="text animate-3"><?= $slider['description'] ?></div>
-                                    <div class="btn-box animate-4">
-                                        <a class="theme-btn-main" href="page-contact.html">
-                                            <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
-                                            <span class="theme-btn">Discover More</span>
-                                            <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>
-                                        </a>
+                                        <!-- Content Column -->
+                                        <div class="content-column col-lg-12 col-md-12 col-sm-12">
+                                            <div class="inner-column">
+                                                <h1 class="title-sp animate-2">Business</h1>
+                                                <h1 class="title animate-2"><?= htmlspecialchars($slider['title']) ?></h1>
+                                                <div class="text animate-3"><?= $slider['description'] ?></div>
+                                                <div class="btn-box animate-4">
+                                                    <a class="theme-btn-main" href="page-contact.html">
+                                                        <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
+                                                        <span class="theme-btn">Discover More</span>
+                                                        <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-<?php } ?>
-        </div>
-    </div>
-    
-
-    <div class="nav-box">
-        <div class="swiper-button-prev"><span class="icon fa fa-angle-left "></span></div>
-        <div class="swiper-button-next"><span class="icon fa fa-angle-right "></span></div>
-    </div>
-
-</section>
-<!-- End Banner Section -->
-
-<!-- Client Section -->
-<section class="client-section pb-0 mb-4 ">
-    <div class="shape-4"></div>
-
-    <div class="auto-container">
-        <div class="outer-box">
-
-            <div class="title-box">
-                <h5 class="title">Trusted By <br>Top Companies</h5>
-                <i class="icon fa fa-arrow-up-right"></i>
-            </div>
-
-            <div class="marquee-box">
-                <div class="marquee">
-
-                <?php
-                include 'connection/config.php';
-
-                $stmt = $pdo->prepare("SELECT * FROM clients ORDER BY id DESC");
-                $stmt->execute();
-                $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                foreach($clients as $client):
-                ?>
-
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-    <figure class="image">
-        <img src="upload/<?= htmlspecialchars($client['image']) ?>" 
-             alt="Client Logo" 
-             style="height:60px; width:auto; object-fit:contain;">
-    </figure>
-</div>
-                    </div>
-
-                <?php endforeach; ?>
-
+                    <?php } ?>
                 </div>
             </div>
 
-        </div>
-    </div>
-</section>
-<!-- End Client Section -->
- 
-<!-- About Section -->
-<section class="about-section-two pt-0 mt-5">
-    <div class="shape-15 zoom-one"></div>
-    <div class="icon-18 bounce-x"></div>
-    <div class="auto-container">
-        <div class="row">
 
-            <!-- Content Column -->
-            <div class="content-column col-xl-6 col-lg-12 col-md-12 col-sm-12 order-xl-2 wow fadeInRight">
-                <div class="inner-column">
-                    <div class="sec-title">
-                        <div class="sub-title">About Us</div>
-                        <h2 class="text-reveal-anim">Welcome to Our Smart <br> Digital Agency</h2>
-                    </div>
-                    <div class="text">The a long established fact that a reader will be distracted the readable
-                        content of page when looking at layout the point of using lorem Ipsum less normal
-                        distribution of letters.</div>
+            <div class="nav-box">
+                <div class="swiper-button-prev"><span class="icon fa fa-angle-left "></span></div>
+                <div class="swiper-button-next"><span class="icon fa fa-angle-right "></span></div>
+            </div>
 
-                    <div class="list-box style-two">
-                        <ul class="list-style-two two-column">
-                            <li><i class="fa fa-check-circle"></i> Innovative Solutions</li>
-                            <li><i class="fa fa-check-circle"></i> User-Friendly Interface</li>
-                            <li><i class="fa fa-check-circle"></i> Secure Transactions</li>
-                            <li><i class="fa fa-check-circle"></i> Real-Time Analytics</li>
-                        </ul>
+        </section>
+        <!-- End Banner Section -->
+
+        <!-- Client Section -->
+        <section class="client-section pb-0 mb-4 ">
+            <div class="shape-4"></div>
+
+            <div class="auto-container">
+                <div class="outer-box">
+
+                    <div class="title-box">
+                        <h5 class="title">Trusted By <br>Top Companies</h5>
+                        <i class="icon fa fa-arrow-up-right"></i>
                     </div>
 
-                    <!--Skills-->
-                    <div class="skills style-two">
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-title">Marketing</div>
+                    <div class="marquee-box">
+                        <div class="marquee">
+
+                            <?php
+                            include 'connection/config.php';
+
+                            $stmt = $pdo->prepare("SELECT * FROM clients ORDER BY id DESC");
+                            $stmt->execute();
+                            $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                            foreach ($clients as $client):
+                            ?>
+
+                                <!-- Client Block -->
+                                <div class="client-block">
+                                    <div class="inner-box">
+                                        <figure class="image">
+                                            <img src="upload/<?= htmlspecialchars($client['image']) ?>"
+                                                alt="Client Logo"
+                                                style="height:60px; width:auto; object-fit:contain;">
+                                        </figure>
+                                    </div>
+                                </div>
+
+                            <?php endforeach; ?>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- End Client Section -->
+
+        <!-- About Section -->
+        <section class="about-section-two pt-0 mt-5">
+            <div class="shape-15 zoom-one"></div>
+            <div class="icon-18 bounce-x"></div>
+            <div class="auto-container">
+                <div class="row">
+
+                    <!-- Content Column -->
+                    <div class="content-column col-xl-6 col-lg-12 col-md-12 col-sm-12 order-xl-2 wow fadeInRight">
+                        <div class="inner-column">
+                            <div class="sec-title">
+                                <div class="sub-title">About Us</div>
+                                <h2 class="text-reveal-anim">Welcome to Our Smart <br> Digital Agency</h2>
                             </div>
-                            <div class="skill-bar">
-                                <div class="bar-inner">
-                                    <div class="bar progress-line" data-width="86">
-                                        <div class="skill-percentage">
-                                            <div class="count-box"><span class="count-text" data-speed="3000"
-                                                    data-stop="86">0</span>%</div>
+                            <div class="text">The a long established fact that a reader will be distracted the readable
+                                content of page when looking at layout the point of using lorem Ipsum less normal
+                                distribution of letters.</div>
+
+                            <div class="list-box style-two">
+                                <ul class="list-style-two two-column">
+                                    <li><i class="fa fa-check-circle"></i> Innovative Solutions</li>
+                                    <li><i class="fa fa-check-circle"></i> User-Friendly Interface</li>
+                                    <li><i class="fa fa-check-circle"></i> Secure Transactions</li>
+                                    <li><i class="fa fa-check-circle"></i> Real-Time Analytics</li>
+                                </ul>
+                            </div>
+
+                            <!--Skills-->
+                            <div class="skills style-two">
+                                <div class="skill-item">
+                                    <div class="skill-header">
+                                        <div class="skill-title">Marketing</div>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="bar-inner">
+                                            <div class="bar progress-line" data-width="86">
+                                                <div class="skill-percentage">
+                                                    <div class="count-box"><span class="count-text" data-speed="3000"
+                                                            data-stop="86">0</span>%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-box">
+                                <a class="theme-btn-main" href="page-contact.html">
+                                    <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
+                                    <span class="theme-btn">Discover More</span>
+                                    <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>
+                                </a>
+                                <div class="sign"><img src="images/icons/sign.png" alt="Image"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Column -->
+                    <div class="image-column col-xl-6 col-lg-12 col-md-12 col-sm-12 wow fadeInLeft"
+                        data-wow-delay="300ms">
+                        <div class="inner-column">
+                            <figure class="image"><img src="images/resource/about2-1.jpg" alt="Image"></figure>
+                            <figure class="image-two"><img src="images/resource/about2-2.jpg" alt="Image"></figure>
+                            <div class="btn-box">
+                                <a href="#">
+                                    <svg viewBox="0 0 100 100" width="100" height="100" class="circular-text">
+                                        <defs>
+                                            <path id="circle"
+                                                d="M 50, 50m -37, 0a 37,37 0 1,1 74,0a 37,37 0 1,1 -74,0" />
+                                        </defs>
+                                        <text>
+                                            <textPath xlink:href="#circle">Explore More Explore More</textPath>
+                                        </text>
+                                    </svg>
+                                    <i class="icon fa fa-arrow-up-right"></i>
+                                </a>
+                            </div>
+                            <div class="exp-box">
+                                <div class="content">
+                                    <h2 class="count">19</h2>
+                                    <div class="text">Years of<br>Experience</div>
+                                </div>
+                            </div>
+                            <div class="icon-15"></div>
+                            <div class="icon-16 zoom-one"></div>
+                            <div class="icon-17 bounce-x"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End About Section -->
+
+        <!-- Service Section -->
+        <section class="service-section">
+            <div class="bg bg-pattern-2"></div>
+            <div class="auto-container">
+                <div class="sec-title text-center">
+                    <div class="sub-title">Our Services</div>
+                    <h2 class="text-reveal-anim">Services We’re <br> Offering to Customers</h2>
+                </div>
+
+                <div class="outer-box">
+                    <div class="swiper service-swiper">
+                        <div class="swiper-wrapper">
+
+                            <!-- Service Block -->
+                            <div class="service-block swiper-slide">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <figure class="image"><a href="service-details.html"><img
+                                                    src="images/resource/service1-1.jpg" alt="Image"></a></figure>
+                                        <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
+                                    </div>
+                                    <div class="content-box">
+                                        <h4 class="title"><a href="service-details.html">Web Design</a></h4>
+                                        <div class="text">There are many variation of passages of Lorem Ipsum available
+                                            form.</div>
+                                        <ul class="list-style-three light">
+                                            <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
+                                            <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
+                                            <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
+                                        </ul>
+                                        <div class="btn-box"><a href="about.html" class="readmore">Discover More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Service Block -->
+                            <div class="service-block swiper-slide">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <figure class="image"><a href="service-details.html"><img
+                                                    src="images/resource/service1-2.jpg" alt="Image"></a></figure>
+                                        <div class="icon-box"><i class="icon flaticon-health-check"></i></div>
+                                    </div>
+                                    <div class="content-box">
+                                        <h4 class="title"><a href="service-details.html">Web Development</a></h4>
+                                        <div class="text">There are many variation of passages of Lorem Ipsum available
+                                            form.</div>
+                                        <ul class="list-style-three light">
+                                            <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
+                                            <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
+                                            <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
+                                        </ul>
+                                        <div class="btn-box"><a href="about.html" class="readmore">Discover More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Service Block -->
+                            <div class="service-block swiper-slide">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <figure class="image"><a href="service-details.html"><img
+                                                    src="images/resource/service1-3.jpg" alt="Image"></a></figure>
+                                        <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
+                                    </div>
+                                    <div class="content-box">
+                                        <h4 class="title"><a href="service-details.html">Digital Marketing</a></h4>
+                                        <div class="text">There are many variation of passages of Lorem Ipsum available
+                                            form.</div>
+                                        <ul class="list-style-three light">
+                                            <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
+                                            <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
+                                            <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
+                                        </ul>
+                                        <div class="btn-box"><a href="about.html" class="readmore">Discover More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Service Block -->
+                            <div class="service-block swiper-slide">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <figure class="image"><a href="service-details.html"><img
+                                                    src="images/resource/service1-1.jpg" alt="Image"></a></figure>
+                                        <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
+                                    </div>
+                                    <div class="content-box">
+                                        <h4 class="title"><a href="service-details.html">Web Design</a></h4>
+                                        <div class="text">There are many variation of passages of Lorem Ipsum available
+                                            form.</div>
+                                        <ul class="list-style-three light">
+                                            <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
+                                            <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
+                                            <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
+                                        </ul>
+                                        <div class="btn-box"><a href="about.html" class="readmore">Discover More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Service Block -->
+                            <div class="service-block swiper-slide">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <figure class="image"><a href="service-details.html"><img
+                                                    src="images/resource/service1-2.jpg" alt="Image"></a></figure>
+                                        <div class="icon-box"><i class="icon flaticon-health-check"></i></div>
+                                    </div>
+                                    <div class="content-box">
+                                        <h4 class="title"><a href="service-details.html">Web Development</a></h4>
+                                        <div class="text">There are many variation of passages of Lorem Ipsum available
+                                            form.</div>
+                                        <ul class="list-style-three light">
+                                            <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
+                                            <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
+                                            <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
+                                        </ul>
+                                        <div class="btn-box"><a href="about.html" class="readmore">Discover More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Service Block -->
+                            <div class="service-block swiper-slide">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <figure class="image"><a href="service-details.html"><img
+                                                    src="images/resource/service1-3.jpg" alt="Image"></a></figure>
+                                        <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
+                                    </div>
+                                    <div class="content-box">
+                                        <h4 class="title"><a href="service-details.html">Digital Marketing</a></h4>
+                                        <div class="text">There are many variation of passages of Lorem Ipsum available
+                                            form.</div>
+                                        <ul class="list-style-three light">
+                                            <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
+                                            <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
+                                            <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
+                                        </ul>
+                                        <div class="btn-box"><a href="about.html" class="readmore">Discover More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -178,962 +380,762 @@
                         </div>
                     </div>
 
-                    <div class="btn-box">
-                        <a class="theme-btn-main" href="page-contact.html">
-                            <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
-                            <span class="theme-btn">Discover More</span>
-                            <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>
-                        </a>
-                        <div class="sign"><img src="images/icons/sign.png" alt="Image"></div>
+                    <div class="nav-box">
+                        <div class="swiper-button-prev"><span class="icon fal fa-long-arrow-left "></span></div>
+                        <div class="swiper-button-next"><span class="icon fal fa-long-arrow-right "></span></div>
                     </div>
                 </div>
             </div>
+        </section>
+        <!-- End Service Section -->
 
-            <!-- Image Column -->
-            <div class="image-column col-xl-6 col-lg-12 col-md-12 col-sm-12 wow fadeInLeft"
-                data-wow-delay="300ms">
-                <div class="inner-column">
-                    <figure class="image"><img src="images/resource/about2-1.jpg" alt="Image"></figure>
-                    <figure class="image-two"><img src="images/resource/about2-2.jpg" alt="Image"></figure>
-                    <div class="btn-box">
-                        <a href="#">
+        <!-- Funfact Section -->
+        <section class="funfact-section pb-0">
+            <div class="bg bg-pattern-3"></div>
+            <div class="outer-box">
+                <div class="bg bg-image" style="background-image: url(images/background/3.png);"></div>
+                <div class="auto-container">
+                    <div class="fact-counter">
+                        <div class="row">
+                            <!-- Counter Block -->
+                            <div class="counter-block col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp">
+                                <div class="inner-box">
+                                    <div class="icon-box"><i class="icon flaticon-success"></i></div>
+                                    <div class="count-box"><span class="count-text" data-speed="3000"
+                                            data-stop="1230">0</span>+</div>
+                                    <div class="text">Successful Projects</div>
+                                </div>
+                            </div>
+                            <!-- Counter Block -->
+                            <div class="counter-block col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp"
+                                data-wow-delay="300ms">
+                                <div class="inner-box">
+                                    <div class="icon-box"><i class="icon flaticon-marketing"></i></div>
+                                    <div class="count-box"><span class="count-text" data-speed="3000"
+                                            data-stop="98">0</span>%</div>
+                                    <div class="text">Best Result Outcome</div>
+                                </div>
+                            </div>
+                            <!-- Counter Block -->
+                            <div class="counter-block col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp"
+                                data-wow-delay="600ms">
+                                <div class="inner-box">
+                                    <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
+                                    <div class="count-box"><span class="count-text" data-speed="3000"
+                                            data-stop="64">0</span>%</div>
+                                    <div class="text">Cover Marketing</div>
+                                </div>
+                            </div>
+                            <!-- Counter Block -->
+                            <div class="counter-block col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp"
+                                data-wow-delay="900ms">
+                                <div class="inner-box">
+                                    <div class="icon-box"><i class="icon flaticon-diplomat"></i></div>
+                                    <div class="count-box"><span class="count-text" data-speed="3000"
+                                            data-stop="2890">0</span>+</div>
+                                    <div class="text">Satisfied Customers</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="title-box">
+                        <h3 class="title">We craft bold digital experiences that grow <br> brands &
+                            turn ideas into impact.</h3>
+                        <div class="exp-box wow fadeInUp" data-wow-delay="300ms">
                             <svg viewBox="0 0 100 100" width="100" height="100" class="circular-text">
                                 <defs>
-                                    <path id="circle"
-                                        d="M 50, 50m -37, 0a 37,37 0 1,1 74,0a 37,37 0 1,1 -74,0" />
+                                    <path id="circle" d="M 50, 50m -37, 0a 37,37 0 1,1 74,0a 37,37 0 1,1 -74,0" />
                                 </defs>
                                 <text>
-                                    <textPath xlink:href="#circle">Explore More Explore More</textPath>
+                                    <textPath xlink:href="#circle">Since 1885 Since 1885 Since 1885 Since 1885 Since
+                                        1885</textPath>
                                 </text>
                             </svg>
-                            <i class="icon fa fa-arrow-up-right"></i>
-                        </a>
-                    </div>
-                    <div class="exp-box">
-                        <div class="content">
-                            <h2 class="count">19</h2>
-                            <div class="text">Years of<br>Experience</div>
-                        </div>
-                    </div>
-                    <div class="icon-15"></div>
-                    <div class="icon-16 zoom-one"></div>
-                    <div class="icon-17 bounce-x"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End About Section -->
-
-<!-- Service Section -->
-<section class="service-section">
-    <div class="bg bg-pattern-2"></div>
-    <div class="auto-container">
-        <div class="sec-title text-center">
-            <div class="sub-title">Our Services</div>
-            <h2 class="text-reveal-anim">Services We’re <br> Offering to Customers</h2>
-        </div>
-
-        <div class="outer-box">
-            <div class="swiper service-swiper">
-                <div class="swiper-wrapper">
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img
-                                            src="images/resource/service1-1.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Design</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available
-                                    form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="about.html" class="readmore">Discover More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img
-                                            src="images/resource/service1-2.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-health-check"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Development</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available
-                                    form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="about.html" class="readmore">Discover More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img
-                                            src="images/resource/service1-3.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Digital Marketing</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available
-                                    form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="about.html" class="readmore">Discover More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img
-                                            src="images/resource/service1-1.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Design</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available
-                                    form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="about.html" class="readmore">Discover More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img
-                                            src="images/resource/service1-2.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-health-check"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Development</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available
-                                    form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="about.html" class="readmore">Discover More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img
-                                            src="images/resource/service1-3.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Digital Marketing</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available
-                                    form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="about.html" class="readmore">Discover More</a>
-                                </div>
-                            </div>
+                            <div class="icon-box"><i class="icon flaticon-technology"></i></div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+        <!-- End Funfact Section -->
 
-            <div class="nav-box">
-                <div class="swiper-button-prev"><span class="icon fal fa-long-arrow-left "></span></div>
-                <div class="swiper-button-next"><span class="icon fal fa-long-arrow-right "></span></div>
+        <!-- Project Section -->
+        <section class="project-section">
+            <div class="sec-title light text-center">
+                <div class="sub-title">Our Work</div>
+                <h2 class="text-reveal-anim">Our Recently <br> Completed Projects</h2>
             </div>
-        </div>
-    </div>
-</section>
-<!-- End Service Section -->
- 
-<!-- Funfact Section -->
-<section class="funfact-section pb-0">
-    <div class="bg bg-pattern-3"></div>
-    <div class="outer-box">
-        <div class="bg bg-image" style="background-image: url(images/background/3.png);"></div>
-        <div class="auto-container">
-            <div class="fact-counter">
+            <div class="outer-box">
+                <!-- Project Swiper -->
+                <div class="project-swiper">
+                    <div class="swiper-wrapper">
+                        <!-- Project Block -->
+                        <div class="project-block swiper-slide">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><a href="project-details.html"><img
+                                                src="images/resource/project1-1.jpg" alt="Image"></a></figure>
+                                </div>
+                                <div class="content-box">
+                                    <div class="cat-box">
+                                        <div class="cat">marketing</div>
+                                    </div>
+                                    <h4 class="title">future management Development</h4>
+                                </div>
+                                <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- Project Block -->
+                        <div class="project-block swiper-slide">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><a href="project-details.html"><img
+                                                src="images/resource/project1-2.jpg" alt="Image"></a></figure>
+                                </div>
+                                <div class="content-box">
+                                    <div class="cat-box">
+                                        <div class="cat">marketing</div>
+                                    </div>
+                                    <h4 class="title">future management Development</h4>
+                                </div>
+                                <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- Project Block -->
+                        <div class="project-block swiper-slide">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><a href="project-details.html"><img
+                                                src="images/resource/project1-3.jpg" alt="Image"></a></figure>
+                                </div>
+                                <div class="content-box">
+                                    <div class="cat-box">
+                                        <div class="cat">marketing</div>
+                                    </div>
+                                    <h4 class="title">future management Development</h4>
+                                </div>
+                                <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- Project Block -->
+                        <div class="project-block swiper-slide">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><a href="project-details.html"><img
+                                                src="images/resource/project1-4.jpg" alt="Image"></a></figure>
+                                </div>
+                                <div class="content-box">
+                                    <div class="cat-box">
+                                        <div class="cat">marketing</div>
+                                    </div>
+                                    <h4 class="title">future management Development</h4>
+                                </div>
+                                <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- Project Block -->
+                        <div class="project-block swiper-slide">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><a href="project-details.html"><img
+                                                src="images/resource/project1-5.jpg" alt="Image"></a></figure>
+                                </div>
+                                <div class="content-box">
+                                    <div class="cat-box">
+                                        <div class="cat">marketing</div>
+                                    </div>
+                                    <h4 class="title">future management Development</h4>
+                                </div>
+                                <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- Project Block -->
+                        <div class="project-block swiper-slide">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><a href="project-details.html"><img
+                                                src="images/resource/project1-1.jpg" alt="Image"></a></figure>
+                                </div>
+                                <div class="content-box">
+                                    <div class="cat-box">
+                                        <div class="cat">marketing</div>
+                                    </div>
+                                    <h4 class="title">future management Development</h4>
+                                </div>
+                                <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- Project Block -->
+                        <div class="project-block swiper-slide">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <figure class="image"><a href="project-details.html"><img
+                                                src="images/resource/project1-2.jpg" alt="Image"></a></figure>
+                                </div>
+                                <div class="content-box">
+                                    <div class="cat-box">
+                                        <div class="cat">marketing</div>
+                                    </div>
+                                    <h4 class="title">future management Development</h4>
+                                </div>
+                                <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+        <!-- End Project Section -->
+
+        <!-- Marquee Section -->
+        <section class="marquee-section">
+            <div class="shape-5"></div>
+            <div class="marquee-container">
+                <div class="marquee">
+                    <div class="text">BRNDING</div>
+                    <div class="icon-9"></div>
+                    <div class="text two">MARKETING</div>
+                    <div class="icon-9"></div>
+                    <div class="text">DEVELOPMENT</div>
+                    <div class="icon-9"></div>
+                    <div class="text two">Marketing Agency</div>
+                    <div class="icon-9"></div>
+                    <div class="text">BRNDING</div>
+                    <div class="icon-9"></div>
+                    <div class="text two">MARKETING</div>
+                    <div class="icon-9"></div>
+                    <div class="text">DEVELOPMENT</div>
+                    <div class="icon-9"></div>
+                    <div class="text two">Marketing Agency</div>
+                    <div class="icon-9"></div>
+                    <div class="text">BRNDING</div>
+                    <div class="icon-9"></div>
+                    <div class="text two">MARKETING</div>
+                    <div class="icon-9"></div>
+                    <div class="text">DEVELOPMENT</div>
+                    <div class="icon-9"></div>
+                    <div class="text two">Marketing Agency</div>
+                    <div class="icon-9"></div>
+                </div>
+            </div>
+        </section>
+        <!-- End Marquee Section -->
+
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="bg bg-pattern-10"></div>
+            <div class="icon-19 bounce-x"></div>
+
+            <div class="auto-container">
+
+                <div class="sec-title text-center">
+                    <div class="sub-title">Our Team</div>
+                    <h2 class="text-reveal-anim">What Success Looks <br> From the Back</h2>
+                </div>
+
                 <div class="row">
-                    <!-- Counter Block -->
-                    <div class="counter-block col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon flaticon-success"></i></div>
-                            <div class="count-box"><span class="count-text" data-speed="3000"
-                                    data-stop="1230">0</span>+</div>
-                            <div class="text">Successful Projects</div>
+
+                    <?php
+                    include 'connection/config.php';
+
+                    $stmt = $pdo->prepare("SELECT * FROM teams ORDER BY id ASC");
+                    $stmt->execute();
+                    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($data as $row):
+                    ?>
+
+                        <div class="team-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp">
+                            <div class="inner-box">
+
+                                <div class="image-box">
+                                    <figure class="image">
+                                        <a href="team-details.php?id=<?= $row['id'] ?>">
+                                            <img src="upload/<?= htmlspecialchars($row['image']) ?>" alt="Image">
+                                        </a>
+                                    </figure>
+                                </div>
+
+                                <div class="content-box">
+                                    <h5 class="name">
+                                        <a href="team-details.php?id=<?= $row['id'] ?>">
+                                            <?= htmlspecialchars($row['name']) ?>
+                                        </a>
+                                    </h5>
+
+                                    <div class="designation">
+                                        <?= htmlspecialchars($row['designation']) ?>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    <?php endforeach; ?>
+
+                </div>
+
+            </div>
+        </section>
+        <!-- End Team Section -->
+        <!-- Faq Section -->
+        <section class="faq-section">
+            <div class="shape-17"></div>
+            <div class="auto-container">
+                <div class="row">
+                    <!-- Content Column -->
+                    <div class="content-column col-lg-6 col-md-12 col-sm-12 wow fadeInLeft" data-wow-delay="200ms">
+                        <div class="inner-column">
+                            <div class="sec-title">
+                                <div class="sub-title">our faqs</div>
+                                <h2 class="text-reveal-anim">Empowering Growth <br> with Innovation</h2>
+                            </div>
+                            <!-- Accordion Box -->
+                            <ul class="accordion-box">
+                                <!--Block-->
+                                <li class="accordion block active-block">
+                                    <div class="acc-btn active">What is business consulting?
+                                        <i class="icon fa fa-plus"></i>
+                                    </div>
+                                    <div class="acc-content current">
+                                        <div class="content">
+                                            <div class="text">Bring to the table win-win survival strategies to ensure
+                                                proactive domination. At the end of the day, going forward, a new normal
+                                                that has evolved from generation X is on the</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--Block-->
+                                <li class="accordion block">
+                                    <div class="acc-btn">What do business consultants do?
+                                        <i class="icon fa fa-plus"></i>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">Bring to the table win-win survival strategies to ensure
+                                                proactive domination. At the end of the day, going forward, a new normal
+                                                that has evolved from generation X is on the</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--Block-->
+                                <li class="accordion block">
+                                    <div class="acc-btn">Why do companies hire business consultants?
+                                        <i class="icon fa fa-plus"></i>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">Bring to the table win-win survival strategies to ensure
+                                                proactive domination. At the end of the day, going forward, a new normal
+                                                that has evolved from generation X is on the</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--Block-->
+                                <li class="accordion block">
+                                    <div class="acc-btn">How much do business consultants charge?
+                                        <i class="icon fa fa-plus"></i>
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="text">Bring to the table win-win survival strategies to ensure
+                                                proactive domination. At the end of the day, going forward, a new normal
+                                                that has evolved from generation X is on the</div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <!-- Counter Block -->
-                    <div class="counter-block col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp"
-                        data-wow-delay="300ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon flaticon-marketing"></i></div>
-                            <div class="count-box"><span class="count-text" data-speed="3000"
-                                    data-stop="98">0</span>%</div>
-                            <div class="text">Best Result Outcome</div>
-                        </div>
-                    </div>
-                    <!-- Counter Block -->
-                    <div class="counter-block col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp"
-                        data-wow-delay="600ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
-                            <div class="count-box"><span class="count-text" data-speed="3000"
-                                    data-stop="64">0</span>%</div>
-                            <div class="text">Cover Marketing</div>
-                        </div>
-                    </div>
-                    <!-- Counter Block -->
-                    <div class="counter-block col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp"
-                        data-wow-delay="900ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon flaticon-diplomat"></i></div>
-                            <div class="count-box"><span class="count-text" data-speed="3000"
-                                    data-stop="2890">0</span>+</div>
-                            <div class="text">Satisfied Customers</div>
+                    <!-- Image Column -->
+                    <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="inner-column">
+                            <figure class="image reveal bounce-x"><img src="images/resource/faq1-1.png" alt="Image">
+                            </figure>
+                            <div class="icon-20 bounce-y"></div>
+                            <div class="icon-21 bounce-x"></div>
+                            <div class="icon-22"></div>
+                            <div class="icon-23 "></div>
+                            <div class="icon-24 zoom-one"></div>
+                            <div class="icon-25 zoom-one"></div>
+                            <div class="shape-18 zoom-one"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="title-box">
-                <h3 class="title">We craft bold digital experiences that grow <br> brands &
-                    turn ideas into impact.</h3>
-                <div class="exp-box wow fadeInUp" data-wow-delay="300ms">
-                    <svg viewBox="0 0 100 100" width="100" height="100" class="circular-text">
-                        <defs>
-                            <path id="circle" d="M 50, 50m -37, 0a 37,37 0 1,1 74,0a 37,37 0 1,1 -74,0" />
-                        </defs>
-                        <text>
-                            <textPath xlink:href="#circle">Since 1885 Since 1885 Since 1885 Since 1885 Since
-                                1885</textPath>
-                        </text>
-                    </svg>
-                    <div class="icon-box"><i class="icon flaticon-technology"></i></div>
+        </section>
+        <!-- End Faq Section -->
+        <!-- Testimonial Section -->
+        <section class="testimonial-section-two">
+            <div class="bg bg-pattern-11"></div>
+            <div class="auto-container">
+                <div class="row">
+
+                    <!-- Content Column -->
+                    <div class="content-column col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                        <div class="inner-column">
+                            <div class="sec-title">
+                                <div class="sub-title">Testimonials</div>
+                                <h2 class="text-reveal-anim">What They’re Talking <br> About Company?</h2>
+                                <div class="text">There are many variations of passages of Lorem Ipsum available, but
+                                    the majority have suffered alteration in some form, by injected humour, or
+                                    randomised words which don't look even slightly believable. </div>
+                            </div>
+
+                            <div class="outer-box">
+                                <div class="nav-box">
+                                    <div class="swiper-button-prev"><span class="icon fa fa-angle-left "></span></div>
+                                    <div class="swiper-button-next"><span class="icon fa fa-angle-right "></span></div>
+                                </div>
+                            </div>
+                            <div class="icon-26 bounce-x"></div>
+                        </div>
+                    </div>
+
+                    <!-- Blocks Column -->
+                    <div class="blocks-column col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                        <div class="inner-column">
+                            <div class="swiper-outer">
+                                <div class="swiper testi-swiper-two">
+                                    <div class="swiper-wrapper">
+
+                                        <!-- Testimonial Block -->
+                                        <div class="testimonial-block-two swiper-slide">
+                                            <div class="inner-box">
+                                                <div class="shape-19"></div>
+                                                <div class="content-box">
+                                                    <div class="icon-quote-2"></div>
+                                                    <div class="author-image"><img
+                                                            src="images/resource/testi-author-4.jpg" alt="Image"></div>
+                                                    <div class="text">"I recently worked with onicx for my home
+                                                        renovation project, and I couldn't be happier with the results.
+                                                        From the moment I walked into their showroom.</div>
+                                                    <div class="author-box">
+                                                        <div class="author-info">
+                                                            <h6 class="name">Cameron Williamson</h6>
+                                                            <div class="designation">Web Designer</div>
+                                                        </div>
+                                                        <ul class="rating">
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Testimonial Block -->
+                                        <div class="testimonial-block-two swiper-slide">
+                                            <div class="inner-box">
+                                                <div class="shape-19"></div>
+                                                <div class="content-box">
+                                                    <div class="icon-quote-2"></div>
+                                                    <div class="author-image"><img
+                                                            src="images/resource/testi-author-5.jpg" alt="Image"></div>
+                                                    <div class="text">"I recently worked with onicx for my home
+                                                        renovation project, and I couldn't be happier with the results.
+                                                        From the moment I walked into their showroom.</div>
+                                                    <div class="author-box">
+                                                        <div class="author-info">
+                                                            <h6 class="name">Michael G. Ware</h6>
+                                                            <div class="designation">managing director</div>
+                                                        </div>
+                                                        <ul class="rating">
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Testimonial Block -->
+                                        <div class="testimonial-block-two swiper-slide">
+                                            <div class="inner-box">
+                                                <div class="shape-19"></div>
+                                                <div class="content-box">
+                                                    <div class="icon-quote-2"></div>
+                                                    <div class="author-image"><img
+                                                            src="images/resource/testi-author-4.jpg" alt="Image"></div>
+                                                    <div class="text">"I recently worked with onicx for my home
+                                                        renovation project, and I couldn't be happier with the results.
+                                                        From the moment I walked into their showroom.</div>
+                                                    <div class="author-box">
+                                                        <div class="author-info">
+                                                            <h6 class="name">Cameron Williamson</h6>
+                                                            <div class="designation">Web Designer</div>
+                                                        </div>
+                                                        <ul class="rating">
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Testimonial Block -->
+                                        <div class="testimonial-block-two swiper-slide">
+                                            <div class="inner-box">
+                                                <div class="shape-19"></div>
+                                                <div class="content-box">
+                                                    <div class="icon-quote-2"></div>
+                                                    <div class="author-image"><img
+                                                            src="images/resource/testi-author-5.jpg" alt="Image"></div>
+                                                    <div class="text">"I recently worked with onicx for my home
+                                                        renovation project, and I couldn't be happier with the results.
+                                                        From the moment I walked into their showroom.</div>
+                                                    <div class="author-box">
+                                                        <div class="author-info">
+                                                            <h6 class="name">Michael G. Ware</h6>
+                                                            <div class="designation">managing director</div>
+                                                        </div>
+                                                        <ul class="rating">
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- End Funfact Section -->
- 
-<!-- Project Section -->
-<section class="project-section">
-    <div class="sec-title light text-center">
-        <div class="sub-title">Our Work</div>
-        <h2 class="text-reveal-anim">Our Recently <br> Completed Projects</h2>
-    </div>
-    <div class="outer-box">
-        <!-- Project Swiper -->
-        <div class="project-swiper">
-            <div class="swiper-wrapper">
-                <!-- Project Block -->
-                <div class="project-block swiper-slide">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="project-details.html"><img
-                                        src="images/resource/project1-1.jpg" alt="Image"></a></figure>
-                        </div>
-                        <div class="content-box">
-                            <div class="cat-box">
-                                <div class="cat">marketing</div>
+        </section>
+        <!-- End Testimonial Section -->
+
+
+        <!-- Benefit Section -->
+        <section class="benefit-section">
+            <div class="bg bg-pattern-5"></div>
+            <div class="auto-container">
+                <div class="row">
+
+                    <!-- Content Column -->
+                    <div class="content-column col-xl-6 col-lg-12 col-md-12 col-sm-12 order-2 wow fadeInRight"
+                        data-wow-delay="200ms">
+                        <div class="inner-column">
+                            <div class="sec-title">
+                                <div class="sub-title">Our benefits</div>
+                                <h2 class="text-reveal-anim">Why You Should <br> Choose Our Agency</h2>
+                                <h6 class="title">The primary goal of business market is to help organizations improve
+                                    their performance.</h6>
                             </div>
-                            <h4 class="title">future management Development</h4>
+
+                            <!-- Benefit Block -->
+                            <div class="benefit-block">
+                                <div class="inner-box">
+                                    <div class="icon-box"><i class="icon flaticon-graphic-design"></i></div>
+                                    <div class="content-box">
+                                        <h6 class="title">Quality Services</h6>
+                                        <div class="text">Parturient montes nascetur ridiculus mus is maecenas
+                                            venenatis, neque in feugiat elementum.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Benefit Block -->
+                            <div class="benefit-block">
+                                <div class="inner-box">
+                                    <div class="icon-box"><i class="icon flaticon-teaching"></i></div>
+                                    <div class="content-box">
+                                        <h6 class="title">Professional Experts</h6>
+                                        <div class="text">Parturient montes nascetur ridiculus mus is maecenas
+                                            venenatis, neque in feugiat elementum.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Benefit Block -->
+                            <div class="benefit-block">
+                                <div class="inner-box">
+                                    <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
+                                    <div class="content-box">
+                                        <h6 class="title">99% Success Rates</h6>
+                                        <div class="text">Parturient montes nascetur ridiculus mus is maecenas
+                                            venenatis, neque in feugiat elementum.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-box">
+                                <a class="theme-btn-main" href="page-contact.html">
+                                    <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
+                                    <span class="theme-btn">Discover More</span>
+                                    <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>
+                                </a>
+                            </div>
                         </div>
-                        <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
                     </div>
-                </div>
-                <!-- Project Block -->
-                <div class="project-block swiper-slide">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="project-details.html"><img
-                                        src="images/resource/project1-2.jpg" alt="Image"></a></figure>
-                        </div>
-                        <div class="content-box">
-                            <div class="cat-box">
-                                <div class="cat">marketing</div>
+
+                    <!-- Image Column -->
+                    <div class="image-column col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                        <div class="inner-column">
+                            <figure class="image reveal"><img src="images/resource/benefit1-1.jpg" alt="Image"></figure>
+                            <div class="exp-box bounce-x wow fadeInUp" data-wow-delay="300ms">
+                                <i class="icon flaticon-recommend"></i>
+                                <div class="cat">GROW BUSINESS</div>
+                                <h4 class="title">We Help Your Business <br> To Become More <br> Stronger</h4>
                             </div>
-                            <h4 class="title">future management Development</h4>
                         </div>
-                        <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
-                    </div>
-                </div>
-                <!-- Project Block -->
-                <div class="project-block swiper-slide">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="project-details.html"><img
-                                        src="images/resource/project1-3.jpg" alt="Image"></a></figure>
-                        </div>
-                        <div class="content-box">
-                            <div class="cat-box">
-                                <div class="cat">marketing</div>
-                            </div>
-                            <h4 class="title">future management Development</h4>
-                        </div>
-                        <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
-                    </div>
-                </div>
-                <!-- Project Block -->
-                <div class="project-block swiper-slide">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="project-details.html"><img
-                                        src="images/resource/project1-4.jpg" alt="Image"></a></figure>
-                        </div>
-                        <div class="content-box">
-                            <div class="cat-box">
-                                <div class="cat">marketing</div>
-                            </div>
-                            <h4 class="title">future management Development</h4>
-                        </div>
-                        <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
-                    </div>
-                </div>
-                <!-- Project Block -->
-                <div class="project-block swiper-slide">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="project-details.html"><img
-                                        src="images/resource/project1-5.jpg" alt="Image"></a></figure>
-                        </div>
-                        <div class="content-box">
-                            <div class="cat-box">
-                                <div class="cat">marketing</div>
-                            </div>
-                            <h4 class="title">future management Development</h4>
-                        </div>
-                        <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
-                    </div>
-                </div>
-                <!-- Project Block -->
-                <div class="project-block swiper-slide">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="project-details.html"><img
-                                        src="images/resource/project1-1.jpg" alt="Image"></a></figure>
-                        </div>
-                        <div class="content-box">
-                            <div class="cat-box">
-                                <div class="cat">marketing</div>
-                            </div>
-                            <h4 class="title">future management Development</h4>
-                        </div>
-                        <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
-                    </div>
-                </div>
-                <!-- Project Block -->
-                <div class="project-block swiper-slide">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="project-details.html"><img
-                                        src="images/resource/project1-2.jpg" alt="Image"></a></figure>
-                        </div>
-                        <div class="content-box">
-                            <div class="cat-box">
-                                <div class="cat">marketing</div>
-                            </div>
-                            <h4 class="title">future management Development</h4>
-                        </div>
-                        <a href="project-details.html" class="readmore"><i class="fa fa-arrow-up-right"></i></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="swiper-pagination"></div>
-    </div>
-</section>
-<!-- End Project Section -->
- 
-<!-- Marquee Section -->
-<section class="marquee-section">
-    <div class="shape-5"></div>
-    <div class="marquee-container">
-        <div class="marquee">
-            <div class="text">BRNDING</div>
-            <div class="icon-9"></div>
-            <div class="text two">MARKETING</div>
-            <div class="icon-9"></div>
-            <div class="text">DEVELOPMENT</div>
-            <div class="icon-9"></div>
-            <div class="text two">Marketing Agency</div>
-            <div class="icon-9"></div>
-            <div class="text">BRNDING</div>
-            <div class="icon-9"></div>
-            <div class="text two">MARKETING</div>
-            <div class="icon-9"></div>
-            <div class="text">DEVELOPMENT</div>
-            <div class="icon-9"></div>
-            <div class="text two">Marketing Agency</div>
-            <div class="icon-9"></div>
-            <div class="text">BRNDING</div>
-            <div class="icon-9"></div>
-            <div class="text two">MARKETING</div>
-            <div class="icon-9"></div>
-            <div class="text">DEVELOPMENT</div>
-            <div class="icon-9"></div>
-            <div class="text two">Marketing Agency</div>
-            <div class="icon-9"></div>
-        </div>
-    </div>
-</section>
-<!-- End Marquee Section -->
- 
-
-<!-- Team Section -->
-<section class="team-section">
-    <div class="bg bg-pattern-10"></div>
-    <div class="icon-19 bounce-x"></div>
-
-    <div class="auto-container">
-
-        <div class="sec-title text-center">
-            <div class="sub-title">Our Team</div>
-            <h2 class="text-reveal-anim">What Success Looks <br> From the Back</h2>
-        </div>
-
-        <div class="row">
+        </section>
+        <!-- End Benefit Section -->
 
         <?php
         include 'connection/config.php';
 
-        $stmt = $pdo->prepare("SELECT * FROM teams ORDER BY id ASC");
+        $stmt = $pdo->prepare("SELECT * FROM blogs ORDER BY id DESC");
         $stmt->execute();
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        foreach($data as $row):
+        $blogs = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
-            <div class="team-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp">
-                <div class="inner-box">
+        <!-- News Section -->
+        <section class="news-section">
+            <div class="shape-12"></div>
+            <div class="shape-13"></div>
+            <div class="bg bg-pattern-6"></div>
 
-                    <div class="image-box">
-                        <figure class="image">
-                            <a href="team-details.php?id=<?= $row['id'] ?>">
-                                <img src="upload/<?= htmlspecialchars($row['image']) ?>" alt="Image">
-                            </a>
-                        </figure>
-                    </div>
+            <div class="auto-container">
+                <div class="row">
 
-                    <div class="content-box">
-                        <h5 class="name">
-                            <a href="team-details.php?id=<?= $row['id'] ?>">
-                                <?= htmlspecialchars($row['name']) ?>
-                            </a>
-                        </h5>
+                    <!-- Content Column -->
+                    <div class="content-column col-xl-4 col-lg-12 col-md-12 col-sm-12">
+                        <div class="inner-column">
 
-                        <div class="designation">
-                            <?= htmlspecialchars($row['designation']) ?>
+                            <div class="sec-title">
+                                <div class="sub-title">Blog posts</div>
+                                <h2 class="text-reveal-anim">Recent Updates & Insights from Our Blog</h2>
+                            </div>
+
+                            <div class="outer-box">
+                                <div class="nav-box">
+                                    <div class="swiper-button-prev">
+                                        <span class="icon fal fa-long-arrow-left"></span>
+                                    </div>
+
+                                    <div class="swiper-button-next">
+                                        <span class="icon fal fa-long-arrow-right"></span>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
-                </div>
-            </div>
+                    <!-- Blocks Column -->
+                    <div class="blocks-column col-xl-8 col-lg-12 col-md-12 col-sm-12">
 
-        <?php endforeach; ?>
+                        <div class="inner-column">
 
-        </div>
+                            <div class="swiper news-swiper-two">
 
-    </div>
-</section>
-<!-- End Team Section -->
- <!-- Faq Section -->
-<section class="faq-section">
-    <div class="shape-17"></div>
-    <div class="auto-container">
-        <div class="row">
-            <!-- Content Column -->
-            <div class="content-column col-lg-6 col-md-12 col-sm-12 wow fadeInLeft" data-wow-delay="200ms">
-                <div class="inner-column">
-                    <div class="sec-title">
-                        <div class="sub-title">our faqs</div>
-                        <h2 class="text-reveal-anim">Empowering Growth <br> with Innovation</h2>
-                    </div>
-                    <!-- Accordion Box -->
-                    <ul class="accordion-box">
-                        <!--Block-->
-                        <li class="accordion block active-block">
-                            <div class="acc-btn active">What is business consulting?
-                                <i class="icon fa fa-plus"></i>
-                            </div>
-                            <div class="acc-content current">
-                                <div class="content">
-                                    <div class="text">Bring to the table win-win survival strategies to ensure
-                                        proactive domination. At the end of the day, going forward, a new normal
-                                        that has evolved from generation X is on the</div>
-                                </div>
-                            </div>
-                        </li>
-                        <!--Block-->
-                        <li class="accordion block">
-                            <div class="acc-btn">What do business consultants do?
-                                <i class="icon fa fa-plus"></i>
-                            </div>
-                            <div class="acc-content">
-                                <div class="content">
-                                    <div class="text">Bring to the table win-win survival strategies to ensure
-                                        proactive domination. At the end of the day, going forward, a new normal
-                                        that has evolved from generation X is on the</div>
-                                </div>
-                            </div>
-                        </li>
-                        <!--Block-->
-                        <li class="accordion block">
-                            <div class="acc-btn">Why do companies hire business consultants?
-                                <i class="icon fa fa-plus"></i>
-                            </div>
-                            <div class="acc-content">
-                                <div class="content">
-                                    <div class="text">Bring to the table win-win survival strategies to ensure
-                                        proactive domination. At the end of the day, going forward, a new normal
-                                        that has evolved from generation X is on the</div>
-                                </div>
-                            </div>
-                        </li>
-                        <!--Block-->
-                        <li class="accordion block">
-                            <div class="acc-btn">How much do business consultants charge?
-                                <i class="icon fa fa-plus"></i>
-                            </div>
-                            <div class="acc-content">
-                                <div class="content">
-                                    <div class="text">Bring to the table win-win survival strategies to ensure
-                                        proactive domination. At the end of the day, going forward, a new normal
-                                        that has evolved from generation X is on the</div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Image Column -->
-            <div class="image-column col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-column">
-                    <figure class="image reveal bounce-x"><img src="images/resource/faq1-1.png" alt="Image">
-                    </figure>
-                    <div class="icon-20 bounce-y"></div>
-                    <div class="icon-21 bounce-x"></div>
-                    <div class="icon-22"></div>
-                    <div class="icon-23 "></div>
-                    <div class="icon-24 zoom-one"></div>
-                    <div class="icon-25 zoom-one"></div>
-                    <div class="shape-18 zoom-one"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Faq Section -->
- <!-- Testimonial Section -->
-<section class="testimonial-section-two">
-    <div class="bg bg-pattern-11"></div>
-    <div class="auto-container">
-        <div class="row">
+                                <div class="swiper-wrapper">
 
-            <!-- Content Column -->
-            <div class="content-column col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                <div class="inner-column">
-                    <div class="sec-title">
-                        <div class="sub-title">Testimonials</div>
-                        <h2 class="text-reveal-anim">What They’re Talking <br> About Company?</h2>
-                        <div class="text">There are many variations of passages of Lorem Ipsum available, but
-                            the majority have suffered alteration in some form, by injected humour, or
-                            randomised words which don't look even slightly believable. </div>
-                    </div>
+                                    <?php foreach ($blogs as $blog): ?>
 
-                    <div class="outer-box">
-                        <div class="nav-box">
-                            <div class="swiper-button-prev"><span class="icon fa fa-angle-left "></span></div>
-                            <div class="swiper-button-next"><span class="icon fa fa-angle-right "></span></div>
-                        </div>
-                    </div>
-                    <div class="icon-26 bounce-x"></div>
-                </div>
-            </div>
+                                        <!-- News Block -->
+                                        <div class="news-block swiper-slide">
 
-            <!-- Blocks Column -->
-            <div class="blocks-column col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                <div class="inner-column">
-                    <div class="swiper-outer">
-                        <div class="swiper testi-swiper-two">
-                            <div class="swiper-wrapper">
+                                            <div class="inner-box">
 
-                                <!-- Testimonial Block -->
-                                <div class="testimonial-block-two swiper-slide">
-                                    <div class="inner-box">
-                                        <div class="shape-19"></div>
-                                        <div class="content-box">
-                                            <div class="icon-quote-2"></div>
-                                            <div class="author-image"><img
-                                                    src="images/resource/testi-author-4.jpg" alt="Image"></div>
-                                            <div class="text">"I recently worked with onicx for my home
-                                                renovation project, and I couldn't be happier with the results.
-                                                From the moment I walked into their showroom.</div>
-                                            <div class="author-box">
-                                                <div class="author-info">
-                                                    <h6 class="name">Cameron Williamson</h6>
-                                                    <div class="designation">Web Designer</div>
+                                                <div class="image-box">
+
+                                                    <figure class="image">
+                                                        <a href="blog_details.php?slug=<?= htmlspecialchars($blog['slug']) ?>">
+                                                            <img src="upload/<?= htmlspecialchars($blog['image']) ?>" alt="Image">
+                                                        </a>
+                                                    </figure>
+
+                                                    <?php
+                                                    $date = date("d", strtotime($blog['id']));
+                                                    $month = date("M", strtotime($blog['id']));
+                                                    ?>
+
+                                                    <div class="date-box">
+                                                        <div class="date"><?= $date ?></div>
+                                                        <div class="month"><?= $month ?></div>
+                                                    </div>
+
                                                 </div>
-                                                <ul class="rating">
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <!-- Testimonial Block -->
-                                <div class="testimonial-block-two swiper-slide">
-                                    <div class="inner-box">
-                                        <div class="shape-19"></div>
-                                        <div class="content-box">
-                                            <div class="icon-quote-2"></div>
-                                            <div class="author-image"><img
-                                                    src="images/resource/testi-author-5.jpg" alt="Image"></div>
-                                            <div class="text">"I recently worked with onicx for my home
-                                                renovation project, and I couldn't be happier with the results.
-                                                From the moment I walked into their showroom.</div>
-                                            <div class="author-box">
-                                                <div class="author-info">
-                                                    <h6 class="name">Michael G. Ware</h6>
-                                                    <div class="designation">managing director</div>
+                                                <div class="content-box">
+
+                                                    <div class="content">
+
+                                                        <ul class="post-meta">
+                                                            <li><i class="icon fa fa-comment"></i> 0 Comment</li>
+                                                        </ul>
+
+                                                        <h4 class="title">
+                                                            <a href="blog_details.php?slug=<?= htmlspecialchars($blog['slug']) ?>">
+                                                                <?= htmlspecialchars($blog['title']) ?>
+                                                            </a>
+                                                        </h4>
+
+                                                        <div class="text">
+                                                            <?php
+                                                            $text = strip_tags($blog['short_description']);
+                                                            $words = explode(" ", $text);
+                                                            echo implode(" ", array_slice($words, 0, 8));
+                                                            if (count($words) > 8) echo "...";
+                                                            ?>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="btn-box">
+
+                                                        <a href="blog_details.php?slug=<?= htmlspecialchars($blog['slug']) ?>" class="text">
+                                                            Read More
+                                                        </a>
+
+                                                        <a href="blog_details.php?slug=<?= htmlspecialchars($blog['slug']) ?>" class="readmore">
+                                                            <i class="fa fa-arrow-right"></i>
+                                                        </a>
+
+                                                    </div>
+
                                                 </div>
-                                                <ul class="rating">
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <!-- Testimonial Block -->
-                                <div class="testimonial-block-two swiper-slide">
-                                    <div class="inner-box">
-                                        <div class="shape-19"></div>
-                                        <div class="content-box">
-                                            <div class="icon-quote-2"></div>
-                                            <div class="author-image"><img
-                                                    src="images/resource/testi-author-4.jpg" alt="Image"></div>
-                                            <div class="text">"I recently worked with onicx for my home
-                                                renovation project, and I couldn't be happier with the results.
-                                                From the moment I walked into their showroom.</div>
-                                            <div class="author-box">
-                                                <div class="author-info">
-                                                    <h6 class="name">Cameron Williamson</h6>
-                                                    <div class="designation">Web Designer</div>
-                                                </div>
-                                                <ul class="rating">
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Testimonial Block -->
-                                <div class="testimonial-block-two swiper-slide">
-                                    <div class="inner-box">
-                                        <div class="shape-19"></div>
-                                        <div class="content-box">
-                                            <div class="icon-quote-2"></div>
-                                            <div class="author-image"><img
-                                                    src="images/resource/testi-author-5.jpg" alt="Image"></div>
-                                            <div class="text">"I recently worked with onicx for my home
-                                                renovation project, and I couldn't be happier with the results.
-                                                From the moment I walked into their showroom.</div>
-                                            <div class="author-box">
-                                                <div class="author-info">
-                                                    <h6 class="name">Michael G. Ware</h6>
-                                                    <div class="designation">managing director</div>
-                                                </div>
-                                                <ul class="rating">
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Testimonial Section -->
-
- 
-<!-- Benefit Section -->
-<section class="benefit-section">
-    <div class="bg bg-pattern-5"></div>
-    <div class="auto-container">
-        <div class="row">
-
-            <!-- Content Column -->
-            <div class="content-column col-xl-6 col-lg-12 col-md-12 col-sm-12 order-2 wow fadeInRight"
-                data-wow-delay="200ms">
-                <div class="inner-column">
-                    <div class="sec-title">
-                        <div class="sub-title">Our benefits</div>
-                        <h2 class="text-reveal-anim">Why You Should <br> Choose Our Agency</h2>
-                        <h6 class="title">The primary goal of business market is to help organizations improve
-                            their performance.</h6>
-                    </div>
-
-                    <!-- Benefit Block -->
-                    <div class="benefit-block">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon flaticon-graphic-design"></i></div>
-                            <div class="content-box">
-                                <h6 class="title">Quality Services</h6>
-                                <div class="text">Parturient montes nascetur ridiculus mus is maecenas
-                                    venenatis, neque in feugiat elementum.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Benefit Block -->
-                    <div class="benefit-block">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon flaticon-teaching"></i></div>
-                            <div class="content-box">
-                                <h6 class="title">Professional Experts</h6>
-                                <div class="text">Parturient montes nascetur ridiculus mus is maecenas
-                                    venenatis, neque in feugiat elementum.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Benefit Block -->
-                    <div class="benefit-block">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
-                            <div class="content-box">
-                                <h6 class="title">99% Success Rates</h6>
-                                <div class="text">Parturient montes nascetur ridiculus mus is maecenas
-                                    venenatis, neque in feugiat elementum.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="btn-box">
-                        <a class="theme-btn-main" href="page-contact.html">
-                            <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
-                            <span class="theme-btn">Discover More</span>
-                            <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Image Column -->
-            <div class="image-column col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                <div class="inner-column">
-                    <figure class="image reveal"><img src="images/resource/benefit1-1.jpg" alt="Image"></figure>
-                    <div class="exp-box bounce-x wow fadeInUp" data-wow-delay="300ms">
-                        <i class="icon flaticon-recommend"></i>
-                        <div class="cat">GROW BUSINESS</div>
-                        <h4 class="title">We Help Your Business <br> To Become More <br> Stronger</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Benefit Section -->
- 
-<?php
-include 'connection/config.php';
-
-$stmt = $pdo->prepare("SELECT * FROM blogs ORDER BY id DESC");
-$stmt->execute();
-$blogs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
-<!-- News Section -->
-<section class="news-section">
-    <div class="shape-12"></div>
-    <div class="shape-13"></div>
-    <div class="bg bg-pattern-6"></div>
-
-    <div class="auto-container">
-        <div class="row">
-
-            <!-- Content Column -->
-            <div class="content-column col-xl-4 col-lg-12 col-md-12 col-sm-12">
-                <div class="inner-column">
-
-                    <div class="sec-title">
-                        <div class="sub-title">Blog posts</div>
-                        <h2 class="text-reveal-anim">Recent Updates & Insights from Our Blog</h2>
-                    </div>
-
-                    <div class="outer-box">
-                        <div class="nav-box">
-                            <div class="swiper-button-prev">
-                                <span class="icon fal fa-long-arrow-left"></span>
-                            </div>
-
-                            <div class="swiper-button-next">
-                                <span class="icon fal fa-long-arrow-right"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Blocks Column -->
-            <div class="blocks-column col-xl-8 col-lg-12 col-md-12 col-sm-12">
-
-                <div class="inner-column">
-
-                    <div class="swiper news-swiper-two">
-
-                        <div class="swiper-wrapper">
-
-                        <?php foreach($blogs as $blog): ?>
-
-                            <!-- News Block -->
-                            <div class="news-block swiper-slide">
-
-                                <div class="inner-box">
-
-                                    <div class="image-box">
-
-                                        <figure class="image">
-                                            <a href="blog-details.php?id=<?= $blog['id'] ?>">
-                                                <img src="upload/<?= htmlspecialchars($blog['image']) ?>" alt="Image">
-                                            </a>
-                                        </figure>
-
-                                        <?php
-                                        $date = date("d", strtotime($blog['id']));
-                                        $month = date("M", strtotime($blog['id']));
-                                        ?>
-
-                                        <div class="date-box">
-                                            <div class="date"><?= $date ?></div>
-                                            <div class="month"><?= $month ?></div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="content-box">
-
-                                        <div class="content">
-
-                                            <ul class="post-meta">
-                                                <li><i class="icon fa fa-comment"></i> 0 Comment</li>
-                                            </ul>
-
-                                            <h4 class="title">
-                                                <a href="blog-details.php?id=<?= $blog['id'] ?>">
-                                                    <?= htmlspecialchars($blog['title']) ?>
-                                                </a>
-                                            </h4>
-
-                                            <div class="text">
-                                            <?php
-                                            $text = strip_tags($blog['short_description']);
-                                            $words = explode(" ", $text);
-                                            echo implode(" ", array_slice($words, 0, 8));
-                                            if(count($words) > 8) echo "...";
-                                            ?>
                                             </div>
 
                                         </div>
 
-                                        <div class="btn-box">
-
-                                            <a href="blog-details.php?id=<?= $blog['id'] ?>" class="text">
-                                                Read More
-                                            </a>
-
-                                            <a href="blog-details.php?id=<?= $blog['id'] ?>" class="readmore">
-                                                <i class="fa fa-arrow-right"></i>
-                                            </a>
-
-                                        </div>
-
-                                    </div>
+                                    <?php endforeach; ?>
 
                                 </div>
 
                             </div>
 
-                        <?php endforeach; ?>
-
                         </div>
 
                     </div>
 
                 </div>
-
             </div>
-
-        </div>
-    </div>
-</section>
-<!-- End News Section -->
+        </section>
+        <!-- End News Section -->
 
 
 
-<?php include "common/footer.php"; ?>
+        <?php include "common/footer.php"; ?>

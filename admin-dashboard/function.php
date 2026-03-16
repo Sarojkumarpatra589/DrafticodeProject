@@ -509,7 +509,6 @@ exit();
 
 
 
-
 ### ADD SERVICE
 if(isset($_POST['add_service'])){
 
@@ -536,17 +535,14 @@ $image = time().rand(100,999).".".$ext;
 
 move_uploaded_file($_FILES['image']['tmp_name'],$uploadDir.$image);
 
-$stmt=$pdo->prepare("INSERT INTO services(title,image,short_description,description,slug,meta_title,meta_keywords,meta_description) VALUES(?,?,?,?)");
+$stmt=$pdo->prepare("INSERT INTO services(title,image,short_description,description,slug,meta_title,meta_keywords,meta_description) VALUES(?,?,?,?,?,?,?,?)");
 
-$stmt->execute([$title,$image,$short_description,$description,$meta_title,$slug,$meta_keywords,$meta_description]);
+$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description]);
 
 header("Location: service.php");
 exit();
 
 }
-
-
-
 ### UPDATE SERVICE
 if(isset($_POST['update_service'])){
 
@@ -559,7 +555,6 @@ $slug = $_POST['slug'];
 $meta_title = $_POST['meta_title'];
 $meta_keywords = $_POST['meta_keywords'];
 $meta_description = $_POST['meta_description'];
-
 
 $image=$_POST['old_image'];
 
@@ -585,7 +580,7 @@ unlink($old);
 
 }
 
-$stmt=$pdo->prepare("UPDATE services SET title=?,image=?,short_description=?,description=?,$slug,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
+$stmt=$pdo->prepare("UPDATE services SET title=?,image=?,short_description=?,description=?,slug=?,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
 
 $stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description,$id]);
 
@@ -593,8 +588,6 @@ header("Location: service.php");
 exit();
 
 }
-
-
 
 ### DELETE SERVICE
 if(isset($_GET['action']) && $_GET['action']=="delete_service"){
