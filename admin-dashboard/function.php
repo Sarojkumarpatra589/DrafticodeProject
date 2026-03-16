@@ -708,7 +708,7 @@ unlink($old);
 
 $stmt=$pdo->prepare("UPDATE products SET title=?,image=?,short_description=?,description=?,slug=?,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
 
-$stmt->execute([$title,$image,$short_description,$description,,$slug,$meta_title,$meta_keywords,$meta_description,$id]);
+$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description,$id]);
 
 header("Location: product.php");
 exit();
