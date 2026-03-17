@@ -65,8 +65,10 @@
 			<div class="content-column col-xl-7 col-lg-6 col-md-12 col-sm-12 wow fadeInLeft">
 				<div class="inner-column">
 					<div class="sec-title">
-						<h2 class="text-reveal-anim">Contact With Us</h2>
+						<h2 class="text-reveal-anim">Contact Drafticode</h2>
+						<p class="mt-2">If you are looking for a trusted Digital Marketing Company in Bhubaneswar, Drafticode is here to help your business grow online.</p>
 					</div>
+					
 
 					<!-- Contact Form -->
 					<div class="contact-form-three">
