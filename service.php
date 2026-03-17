@@ -59,267 +59,70 @@
 
 
 
+  <?php
+include 'connection/config.php';
+$services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
+?>
 
 <!-- Service Section -->
-<section class="service-section">       
-    <div class="shape-3"></div>
-    <div class="shape-2"></div>
+<section class="service-section">
+    <div class="bg bg-pattern-2"></div>
     <div class="auto-container">
-        
+       
+
         <div class="outer-box">
             <div class="swiper service-swiper">
                 <div class="swiper-wrapper">
 
+                    <?php foreach ($services as $service): ?>
+
                     <!-- Service Block -->
-                    <div class="service-block swiper-slide mb-30">
+                    <div class="service-block swiper-slide">
                         <div class="inner-box">
                             <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-1.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
+                                <figure class="image">
+                                    <a href="service_details.php?slug=<?= $service['slug'] ?>">
+                                        <img src="upload/<?= htmlspecialchars($service['image']) ?>" alt="Image">
+                                    </a>
+                                </figure>
+                                <div class="icon-box">
+                                    <i class="icon flaticon-health-check"></i>
+                                </div>
                             </div>
+
                             <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Design</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
+                                <h4 class="title">
+                                    <a href="service_details.php?slug=<?= $service['slug'] ?>">
+                                        <?= htmlspecialchars($service['title']) ?>
+                                    </a>
+                                </h4>
+
+                                <div class="text">
+                                    <?= $service['short_description'] ?>
+                                </div>
+
+                                <div class="btn-box">
+                                    <a href="service_details.php?slug=<?= $service['slug'] ?>" class="readmore">
+                                        Discover More
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide mb-30">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-2.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-health-check"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Development</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
 
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide mb-30">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-3.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Digital Marketing</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide mb-30">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-1.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Design</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide mb-30">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-2.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-health-check"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Development</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide mb-30">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-3.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Digital Marketing</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <div class="swiper service-swiper">
-                <div class="swiper-wrapper">
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-1.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Design</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-2.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-health-check"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Development</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-3.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Digital Marketing</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-1.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Design</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-2.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-health-check"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Development</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-3.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Digital Marketing</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+            <!-- Navigation -->
             <div class="nav-box">
-                <div class="swiper-button-prev"><span class="icon fal fa-long-arrow-left "></span></div>
-                <div class="swiper-button-next"><span class="icon fal fa-long-arrow-right "></span></div>
+                <div class="swiper-button-prev">
+                    <span class="icon fal fa-long-arrow-left"></span>
+                </div>
+                <div class="swiper-button-next">
+                    <span class="icon fal fa-long-arrow-right"></span>
+                </div>
             </div>
         </div>
     </div>
