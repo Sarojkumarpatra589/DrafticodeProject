@@ -156,9 +156,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <div class="sub-title">About Us</div>
                                 <h2 class="text-reveal-anim">Welcome to Our Smart <br> Digital Agency</h2>
                             </div>
-                            <div class="text">The a long established fact that a reader will be distracted the readable
-                                content of page when looking at layout the point of using lorem Ipsum less normal
-                                distribution of letters.</div>
+                            <div class="text">Drafticode is a professional Digital Marketing Company Near Me for businesses looking for reliable digital solutions in Bhubaneswar and across India. Our mission is to help companies grow through innovative marketing strategies and modern digital technologies.</div>
 
                             <div class="list-box style-two">
                                 <ul class="list-style-two two-column">
@@ -221,7 +219,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                             </div>
                             <div class="exp-box">
                                 <div class="content">
-                                    <h2 class="count">19</h2>
+                                    <h2 class="count">7+</h2>
                                     <div class="text">Years of<br>Experience</div>
                                 </div>
                             </div>
@@ -512,30 +510,20 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
             <div class="shape-5"></div>
             <div class="marquee-container">
                 <div class="marquee">
-                    <div class="text">BRNDING</div>
+                    <div class="text">CONTENT MARKETING</div>
                     <div class="icon-9"></div>
-                    <div class="text two">MARKETING</div>
+                    <div class="text two">E-COMMERCE SOLUTION</div>
                     <div class="icon-9"></div>
-                    <div class="text">DEVELOPMENT</div>
+                    <div class="text">SEARCH ENGINE OPTIMIZATION</div>
                     <div class="icon-9"></div>
-                    <div class="text two">Marketing Agency</div>
+                    <div class="text two">SOCIAL MEDIA MARKETING</div>
                     <div class="icon-9"></div>
-                    <div class="text">BRNDING</div>
+                    <div class="text">WEBSITE DESIGN & DEVELOPMENT</div>
                     <div class="icon-9"></div>
-                    <div class="text two">MARKETING</div>
+                    <div class="text two">SEO AUDIT</div>
                     <div class="icon-9"></div>
-                    <div class="text">DEVELOPMENT</div>
-                    <div class="icon-9"></div>
-                    <div class="text two">Marketing Agency</div>
-                    <div class="icon-9"></div>
-                    <div class="text">BRNDING</div>
-                    <div class="icon-9"></div>
-                    <div class="text two">MARKETING</div>
-                    <div class="icon-9"></div>
-                    <div class="text">DEVELOPMENT</div>
-                    <div class="icon-9"></div>
-                    <div class="text two">Marketing Agency</div>
-                    <div class="icon-9"></div>
+                    <div class="text">WEBSITE SEQURITY AUDIT</div>
+                
                 </div>
             </div>
         </section>
