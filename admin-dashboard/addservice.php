@@ -200,6 +200,18 @@ placeholder="example-blog-title">
                   }
                 });
               </script>
+              <script>
+                CKEDITOR.replace('short_description', {
+                  height: 100
+                });
+
+                // update textarea when form submits
+                document.querySelector("form").addEventListener("submit", function() {
+                  for (let instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                  }
+                });
+              </script>
 
             </div>
 
