@@ -26,20 +26,24 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                         <li><a href="about.php">About</a></li>
                         <li class="dropdown"><a href="#">We Offer</a>
                             <ul>
-                                <li class="dropdown"><a href="service.php">Services &nbsp;&nbsp;</a>
-                                    <ul>
-                                        <li><a href="project.html">Content Marketing</a></li>
-                                        <li><a href="project-details.html">E-commerce solutions</a></li>
-                                        <li><a href="project.html">Search Engine Optimization</a></li>
-                                        <li><a href="project.html">Social Media Marketing</a></li>
-                                        <li><a href="project.html">Website Design & Development</a></li>
-                                        <li><a href="project.html">SEO Audit</a></li>
-                                        <li><a href="project.html">Website Security Audit</a></li>
-                                    </ul>
-                                </li>
+                               <li class="dropdown">
+    <a href="service.php">Services &nbsp;&nbsp;</a>
+
+    <ul>
+        <?php 
+        $serviceshead = $pdo->query("SELECT title, slug FROM services ORDER BY id DESC")->fetchAll();
+        foreach($serviceshead as $servicehead): ?>
+        <li>
+            <a href="service_details.php?slug=<?= $servicehead['slug'] ?>">
+                <?= htmlspecialchars($servicehead['title']) ?>
+            </a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</li>
                                 <li class="dropdown"><a href="ourproducts.php">Our Products &nbsp;&nbsp;</a>
                                     <ul>
-                                        <li><a href="project.html">One Tap Card</a></li>
+                                        <li><a href="projects.php">One Tap Card</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -90,7 +94,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                 </div>
                 <!-- Btn Box -->
                 <div class="btn-box">
-                    <a href="page-contact.html" class="theme-btn btn-style-three"><span class="btn-title">Get in
+                    <a href="page-contact.php" class="theme-btn btn-style-three"><span class="btn-title">Get in
                             Touch <i class="fa fa-arrow-right"></i></span></a>
                 </div>
                 <!-- Mobile Nav toggler -->
@@ -156,7 +160,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
         <div class="auto-container">
             <div class="inner-container">
                 <div class="logo">
-                    <a href="index-2.html" title=""><img src="upload/<?php echo $settings['logo']; ?>" alt="" title=""></a>
+                    <a href="index-2.php" title=""><img src="upload/<?php echo $settings['logo']; ?>" alt="" title=""></a>
                 </div>
                 <div class="nav-outer">
                     <nav class="main-menu">

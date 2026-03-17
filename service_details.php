@@ -164,10 +164,6 @@ if (!$service) {
 							<h3 class="title">What We Provide</h3>
 						</div>
 
-						<div class="expert-desc">
-							<p><?= htmlspecialchars($service['short_desc'] ?? 'Service details information.') ?></p>
-						</div>
-
 						<div class="row">
 							<div class="col-lg-6 col-md-6">
 								<ul class="list-style-two">

@@ -1,3 +1,11 @@
+<?php
+include 'connection/config.php';
+
+// Fetch current settings (single row id=1)
+$stmt = $pdo->prepare("SELECT * FROM settings WHERE id=1");
+$stmt->execute();
+$settings = $stmt->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +15,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Onicx - Digital Agency PHP Template | Home Page 01</title>
+    <title><?php echo $settings['meta_title']; ?></title>
 
     <!-- Stylesheets -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -15,8 +23,8 @@
     <link href="css/style.css" rel="stylesheet">
 
 
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="upload/<?php echo $settings['favicon']; ?>" type="image/x-icon" />
+    <link rel="icon" href="upload/<?php echo $settings['favicon']; ?>" type="image/x-icon" />
 
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
