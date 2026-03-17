@@ -103,7 +103,7 @@ $products = $pdo->query("SELECT * FROM products ORDER BY id DESC")->fetchAll();
                                             <i class="fas fa-edit"></i>
                                         </a>
 
-                                        <a href="function_product.php?action=delete_product&id=<?= $product['id'] ?>"
+                                        <a href="function.php?action=delete_product&id=<?= $product['id'] ?>"
                                             class="btn-icon delete"
                                             onclick="return confirm('Delete this product?')">
 
