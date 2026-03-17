@@ -102,7 +102,7 @@ $products = $pdo->query("SELECT * FROM products ORDER BY id DESC")->fetchAll();
                                 </div>
 
                                 <div class="btn-box">
-                                    <a href="service_details.php?slug=<?= $service['slug'] ?>" class="readmore">
+                                    <a href="product_details.php?slug=<?= $service['slug'] ?>" class="readmore">
                                         Discover More
                                     </a>
                                 </div>
