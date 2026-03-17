@@ -61,93 +61,50 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
 <!-- Client Section -->
-<section class="client-section pb-0">
-    <div class="shape-4"></div>
-    <div class="auto-container">
-        <div class="outer-box">
-            <div class="title-box">
-                <h5 class="title">Trusted By <br>Top Companies</h5>
-                <i class="icon fa fa-arrow-up-right"></i>
-            </div>
+        <section class="client-section pb-0 mb-4 ">
+            <div class="shape-4"></div>
 
-            <div class="marquee-box">
-                <div class="marquee">
+            <div class="auto-container">
+                <div class="outer-box">
 
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/1.png" alt="Image"></figure>
-                        </div>
+                    <div class="title-box">
+                        <h5 class="title">Trusted By <br>Top Companies</h5>
+                        <i class="icon fa fa-arrow-up-right"></i>
                     </div>
-                    
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/2.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/3.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/4.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/5.png" alt="Image"></figure>
+
+                    <div class="marquee-box">
+                        <div class="marquee">
+
+                            <?php
+                            include 'connection/config.php';
+
+                            $stmt = $pdo->prepare("SELECT * FROM clients ORDER BY id DESC");
+                            $stmt->execute();
+                            $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                            foreach ($clients as $client):
+                            ?>
+
+                                <!-- Client Block -->
+                                <div class="client-block">
+                                    <div class="inner-box">
+                                        <figure class="image">
+                                            <img src="upload/<?= htmlspecialchars($client['image']) ?>"
+                                                alt="Client Logo"
+                                                style="height:60px; width:auto; object-fit:contain;">
+                                        </figure>
+                                    </div>
+                                </div>
+
+                            <?php endforeach; ?>
+
                         </div>
                     </div>
 
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/1.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/2.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/3.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/4.png" alt="Image"></figure>
-                        </div>
-                    </div>
-                    
-                    <!-- Client Block -->
-                    <div class="client-block">
-                        <div class="inner-box">
-                            <figure class="image"><img src="images/clients/5.png" alt="Image"></figure>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- End Client Section -->
+        </section>
+        <!-- End Client Section -->
 
 <!-- About Section -->
 <section class="about-section">
