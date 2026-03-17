@@ -43,8 +43,16 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 </li>
                                 <li class="dropdown"><a href="ourproducts.php">Our Products &nbsp;&nbsp;</a>
                                     <ul>
-                                        <li><a href="projects.php">One Tap Card</a></li>
-                                    </ul>
+        <?php 
+        $productshead = $pdo->query("SELECT title, slug FROM products ORDER BY id DESC")->fetchAll();
+        foreach($productshead as $producthead): ?>
+        <li>
+            <a href="product_details.php?slug=<?= $producthead['slug'] ?>">
+                <?= htmlspecialchars($producthead['title']) ?>
+            </a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
                                 </li>
                             </ul>
                         </li>  
