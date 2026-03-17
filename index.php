@@ -279,7 +279,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>       
 
                             <!-- Service Block -->
                             <div class="service-block swiper-slide">
