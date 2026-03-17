@@ -252,7 +252,7 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image">
-                                    <a href="service-details.php?id=<?= $service['id'] ?>">
+                                    <a href="service_details.php?slug=<?= $service['slug'] ?>">
                                         <img src="upload/<?= htmlspecialchars($service['image']) ?>" alt="Image">
                                     </a>
                                 </figure>
@@ -263,7 +263,7 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
 
                             <div class="content-box">
                                 <h4 class="title">
-                                    <a href="service-details.php?id=<?= $service['id'] ?>">
+                                    <a href="service_details.php?slug=<?= $service['slug'] ?>">
                                         <?= htmlspecialchars($service['title']) ?>
                                     </a>
                                 </h4>
@@ -273,7 +273,7 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
                                 </div>
 
                                 <div class="btn-box">
-                                    <a href="service-details.php?id=<?= $service['id'] ?>" class="readmore">
+                                    <a href="service_details.php?slug=<?= $service['slug'] ?>" class="readmore">
                                         Discover More
                                     </a>
                                 </div>
@@ -630,129 +630,68 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                    <!-- Blocks Column -->
-                    <div class="blocks-column col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <div class="swiper-outer">
-                                <div class="swiper testi-swiper-two">
-                                    <div class="swiper-wrapper">
+                   <?php
+include 'connection/config.php';
 
-                                        <!-- Testimonial Block -->
-                                        <div class="testimonial-block-two swiper-slide">
-                                            <div class="inner-box">
-                                                <div class="shape-19"></div>
-                                                <div class="content-box">
-                                                    <div class="icon-quote-2"></div>
-                                                    <div class="author-image"><img
-                                                            src="images/resource/testi-author-4.jpg" alt="Image"></div>
-                                                    <div class="text">"I recently worked with onicx for my home
-                                                        renovation project, and I couldn't be happier with the results.
-                                                        From the moment I walked into their showroom.</div>
-                                                    <div class="author-box">
-                                                        <div class="author-info">
-                                                            <h6 class="name">Cameron Williamson</h6>
-                                                            <div class="designation">Web Designer</div>
-                                                        </div>
-                                                        <ul class="rating">
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+// Fetch testimonials
+$testimonials = $pdo->query("SELECT * FROM testimonial ORDER BY id DESC")->fetchAll();
+?>
 
-                                        <!-- Testimonial Block -->
-                                        <div class="testimonial-block-two swiper-slide">
-                                            <div class="inner-box">
-                                                <div class="shape-19"></div>
-                                                <div class="content-box">
-                                                    <div class="icon-quote-2"></div>
-                                                    <div class="author-image"><img
-                                                            src="images/resource/testi-author-5.jpg" alt="Image"></div>
-                                                    <div class="text">"I recently worked with onicx for my home
-                                                        renovation project, and I couldn't be happier with the results.
-                                                        From the moment I walked into their showroom.</div>
-                                                    <div class="author-box">
-                                                        <div class="author-info">
-                                                            <h6 class="name">Michael G. Ware</h6>
-                                                            <div class="designation">managing director</div>
-                                                        </div>
-                                                        <ul class="rating">
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+<!-- Blocks Column -->
+<div class="blocks-column col-xl-6 col-lg-12 col-md-12 col-sm-12">
+    <div class="inner-column">
+        <div class="swiper-outer">
+            <div class="swiper testi-swiper-two">
+                <div class="swiper-wrapper">
 
-                                        <!-- Testimonial Block -->
-                                        <div class="testimonial-block-two swiper-slide">
-                                            <div class="inner-box">
-                                                <div class="shape-19"></div>
-                                                <div class="content-box">
-                                                    <div class="icon-quote-2"></div>
-                                                    <div class="author-image"><img
-                                                            src="images/resource/testi-author-4.jpg" alt="Image"></div>
-                                                    <div class="text">"I recently worked with onicx for my home
-                                                        renovation project, and I couldn't be happier with the results.
-                                                        From the moment I walked into their showroom.</div>
-                                                    <div class="author-box">
-                                                        <div class="author-info">
-                                                            <h6 class="name">Cameron Williamson</h6>
-                                                            <div class="designation">Web Designer</div>
-                                                        </div>
-                                                        <ul class="rating">
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                    <?php foreach ($testimonials as $t): ?>
 
-                                        <!-- Testimonial Block -->
-                                        <div class="testimonial-block-two swiper-slide">
-                                            <div class="inner-box">
-                                                <div class="shape-19"></div>
-                                                <div class="content-box">
-                                                    <div class="icon-quote-2"></div>
-                                                    <div class="author-image"><img
-                                                            src="images/resource/testi-author-5.jpg" alt="Image"></div>
-                                                    <div class="text">"I recently worked with onicx for my home
-                                                        renovation project, and I couldn't be happier with the results.
-                                                        From the moment I walked into their showroom.</div>
-                                                    <div class="author-box">
-                                                        <div class="author-info">
-                                                            <h6 class="name">Michael G. Ware</h6>
-                                                            <div class="designation">managing director</div>
-                                                        </div>
-                                                        <ul class="rating">
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <!-- Testimonial Block -->
+                    <div class="testimonial-block-two swiper-slide">
+                        <div class="inner-box">
+                            <div class="shape-19"></div>
+
+                            <div class="content-box">
+                                <div class="icon-quote-2"></div>
+
+                                <!-- Static Image (optional: make dynamic later) -->
+                                <div class="author-image">
+                                    <img src="images/resource/testi-author-4.jpg" alt="Image">
                                 </div>
+
+                                <!-- Testimonial Text -->
+                                <div class="text">
+                                     <?= $t['testimonial'] ?>
+                                </div>
+
+                                <div class="author-box">
+                                    <div class="author-info">
+                                        <h6 class="name">
+                                            <?= htmlspecialchars($t['name']) ?>
+                                        </h6>
+                                    </div>
+
+                                    <!-- Static Rating -->
+                                    <ul class="rating">
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                </div>
+
                             </div>
                         </div>
                     </div>
+
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
                 </div>
             </div>
         </section>

@@ -115,7 +115,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit_testimonial' && isset($_G
       name="testimonial"
       id="testimonial"
       rows="5"
-      style="min-height:140px"><?= $editMode ? htmlspecialchars($row['description'] ?? '') : '' ?></textarea>
+      style="min-height:140px"><?= $editMode ? htmlspecialchars($row['testimonial'] ?? '') : '' ?></textarea>
 
   </div>
 </div>

@@ -625,118 +625,144 @@ exit();
 
 
 
-### ADD PRODUCT
+// ================= ADD PRODUCT =================
 if(isset($_POST['add_product'])){
 
-$title = $_POST['title'];
-$short_description = $_POST['short_description'];
-$description = $_POST['description'];
-$slug = $_POST['slug'];
-$meta_title = $_POST['meta_title'];
-$meta_keywords = $_POST['meta_keywords'];
-$meta_description = $_POST['meta_description'];
+    $title = $_POST['title'];
+    $short_description = $_POST['short_description'];
+    $description = $_POST['description'];
+    $slug = $_POST['slug'];
+    $meta_title = $_POST['meta_title'];
+    $meta_keywords = $_POST['meta_keywords'];
+    $meta_description = $_POST['meta_description'];
 
-if(empty($_FILES['image']['name'])){
-die("Image required");
+    if(empty($_FILES['image']['name'])){
+        die("Image required");
+    }
+
+    $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+    $allowed = ['jpg','jpeg','png','webp','gif'];
+
+    if(!in_array($ext,$allowed)){
+        die("Invalid image");
+    }
+
+    $image = time().rand(100,999).".".$ext;
+
+    move_uploaded_file($_FILES['image']['tmp_name'],$uploadDir.$image);
+
+    // ✅ FIXED QUERY (8 placeholders)
+    $stmt = $pdo->prepare("INSERT INTO products 
+        (title,image,short_description,description,slug,meta_title,meta_keywords,meta_description) 
+        VALUES (?,?,?,?,?,?,?,?)");
+
+    $stmt->execute([
+        $title,
+        $image,
+        $short_description,
+        $description,
+        $slug,
+        $meta_title,
+        $meta_keywords,
+        $meta_description
+    ]);
+
+    header("Location: product.php");
+    exit();
 }
 
-$ext = strtolower(pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION));
-$allowed=['jpg','jpeg','png','webp','gif'];
-
-if(!in_array($ext,$allowed)){
-die("Invalid image");
-}
-
-$image = time().rand(100,999).".".$ext;
-
-move_uploaded_file($_FILES['image']['tmp_name'],$uploadDir.$image);
-
-$stmt=$pdo->prepare("INSERT INTO products(title,image,short_description,description,slug,meta_title,meta_keywords,meta_description) VALUES(?,?,?,?)");
-
-$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description]);
-
-header("Location: product.php");
-exit();
-
-}
 
 
-
-### UPDATE PRODUCT
+// ================= UPDATE PRODUCT =================
 if(isset($_POST['update_product'])){
 
-$id=$_POST['id'];
+    $id = $_POST['id'];
 
-$title=$_POST['title'];
-$short_description=$_POST['short_description'];
-$description=$_POST['description'];
-$slug = $_POST['slug'];
-$meta_title = $_POST['meta_title'];
-$meta_keywords = $_POST['meta_keywords'];
-$meta_description = $_POST['meta_description'];
+    $title = $_POST['title'];
+    $short_description = $_POST['short_description'];
+    $description = $_POST['description'];
+    $slug = $_POST['slug'];
+    $meta_title = $_POST['meta_title'];
+    $meta_keywords = $_POST['meta_keywords'];
+    $meta_description = $_POST['meta_description'];
 
-$image=$_POST['old_image'];
+    $image = $_POST['old_image'];
 
-if(!empty($_FILES['image']['name'])){
+    if(!empty($_FILES['image']['name'])){
 
-$ext=strtolower(pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION));
-$allowed=['jpg','jpeg','png','webp','gif'];
+        $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+        $allowed = ['jpg','jpeg','png','webp','gif'];
 
-if(!in_array($ext,$allowed)){
-die("Invalid image");
+        if(!in_array($ext,$allowed)){
+            die("Invalid image");
+        }
+
+        $image = time().rand(100,999).".".$ext;
+
+        move_uploaded_file($_FILES['image']['tmp_name'],$uploadDir.$image);
+
+        // delete old image
+        if(!empty($_POST['old_image'])){
+            $old = $uploadDir.$_POST['old_image'];
+            if(file_exists($old)){
+                unlink($old);
+            }
+        }
+    }
+
+    $stmt = $pdo->prepare("UPDATE products SET 
+        title=?,
+        image=?,
+        short_description=?,
+        description=?,
+        slug=?,
+        meta_title=?,
+        meta_keywords=?,
+        meta_description=?
+        WHERE id=?");
+
+    $stmt->execute([
+        $title,
+        $image,
+        $short_description,
+        $description,
+        $slug,
+        $meta_title,
+        $meta_keywords,
+        $meta_description,
+        $id
+    ]);
+
+    header("Location: product.php");
+    exit();
 }
 
-$image=time().rand(100,999).".".$ext;
-
-move_uploaded_file($_FILES['image']['tmp_name'],$uploadDir.$image);
-
-if(!empty($_POST['old_image'])){
-$old=$uploadDir.$_POST['old_image'];
-if(file_exists($old)){
-unlink($old);
-}
-}
-
-}
-
-$stmt=$pdo->prepare("UPDATE products SET title=?,image=?,short_description=?,description=?,slug=?,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
-
-$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description,$id]);
-
-header("Location: product.php");
-exit();
-
-}
 
 
-
-### DELETE PRODUCT
+// ================= DELETE PRODUCT =================
 if(isset($_GET['action']) && $_GET['action']=="delete_product"){
 
-$id=$_GET['id'];
+    $id = $_GET['id'];
 
-$stmt=$pdo->prepare("SELECT image FROM products WHERE id=?");
-$stmt->execute([$id]);
-$row=$stmt->fetch();
+    $stmt = $pdo->prepare("SELECT image FROM products WHERE id=?");
+    $stmt->execute([$id]);
+    $row = $stmt->fetch();
 
-if($row){
+    if($row){
 
-$file=$uploadDir.$row['image'];
+        $file = $uploadDir.$row['image'];
 
-if(is_file($file)){
-unlink($file);
+        if(is_file($file)){
+            unlink($file);
+        }
+
+        $del = $pdo->prepare("DELETE FROM products WHERE id=?");
+        $del->execute([$id]);
+    }
+
+    header("Location: product.php");
+    exit();
 }
-
-$del=$pdo->prepare("DELETE FROM products WHERE id=?");
-$del->execute([$id]);
-
-}
-
-header("Location: product.php");
-exit();
-
-}
-
 
 
 ### ADD BLOG

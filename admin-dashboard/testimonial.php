@@ -96,7 +96,7 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <td><?= htmlspecialchars($row['designation']) ?></td>
 
                                 <td style="max-width:350px">
-                                    <?= htmlspecialchars($row['testimonial']) ?>
+                                    <?= $row['testimonial'] ?>
                                 </td>
 
                                 <td>
