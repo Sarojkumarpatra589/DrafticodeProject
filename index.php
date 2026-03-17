@@ -249,14 +249,9 @@
                                         <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
                                     </div>
                                     <div class="content-box">
-                                        <h4 class="title"><a href="service-details.html">Web Design</a></h4>
-                                        <div class="text">There are many variation of passages of Lorem Ipsum available
-                                            form.</div>
-                                        <ul class="list-style-three light">
-                                            <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                            <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                            <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                        </ul>
+                                        <h4 class="title"><a href="service-details.html">Search Engine Optimization (SEO)</a></h4>
+                                        <div class="text">SEO helps your website appear higher in search engine results when customers search for products or services related to your business. Our SEO experts optimize your website structure, keywords, and content to increase organic traffic and improve long-term visibility.</div>
+                                       
                                         <div class="btn-box"><a href="about.html" class="readmore">Discover More</a>
                                         </div>
                                     </div>
@@ -680,93 +675,74 @@
             </div>
         </section>
         <!-- End Team Section -->
-        <!-- Faq Section -->
-        <section class="faq-section">
-            <div class="shape-17"></div>
-            <div class="auto-container">
-                <div class="row">
-                    <!-- Content Column -->
-                    <div class="content-column col-lg-6 col-md-12 col-sm-12 wow fadeInLeft" data-wow-delay="200ms">
-                        <div class="inner-column">
-                            <div class="sec-title">
-                                <div class="sub-title">our faqs</div>
-                                <h2 class="text-reveal-anim">Empowering Growth <br> with Innovation</h2>
+<?php
+
+
+// Fetch all FAQs
+$stmt = $pdo->query("SELECT * FROM faq ORDER BY id ASC");
+$faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<!-- Faq Section -->
+<section class="faq-section">
+    <div class="shape-17"></div>
+    <div class="auto-container">
+        <div class="row">
+            <!-- Content Column -->
+            <div class="content-column col-lg-6 col-md-12 col-sm-12 wow fadeInLeft" data-wow-delay="200ms">
+                <div class="inner-column">
+                    <div class="sec-title">
+                        <div class="sub-title">our faqs</div>
+                        <h2 class="text-reveal-anim">Empowering Growth <br> with Innovation</h2>
+                    </div>
+                    <!-- Accordion Box -->
+                    <ul class="accordion-box">
+
+                        <?php
+                        $active = 'active-block';
+                        $current = 'current';
+                        foreach($faqs as $faq):
+                        ?>
+                        <!--Block-->
+                        <li class="accordion block <?= $active ?>">
+                            <div class="acc-btn <?= $active ?>">
+                                <?= htmlspecialchars($faq['question']) ?>
+                                <i class="icon fa fa-plus"></i>
                             </div>
-                            <!-- Accordion Box -->
-                            <ul class="accordion-box">
-                                <!--Block-->
-                                <li class="accordion block active-block">
-                                    <div class="acc-btn active">What is business consulting?
-                                        <i class="icon fa fa-plus"></i>
-                                    </div>
-                                    <div class="acc-content current">
-                                        <div class="content">
-                                            <div class="text">Bring to the table win-win survival strategies to ensure
-                                                proactive domination. At the end of the day, going forward, a new normal
-                                                that has evolved from generation X is on the</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!--Block-->
-                                <li class="accordion block">
-                                    <div class="acc-btn">What do business consultants do?
-                                        <i class="icon fa fa-plus"></i>
-                                    </div>
-                                    <div class="acc-content">
-                                        <div class="content">
-                                            <div class="text">Bring to the table win-win survival strategies to ensure
-                                                proactive domination. At the end of the day, going forward, a new normal
-                                                that has evolved from generation X is on the</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!--Block-->
-                                <li class="accordion block">
-                                    <div class="acc-btn">Why do companies hire business consultants?
-                                        <i class="icon fa fa-plus"></i>
-                                    </div>
-                                    <div class="acc-content">
-                                        <div class="content">
-                                            <div class="text">Bring to the table win-win survival strategies to ensure
-                                                proactive domination. At the end of the day, going forward, a new normal
-                                                that has evolved from generation X is on the</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!--Block-->
-                                <li class="accordion block">
-                                    <div class="acc-btn">How much do business consultants charge?
-                                        <i class="icon fa fa-plus"></i>
-                                    </div>
-                                    <div class="acc-content">
-                                        <div class="content">
-                                            <div class="text">Bring to the table win-win survival strategies to ensure
-                                                proactive domination. At the end of the day, going forward, a new normal
-                                                that has evolved from generation X is on the</div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Image Column -->
-                    <div class="image-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <figure class="image reveal bounce-x"><img src="images/resource/faq1-1.png" alt="Image">
-                            </figure>
-                            <div class="icon-20 bounce-y"></div>
-                            <div class="icon-21 bounce-x"></div>
-                            <div class="icon-22"></div>
-                            <div class="icon-23 "></div>
-                            <div class="icon-24 zoom-one"></div>
-                            <div class="icon-25 zoom-one"></div>
-                            <div class="shape-18 zoom-one"></div>
-                        </div>
-                    </div>
+                            <div class="acc-content <?= $current ?>">
+                                <div class="content">
+                                  <div class="text"><?= $faq['answer'] ?></div>
+                                </div>
+                            </div>
+                        </li>
+                        <?php
+                        // After first item, remove active classes
+                        $active = '';
+                        $current = '';
+                        endforeach;
+                        ?>
+
+                    </ul>
                 </div>
             </div>
-        </section>
-        <!-- End Faq Section -->
+
+            <!-- Image Column -->
+            <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    <figure class="image reveal bounce-x"><img src="images/resource/faq1-1.png" alt="Image"></figure>
+                    <div class="icon-20 bounce-y"></div>
+                    <div class="icon-21 bounce-x"></div>
+                    <div class="icon-22"></div>
+                    <div class="icon-23 "></div>
+                    <div class="icon-24 zoom-one"></div>
+                    <div class="icon-25 zoom-one"></div>
+                    <div class="shape-18 zoom-one"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Faq Section -->
         <!-- Testimonial Section -->
         <section class="testimonial-section-two">
             <div class="bg bg-pattern-11"></div>
