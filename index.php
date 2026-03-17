@@ -618,63 +618,6 @@
         <!-- End Marquee Section -->
 
 
-        <!-- Team Section -->
-        <section class="team-section">
-            <div class="bg bg-pattern-10"></div>
-            <div class="icon-19 bounce-x"></div>
-
-            <div class="auto-container">
-
-                <div class="sec-title text-center">
-                    <div class="sub-title">Our Team</div>
-                    <h2 class="text-reveal-anim">What Success Looks <br> From the Back</h2>
-                </div>
-
-                <div class="row">
-
-                    <?php
-                    include 'connection/config.php';
-
-                    $stmt = $pdo->prepare("SELECT * FROM teams ORDER BY id ASC");
-                    $stmt->execute();
-                    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                    foreach ($data as $row):
-                    ?>
-
-                        <div class="team-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp">
-                            <div class="inner-box">
-
-                                <div class="image-box">
-                                    <figure class="image">
-                                        <a href="team-details.php?id=<?= $row['id'] ?>">
-                                            <img src="upload/<?= htmlspecialchars($row['image']) ?>" alt="Image">
-                                        </a>
-                                    </figure>
-                                </div>
-
-                                <div class="content-box">
-                                    <h5 class="name">
-                                        <a href="team-details.php?id=<?= $row['id'] ?>">
-                                            <?= htmlspecialchars($row['name']) ?>
-                                        </a>
-                                    </h5>
-
-                                    <div class="designation">
-                                        <?= htmlspecialchars($row['designation']) ?>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    <?php endforeach; ?>
-
-                </div>
-
-            </div>
-        </section>
-        <!-- End Team Section -->
 <?php
 
 
@@ -743,6 +686,7 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </section>
 <!-- End Faq Section -->
+ 
         <!-- Testimonial Section -->
         <section class="testimonial-section-two">
             <div class="bg bg-pattern-11"></div>
@@ -910,10 +854,9 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         data-wow-delay="200ms">
                         <div class="inner-column">
                             <div class="sec-title">
-                                <div class="sub-title">Our benefits</div>
+                                <div class="sub-title">Why Choose Drafticode</div>
                                 <h2 class="text-reveal-anim">Why You Should <br> Choose Our Agency</h2>
-                                <h6 class="title">The primary goal of business market is to help organizations improve
-                                    their performance.</h6>
+                               
                             </div>
 
                             <!-- Benefit Block -->
@@ -921,9 +864,8 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="inner-box">
                                     <div class="icon-box"><i class="icon flaticon-graphic-design"></i></div>
                                     <div class="content-box">
-                                        <h6 class="title">Quality Services</h6>
-                                        <div class="text">Parturient montes nascetur ridiculus mus is maecenas
-                                            venenatis, neque in feugiat elementum.</div>
+                                        <h6 class="title">Proven Expertise</h6>
+                                        <div class="text">Ranked as the Best SEO Services Company In India with 500+ successful campanies.</div>
                                     </div>
                                 </div>
                             </div>
@@ -933,9 +875,8 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="inner-box">
                                     <div class="icon-box"><i class="icon flaticon-teaching"></i></div>
                                     <div class="content-box">
-                                        <h6 class="title">Professional Experts</h6>
-                                        <div class="text">Parturient montes nascetur ridiculus mus is maecenas
-                                            venenatis, neque in feugiat elementum.</div>
+                                        <h6 class="title">Full-Service Agency</h6>
+                                        <div class="text">From PPC Management For Agencies to Custom Website Development, we cover all bases.</div>
                                     </div>
                                 </div>
                             </div>
@@ -945,9 +886,18 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="inner-box">
                                     <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
                                     <div class="content-box">
-                                        <h6 class="title">99% Success Rates</h6>
-                                        <div class="text">Parturient montes nascetur ridiculus mus is maecenas
-                                            venenatis, neque in feugiat elementum.</div>
+                                        <h6 class="title">Local Leaders</h6>
+                                        <div class="text">Premier Digital Marketing Company Near Me in Bhubaneswar for SMM Services Near Me.</div>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- Benefit Block -->
+                            <div class="benefit-block">
+                                <div class="inner-box">
+                                    <div class="icon-box"><i class="icon flaticon-graphic-design"></i></div>
+                                    <div class="content-box">
+                                        <h6 class="title">Results-Oriented</h6>
+                                        <div class="text">Online Marketing Agency delivering 300%+ ROI through data-driven strategies.</div>
                                     </div>
                                 </div>
                             </div>

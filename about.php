@@ -236,211 +236,65 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 </section>
 <!-- End About Section -->
 
-<!-- Service Section -->
-<section class="service-section">
-    <div class="bg bg-pattern-2"></div>
-    <div class="auto-container">
-        <div class="sec-title text-center">
-            <div class="sub-title">Our Services</div>
-            <h2 class="text-reveal-anim">Services We’re <br> Offering to Customers</h2>
-        </div>
-        <div class="outer-box">
-            <div class="swiper service-swiper">
-                <div class="swiper-wrapper">
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-1.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Design</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-2.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-health-check"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Development</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-3.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Digital Marketing</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-1.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-laptop"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Design</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-2.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-health-check"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Web Development</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Service Block -->
-                    <div class="service-block swiper-slide">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <figure class="image"><a href="service-details.html"><img src="images/resource/service1-3.jpg" alt="Image"></a></figure>
-                                <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
-                            </div>
-                            <div class="content-box">
-                                <h4 class="title"><a href="service-details.html">Digital Marketing</a></h4>
-                                <div class="text">There are many variation of passages of Lorem Ipsum available form.</div>
-                                <ul class="list-style-three light">
-                                    <li><i class="fal fa-arrow-right"></i> Fully Responsive</li>
-                                    <li><i class="fal fa-arrow-right"></i> Creativity in Designs</li>
-                                    <li><i class="fal fa-arrow-right"></i> SEO Optimized Content</li>
-                                </ul>
-                                <div class="btn-box"><a href="service-details.html" class="readmore">Discover More</a></div>
-                            </div>
-                        </div>
-                    </div>
+
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="bg bg-pattern-10"></div>
+            <div class="icon-19 bounce-x"></div>
+
+            <div class="auto-container">
+
+                <div class="sec-title text-center">
+                    <div class="sub-title">Our Team</div>
+                    <h2 class="text-reveal-anim">What Success Looks <br> From the Back</h2>
                 </div>
-            </div>
-            <div class="nav-box">
-                <div class="swiper-button-prev"><span class="icon fal fa-long-arrow-left "></span></div>
-                <div class="swiper-button-next"><span class="icon fal fa-long-arrow-right "></span></div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Service Section -->
 
+                <div class="row">
 
+                    <?php
+                    include 'connection/config.php';
 
-<!-- Team Section -->
-<section class="team-section">
-    <div class="bg bg-pattern-10"></div>
-    <div class="icon-19 bounce-x"></div>
-    <div class="auto-container">
-        <div class="sec-title text-center">
-            <div class="sub-title">Our Team</div>
-            <h2 class="text-reveal-anim">What Success Looks <br> From the Back</h2>
-        </div>
-        <div class="row">
-            <!-- Team Block -->
-            <div class="team-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="team-details.html"><img src="images/resource/team1-1.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <h5 class="name"><a href="team-details.html">Danial Brown</a></h5>
-                        <div class="designation">MARKETING</div>
-                        
-                    </div>
+                    $stmt = $pdo->prepare("SELECT * FROM teams ORDER BY id ASC");
+                    $stmt->execute();
+                    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($data as $row):
+                    ?>
+
+                        <div class="team-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp">
+                            <div class="inner-box">
+
+                                <div class="image-box">
+                                    <figure class="image">
+                                        <a href="team-details.php?id=<?= $row['id'] ?>">
+                                            <img src="upload/<?= htmlspecialchars($row['image']) ?>" alt="Image">
+                                        </a>
+                                    </figure>
+                                </div>
+
+                                <div class="content-box">
+                                    <h5 class="name">
+                                        <a href="team-details.php?id=<?= $row['id'] ?>">
+                                            <?= htmlspecialchars($row['name']) ?>
+                                        </a>
+                                    </h5>
+
+                                    <div class="designation">
+                                        <?= htmlspecialchars($row['designation']) ?>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    <?php endforeach; ?>
+
                 </div>
-            </div>
 
-            <!-- Team Block -->
-            <div class="team-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="200ms">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="team-details.html"><img src="images/resource/team1-2.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <h5 class="name"><a href="team-details.html">Wade Warren</a></h5>
-                        <div class="designation">MARKETING</div>
-                    </div>
-                </div>
             </div>
-            <!-- Team Block -->
-            <div class="team-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="400ms">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="team-details.html"><img src="images/resource/team1-3.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <h5 class="name"><a href="team-details.html">Russel Haipner</a></h5>
-                        <div class="designation">MARKETING</div> 
-                    </div>
-                </div>
-            </div>
-            <!-- Team Block -->
-            <div class="team-block col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="600ms">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="team-details.html"><img src="images/resource/team1-4.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <h5 class="name"><a href="team-details.html">Robert Grodge</a></h5>
-                        <div class="designation">MARKETING</div>
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Team Section -->
-
-
+        </section>
+        <!-- End Team Section -->
 
 
 <!-- Call To Action -->
