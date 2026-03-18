@@ -59,7 +59,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit') {
                         </h3>
                     </div>
 
-                    <form method="POST" action="function.php">
+                    <form method="POST" action="function.php" enctype="multipart/form-data">
 
                         <?php if ($editMode) { ?>
                             <input type="hidden" name="id" value="<?= $row['id'] ?>">
@@ -110,6 +110,27 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit') {
                                     </select>
 
                                 </div>
+                            </div>
+                            <div class="col-12">
+
+                                <label class="form-label">Image</label>
+
+                                <input type="file"
+                                    name="image"
+                                    class="form-control"
+                                    id="clientLogoUpload"
+                                    accept="image/*">
+
+                                <div class="mt-2" id="clientLogoPreview">
+
+                                    <?php if ($editMode && !empty($row['image'])): ?>
+
+                                        <img src="../upload/<?= $row['image'] ?>" width="120">
+
+                                    <?php endif; ?>
+
+                                </div>
+
                             </div>
                             <div class="col-md-4">
         <label class="form-label">Course Price</label>
@@ -163,8 +184,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit') {
 
                                     <textarea
                                         class="form-control"
-                                        name="description1"
-                                        id="description1"
+                                        name="short_description"
+                                        id="short_description"
                                         rows="5"
                                         style="min-height:140px"><?= $editMode ? htmlspecialchars($row['short_description'] ?? '') : '' ?></textarea>
 
@@ -201,7 +222,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit') {
                                 });
                             </script>
                             <script>
-                                CKEDITOR.replace('description1', {
+                                CKEDITOR.replace('short_description', {
                                     height: 300
                                 });
 
@@ -236,7 +257,30 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit') {
                 </div>
             </div>
         </div>
+<script>
+        document.getElementById("clientLogoUpload").addEventListener("change", function() {
 
+            let preview = document.getElementById("clientLogoPreview");
+            preview.innerHTML = "";
+
+            let file = this.files[0];
+
+            if (file) {
+
+                let reader = new FileReader();
+
+                reader.onload = function(e) {
+
+                    preview.innerHTML = '<img src="' + e.target.result + '" width="120">';
+
+                }
+
+                reader.readAsDataURL(file);
+
+            }
+
+        });
+    </script>
         <?php include 'common/footer.php' ?>
 
 </body>

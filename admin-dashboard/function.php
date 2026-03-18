@@ -939,6 +939,8 @@ $del->execute([$id]);
 header("Location: blog.php");
 exit();
 }
+
+
 if(isset($_POST['add_course'])){
 
     $course_name       = $_POST['name'];
@@ -954,9 +956,16 @@ if(isset($_POST['add_course'])){
     $language     = $_POST['language'];
     $certification= $_POST['certification'];
 
+    // ✅ IMAGE UPLOAD
+    $image = '';
+    if(!empty($_FILES['image']['name'])){
+        $image = time() . '_' . $_FILES['image']['name'];
+        move_uploaded_file($_FILES['image']['tmp_name'], "../upload/".$image);
+    }
+
     $stmt = $pdo->prepare("INSERT INTO courses 
-    (course_name, category, short_description, description, course_price, instructor, duration, lessons, seats, language, certification) 
-    VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+    (course_name, category, short_description, description, course_price, instructor, duration, lessons, seats, language, certification, image) 
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 
     $stmt->execute([
         $course_name,
@@ -969,12 +978,16 @@ if(isset($_POST['add_course'])){
         $lessons,
         $seats,
         $language,
-        $certification
+        $certification,
+        $image
     ]);
 
     header("Location: course.php");
     exit();
 }
+
+
+
 if(isset($_POST['update_course'])){
 
     $id = $_POST['id'];
@@ -992,6 +1005,25 @@ if(isset($_POST['update_course'])){
     $language     = $_POST['language'];
     $certification= $_POST['certification'];
 
+    // ✅ GET OLD IMAGE
+    $stmt = $pdo->prepare("SELECT image FROM courses WHERE id=?");
+    $stmt->execute([$id]);
+    $old = $stmt->fetch();
+
+    $image = $old['image'];
+
+    // ✅ NEW IMAGE UPLOAD
+    if(!empty($_FILES['image']['name'])){
+        
+        // DELETE OLD IMAGE
+        if(!empty($old['image']) && file_exists("uploads/courses/".$old['image'])){
+            unlink("uploads/courses/".$old['image']);
+        }
+
+        $image = time() . '_' . $_FILES['image']['name'];
+        move_uploaded_file($_FILES['image']['tmp_name'], "../upload/".$image);
+    }
+
     $stmt = $pdo->prepare("UPDATE courses SET 
         course_name=?,
         category=?,
@@ -1003,7 +1035,8 @@ if(isset($_POST['update_course'])){
         lessons=?,
         seats=?,
         language=?,
-        certification=?
+        certification=?,
+        image=?
         WHERE id=?");
 
     $stmt->execute([
@@ -1018,24 +1051,35 @@ if(isset($_POST['update_course'])){
         $seats,
         $language,
         $certification,
+        $image,
         $id
     ]);
 
     header("Location: course.php");
     exit();
 }
+
 if(isset($_GET['delete'])){
 
     $id = $_GET['delete'];
 
+    // ✅ GET IMAGE
+    $stmt = $pdo->prepare("SELECT image FROM courses WHERE id=?");
+    $stmt->execute([$id]);
+    $course = $stmt->fetch();
+
+    // ✅ DELETE IMAGE FROM FOLDER
+    if(!empty($course['image']) && file_exists("uploads/courses/".$course['image'])){
+        unlink("uploads/courses/".$course['image']);
+    }
+
+    // ✅ DELETE FROM DB
     $stmt = $pdo->prepare("DELETE FROM courses WHERE id=?");
     $stmt->execute([$id]);
 
     header("Location: course.php");
     exit();
 }
-
-
 ### ADD JOB
 if(isset($_POST['add_job'])){
 

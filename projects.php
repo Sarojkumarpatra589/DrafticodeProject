@@ -57,232 +57,58 @@
 
 
 
-
 <!-- Project Section -->
 <section class="project-section-five">
-<div class="auto-container">
-</div>
+<div class="auto-container"></div>
+
 <div class="outer-box">
+
     <!-- Project Swiper -->
     <div class="swiper project-swiper-two">
         <div class="swiper-wrapper">
 
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide mb-30">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-1.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
+            <?php
+            $projects = $pdo->query("SELECT * FROM projects ORDER BY id DESC")->fetchAll();
+            foreach ($projects as $project) { ?>
 
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide mb-30">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-2.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
+                <!-- Project Block -->
+                <div class="project-block-four swiper-slide mb-30">
+                    <div class="inner-box">
 
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide mb-30">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-3.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
+                        <!-- Image -->
+                        <div class="image-box">
+                            <figure class="image">
+                                <a href="project_details.php?slug=<?= urlencode($project['slug']) ?>">
+                                    <img src="upload/<?= htmlspecialchars($project['image']) ?>" alt="Image">
+                                </a>
+                            </figure>
+                        </div>
 
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide mb-30">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-4.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
+                        <!-- Content -->
+                        <div class="content-box">
+                            <div class="btn-box">
+                                <a href="project_details.php?slug=<?= urlencode($project['slug']) ?>" class="readmore">
+                                    <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </div>
 
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide mb-30">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-1.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
+                            <h4 class="title">
+                                <a href="project_details.php?slug=<?= urlencode($project['slug']) ?>">
+                                    <?= htmlspecialchars($project['title']) ?>
+                                </a>
+                            </h4>
+                        </div>
 
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide mb-30">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-2.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
                     </div>
                 </div>
-            </div>
 
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide mb-30">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-3.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
 
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide mb-30">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-4.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
-    <div class="swiper project-swiper-two">
-        <div class="swiper-wrapper">
 
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.5.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.6.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.7.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.8.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.5.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.6.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.7.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Block -->
-            <div class="project-block-four swiper-slide">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.8.jpg" alt="Image"></a></figure>
-                    </div>
-                    <div class="content-box">
-                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
-                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>       
 </div>
 </section>
 <!-- End Project Section -->
-
 
 <?php include "common/footer.php"; ?>
