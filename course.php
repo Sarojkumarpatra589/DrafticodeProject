@@ -55,28 +55,26 @@
   </section>
 <!-- End Breadcume Section -->
 
+
 <!-- Service Section -->
 <section class="service-section">       
     <div class="shape-3"></div>
     <div class="shape-2"></div>
-
     <div class="auto-container">
+        
         <div class="outer-box">
             <div class="row">
-
-                <?php 
+                   <?php 
                 $stmt = $pdo->query("SELECT * FROM courses ORDER BY id DESC"); $courses = $stmt->fetchAll();
                 foreach ($courses as $course) { ?>
-
-                <!-- Service Block -->
+                <!-- Service Block 1 -->
                 <div class="col-lg-6 col-md-6 col-sm-12 mb-30">
-                    <div class="service-block">
+                    <div class="service-block ">
                         <div class="inner-box">
-
                             <!-- Image -->
                             <div class="image-box">
                                 <figure class="image">
-                                    <a href="course_details.php?id=<?= $course['id'] ?>">
+                                    <a href="course_details.php?slug=<?= $course['slug'] ?>">
                                         <img src="upload/<?= htmlspecialchars($course['image'] ?? 'default.jpg') ?>" alt="Image">
                                     </a>
                                 </figure>
@@ -85,36 +83,25 @@
                                     <i class="icon flaticon-health-check"></i>
                                 </div>
                             </div>
-
-                            <!-- Content -->
                             <div class="content-box">
-
-                                <!-- Course Name -->
+                                 <!-- Course Name -->
                                 <h4 class="title">
-                                    <a href="course_details.php?id=<?= $course['id'] ?>">
+                                    <a href="course_details.php?slug=<?= $course['slug'] ?>">
                                         <?= htmlspecialchars($course['course_name']) ?>
                                     </a>
                                 </h4>
-
-                                <!-- Short Description -->
-                                <div class="text ">
-                                    <?= $course['short_description'] ?>
-                                </div>
-
+                                <?= $course['short_description'] ?>
+                                
                                 <div class="btn-box">
-                                    <a href="course_details.php?id=<?= $course['id'] ?>" class="readmore">
+                                    <a href="course_details.php?slug=<?= $course['slug'] ?>" class="readmore">
                                         Discover More
                                     </a>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
-
-                <?php } ?>
-
+                 <?php } ?>
             </div>
         </div>
     </div>

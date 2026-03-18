@@ -940,7 +940,6 @@ header("Location: blog.php");
 exit();
 }
 
-
 if(isset($_POST['add_course'])){
 
     $course_name       = $_POST['name'];
@@ -956,6 +955,14 @@ if(isset($_POST['add_course'])){
     $language     = $_POST['language'];
     $certification= $_POST['certification'];
 
+    $slug = !empty($_POST['slug']) 
+        ? $_POST['slug'] 
+        : strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $course_name)));
+
+    $meta_title = $_POST['meta_title'];
+    $meta_keywords = $_POST['meta_keywords'];
+    $meta_description = $_POST['meta_description'];
+
     // ✅ IMAGE UPLOAD
     $image = '';
     if(!empty($_FILES['image']['name'])){
@@ -964,8 +971,8 @@ if(isset($_POST['add_course'])){
     }
 
     $stmt = $pdo->prepare("INSERT INTO courses 
-    (course_name, category, short_description, description, course_price, instructor, duration, lessons, seats, language, certification, image) 
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+    (course_name, category, short_description, description, course_price, instructor, duration, lessons, seats, language, certification, image, meta_title, meta_keywords, meta_description, slug) 
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
     $stmt->execute([
         $course_name,
@@ -979,15 +986,16 @@ if(isset($_POST['add_course'])){
         $seats,
         $language,
         $certification,
-        $image
+        $image,
+        $meta_title,
+        $meta_keywords,
+        $meta_description,
+        $slug
     ]);
 
     header("Location: course.php");
     exit();
 }
-
-
-
 if(isset($_POST['update_course'])){
 
     $id = $_POST['id'];
@@ -1005,6 +1013,14 @@ if(isset($_POST['update_course'])){
     $language     = $_POST['language'];
     $certification= $_POST['certification'];
 
+    $slug = !empty($_POST['slug']) 
+        ? $_POST['slug'] 
+        : strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $course_name)));
+
+    $meta_title = $_POST['meta_title'];
+    $meta_keywords = $_POST['meta_keywords'];
+    $meta_description = $_POST['meta_description'];
+
     // ✅ GET OLD IMAGE
     $stmt = $pdo->prepare("SELECT image FROM courses WHERE id=?");
     $stmt->execute([$id]);
@@ -1012,16 +1028,16 @@ if(isset($_POST['update_course'])){
 
     $image = $old['image'];
 
-    // ✅ NEW IMAGE UPLOAD
+    // ✅ NEW IMAGE
     if(!empty($_FILES['image']['name'])){
-        
+
         // DELETE OLD IMAGE
-        if(!empty($old['image']) && file_exists("uploads/courses/".$old['image'])){
-            unlink("uploads/courses/".$old['image']);
+        if(!empty($old['image']) && file_exists("../upload/".$old['image'])){
+            unlink("../upload/".$old['image']);
         }
 
         $image = time() . '_' . $_FILES['image']['name'];
-        move_uploaded_file($_FILES['image']['tmp_name'], "../upload/".$image);
+        move_uploaded_file($_FILES['image']['tmp_name'], "../uploads/courses/".$image);
     }
 
     $stmt = $pdo->prepare("UPDATE courses SET 
@@ -1036,7 +1052,11 @@ if(isset($_POST['update_course'])){
         seats=?,
         language=?,
         certification=?,
-        image=?
+        image=?,
+        meta_title=?,
+        meta_keywords=?,
+        meta_description=?,
+        slug=?
         WHERE id=?");
 
     $stmt->execute([
@@ -1052,13 +1072,16 @@ if(isset($_POST['update_course'])){
         $language,
         $certification,
         $image,
+        $meta_title,
+        $meta_keywords,
+        $meta_description,
+        $slug,
         $id
     ]);
 
     header("Location: course.php");
     exit();
 }
-
 if(isset($_GET['delete'])){
 
     $id = $_GET['delete'];
@@ -1069,8 +1092,8 @@ if(isset($_GET['delete'])){
     $course = $stmt->fetch();
 
     // ✅ DELETE IMAGE FROM FOLDER
-    if(!empty($course['image']) && file_exists("uploads/courses/".$course['image'])){
-        unlink("uploads/courses/".$course['image']);
+    if(!empty($course['image']) && file_exists("../upload/".$course['image'])){
+        unlink("../upload/".$course['image']);
     }
 
     // ✅ DELETE FROM DB
@@ -1180,66 +1203,113 @@ exit();
 
 if(isset($_POST['add_internship'])){
 
-$stmt = $pdo->prepare("INSERT INTO internships
-(title,department,duration,stipend,location,deadline,openings,description,requirements,status)
-VALUES (?,?,?,?,?,?,?,?,?,?)");
+    $title       = $_POST['title'];
+    $department  = $_POST['department'];
+    $duration    = $_POST['duration'];
+    $stipend     = $_POST['stipend'];
+    $location    = $_POST['location'];
+    $deadline    = $_POST['deadline'];
+    $openings    = $_POST['openings'];
+    $description = $_POST['description'];
+    $requirements= $_POST['requirements'];
+    $status      = $_POST['status'];
 
-$stmt->execute([
+    // ✅ SEO FIELDS
+    $slug = !empty($_POST['slug']) 
+        ? $_POST['slug'] 
+        : strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title)));
 
-$_POST['title'],
-$_POST['department'],
-$_POST['duration'],
-$_POST['stipend'],
-$_POST['location'],
-$_POST['deadline'],
-$_POST['openings'],
-$_POST['description'],
-$_POST['requirements'],
-$_POST['status']
+    $meta_title       = $_POST['meta_title'];
+    $meta_keywords    = $_POST['meta_keywords'];
+    $meta_description = $_POST['meta_description'];
 
-]);
+    $stmt = $pdo->prepare("INSERT INTO internships
+    (title, department, duration, stipend, location, deadline, openings, description, requirements, status, slug, meta_title, meta_keywords, meta_description)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-header("Location: internship.php");
-exit();
+    $stmt->execute([
+        $title,
+        $department,
+        $duration,
+        $stipend,
+        $location,
+        $deadline,
+        $openings,
+        $description,
+        $requirements,
+        $status,
+        $slug,
+        $meta_title,
+        $meta_keywords,
+        $meta_description
+    ]);
+
+    header("Location: internship.php");
+    exit();
 }
 
-
 /* UPDATE INTERNSHIP */
-
 if(isset($_POST['update_internship'])){
 
-$stmt = $pdo->prepare("UPDATE internships SET
-title=?,
-department=?,
-duration=?,
-stipend=?,
-location=?,
-deadline=?,
-openings=?,
-description=?,
-requirements=?,
-status=?
-WHERE id=?");
+    $id = $_POST['id'];
 
-$stmt->execute([
+    $title       = $_POST['title'];
+    $department  = $_POST['department'];
+    $duration    = $_POST['duration'];
+    $stipend     = $_POST['stipend'];
+    $location    = $_POST['location'];
+    $deadline    = $_POST['deadline'];
+    $openings    = $_POST['openings'];
+    $description = $_POST['description'];
+    $requirements= $_POST['requirements'];
+    $status      = $_POST['status'];
 
-$_POST['title'],
-$_POST['department'],
-$_POST['duration'],
-$_POST['stipend'],
-$_POST['location'],
-$_POST['deadline'],
-$_POST['openings'],
-$_POST['description'],
-$_POST['requirements'],
-$_POST['status'],
-$_POST['id']
+    // ✅ SEO FIELDS
+    $slug = !empty($_POST['slug']) 
+        ? $_POST['slug'] 
+        : strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title)));
 
-]);
+    $meta_title       = $_POST['meta_title'];
+    $meta_keywords    = $_POST['meta_keywords'];
+    $meta_description = $_POST['meta_description'];
 
-header("Location: internship.php");
-exit();
+    $stmt = $pdo->prepare("UPDATE internships SET
+        title=?,
+        department=?,
+        duration=?,
+        stipend=?,
+        location=?,
+        deadline=?,
+        openings=?,
+        description=?,
+        requirements=?,
+        status=?,
+        slug=?,
+        meta_title=?,
+        meta_keywords=?,
+        meta_description=?
+        WHERE id=?");
 
+    $stmt->execute([
+        $title,
+        $department,
+        $duration,
+        $stipend,
+        $location,
+        $deadline,
+        $openings,
+        $description,
+        $requirements,
+        $status,
+        $slug,
+        $meta_title,
+        $meta_keywords,
+        $meta_description,
+        $id
+    ]);
+
+    header("Location: internship.php");
+    exit();
 }
 
 /* DELETE INTERNSHIP */
@@ -1349,4 +1419,161 @@ $stmt->execute([$id]);
 header("Location: faq.php");
 exit;
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================= ADD PACKAGE ================= */
+if (isset($_POST['add_package'])) {
+
+    $package_name = trim($_POST['package_name']);
+
+    if (!empty($package_name)) {
+
+        $stmt = $pdo->prepare("INSERT INTO packages (package_name) VALUES (?)");
+        $stmt->execute([$package_name]);
+
+        header("Location: package.php?success=added");
+        exit();
+    }
+}
+
+
+/* ================= UPDATE PACKAGE ================= */
+if (isset($_POST['update_package'])) {
+
+    $id = $_POST['id'];
+    $package_name = trim($_POST['package_name']);
+
+    if (!empty($package_name)) {
+
+        $stmt = $pdo->prepare("UPDATE packages SET package_name=? WHERE id=?");
+        $stmt->execute([$package_name, $id]);
+
+        header("Location: package.php?success=updated");
+        exit();
+    }
+}
+
+
+/* ================= DELETE PACKAGE ================= */
+if (isset($_GET['delete_package'])) {
+
+    $id = $_GET['delete_package'];
+
+    $stmt = $pdo->prepare("DELETE FROM packages WHERE id=?");
+    $stmt->execute([$id]);
+
+    header("Location: package.php?success=deleted");
+    exit();
+}
+
+
+
+/* ================= ADD PRICING ================= */
+if (isset($_POST['add_pricing'])) {
+
+    $package_id   = $_POST['package_id'];
+    $price        = $_POST['price'];
+    $idealfor     = $_POST['idealfor'];
+    $delivery     = $_POST['delivery_time'];
+
+    $stmt = $pdo->prepare("INSERT INTO pricing (package_id, price, idealfor, delivery_time) VALUES (?,?,?,?)");
+    $stmt->execute([$package_id, $price, $idealfor, $delivery]);
+
+    $pricing_id = $pdo->lastInsertId();
+
+    // 🔥 Redirect to add features page
+    header("Location: add_features.php?pricing_id=" . $pricing_id);
+    exit();
+}
+
+
+/* ================= UPDATE PRICING ================= */
+if (isset($_POST['update_pricing'])) {
+
+    $id           = $_POST['id'];
+    $package_id   = $_POST['package_id'];
+    $price        = $_POST['price'];
+    $idealfor     = $_POST['idealfor'];
+    $delivery     = $_POST['delivery_time'];
+
+    $stmt = $pdo->prepare("UPDATE pricing SET package_id=?, price=?, idealfor=?, delivery_time=? WHERE id=?");
+    $stmt->execute([$package_id, $price, $idealfor, $delivery, $id]);
+
+    header("Location: pricing.php?success=updated");
+    exit();
+}
+
+
+/* ================= DELETE PRICING ================= */
+if (isset($_GET['delete_pricing'])) {
+
+    $id = $_GET['delete_pricing'];
+
+    $stmt = $pdo->prepare("DELETE FROM pricing WHERE id=?");
+    $stmt->execute([$id]);
+
+    header("Location: pricing.php?success=deleted");
+    exit();
+}
+
+/* ================= ADD PACKAGE WITH FEATURES ================= */
+if (isset($_POST['add_package'])) {
+
+    $package_name = $_POST['package_name'] ?? null;
+    $features     = $_POST['features'] ?? [];
+
+    // 1. Insert package
+    $stmt = $pdo->prepare("INSERT INTO packages (package_name) VALUES (?)");
+    $stmt->execute([$package_name]);
+
+    $package_id = $pdo->lastInsertId();
+
+    // 2. Insert features
+    if (!empty($features)) {
+        $stmt2 = $pdo->prepare("INSERT INTO features (package_id, features) VALUES (?, ?)");
+
+        foreach ($features as $feature) {
+            if (!empty(trim($feature))) {
+                $stmt2->execute([$package_id, $feature]);
+            }
+        }
+    }
+
+    // 🔥 Redirect to addons page
+    header("Location: add_addons.php?package_id=" . $package_id);
+    exit();
+}
+/* ================= UPDATE PACKAGE ================= */
+if (isset($_POST['update_package'])) {
+
+    $package_id = $_POST['id'];
+    $features   = $_POST['features'] ?? [];
+
+    // 1. Delete old features
+    $pdo->prepare("DELETE FROM features WHERE package_id=?")->execute([$package_id]);
+
+    // 2. Insert updated features
+    if (!empty($features)) {
+        $stmt = $pdo->prepare("INSERT INTO features (package_id, features) VALUES (?, ?)");
+
+        foreach ($features as $feature) {
+            if (!empty(trim($feature))) {
+                $stmt->execute([$package_id, $feature]);
+            }
+        }
+    }
+
+    header("Location: package.php?success=updated");
+    exit();
 }

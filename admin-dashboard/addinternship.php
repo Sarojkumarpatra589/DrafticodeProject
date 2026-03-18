@@ -69,7 +69,7 @@ if (isset($_GET['id'])) {
 
             <select class="form-select" name="department">
 
-              <option <?= ($editMode && $row['department'] == 'Engineering') ? 'selected' : '' ?>>Engineering</option>
+              <option <?= ($editMode && $row['department'] == 'Engineering') ? 'selected' : '' ?>>Development</option>
               <option <?= ($editMode && $row['department'] == 'Design') ? 'selected' : '' ?>>Design</option>
               <option <?= ($editMode && $row['department'] == 'Marketing') ? 'selected' : '' ?>>Marketing</option>
               <option <?= ($editMode && $row['department'] == 'Business') ? 'selected' : '' ?>>Business</option>
@@ -181,6 +181,59 @@ if (isset($_GET['id'])) {
             </select>
 
           </div>
+          <div class="col-md-12">
+                <div class="mb-3">
+
+                  <label class="form-label">Slug (SEO URL)</label>
+
+                  <input type="text"
+                    class="form-control"
+                    name="slug"
+                    value="<?= $editMode ? htmlspecialchars($row['slug'] ?? '') : '' ?>"
+                    placeholder="example-blog-title">
+
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="mb-3">
+
+                  <label class="form-label">Meta Title</label>
+
+                  <input type="text"
+                    class="form-control"
+                    name="meta_title"
+                    value="<?= $editMode ? htmlspecialchars($row['meta_title'] ?? '') : '' ?>">
+
+                </div>
+              </div>
+
+
+              <div class="col-md-12">
+                <div class="mb-3">
+
+                  <label class="form-label">Meta Keywords</label>
+
+                  <textarea
+                    class="form-control"
+                    name="meta_keywords"
+                    rows="2"><?= $editMode ? htmlspecialchars($row['meta_keywords'] ?? '') : '' ?></textarea>
+
+                </div>
+              </div>
+
+
+              <div class="col-md-12">
+                <div class="mb-3">
+
+                  <label class="form-label">Meta Description</label>
+
+                  <textarea
+                    class="form-control"
+                    name="meta_description"
+                    rows="3"><?= $editMode ? htmlspecialchars($row['meta_description'] ?? '') : '' ?></textarea>
+
+                </div>
+              </div>
 
         </div>
 

@@ -131,20 +131,33 @@
             </div>
           </li>
         </ul>
-        <div class="sidebar-section-label">Education</div>
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link " href="#collapseCourses" data-bs-toggle="collapse" aria-expanded="false">
-              <span class="nav-icon"><i class="fas fa-graduation-cap"></i></span> Courses
-            </a>
-            <div class="collapse " id="collapseCourses">
-              <div class="sidebar-submenu">
-                <a class="nav-link " href="addcourse.php">Add Course</a>
-                <a class="nav-link " href="course.php">All Courses</a>
-              </div>
-            </div>
-          </li>
-        </ul>
+        
+        <div class="sidebar-section-label">Package & Pricing</div>
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link" href="#collapsePackages" data-bs-toggle="collapse" aria-expanded="false">
+      <span class="nav-icon"><i class="fas fa-box-open"></i></span> Packages
+    </a>
+    <div class="collapse" id="collapsePackages">
+      <div class="sidebar-submenu">
+        <a class="nav-link" href="add_package.php">Add Package</a>
+        <a class="nav-link" href="package.php">All Packages</a>
+      </div>
+    </div>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="#collapsePricing" data-bs-toggle="collapse" aria-expanded="false">
+      <span class="nav-icon"><i class="fas fa-dollar-sign"></i></span> Pricing
+    </a>
+    <div class="collapse" id="collapsePricing">
+      <div class="sidebar-submenu">
+        <a class="nav-link" href="add_pricing.php">Add Pricing</a>
+        <a class="nav-link" href="allpricing.php">All Pricing</a>
+      </div>
+    </div>
+  </li>
+</ul>
         <div class="sidebar-section-label">Jobs</div>
         <ul class="nav flex-column">
           <li class="nav-item">

@@ -11,7 +11,7 @@
   <!-- Stylesheets -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
 
-      <link href="css/style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />

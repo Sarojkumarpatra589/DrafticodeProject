@@ -70,12 +70,26 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                         <li class="dropdown"><a href="#">Careers</a>
                             <ul>
                                 <li><a href="course.php">Courses</a></li>
-                                <li><a href="job.php">Job</a></li>
-                                <li class="dropdown"><a href="#
-                                ">Internship  &nbsp;&nbsp;</a>
+                                <li><a href="job_details.php">Job</a>
+                            </li>
+
+                                <li class="dropdown">
+                                    <a href="#">Internship &nbsp;&nbsp;</a>
                                     <ul>
-                                        <li><a href="dev_intern.php">Web Development Internship</a></li>
-                                        <li><a href="marketing_intern.php">Digital Marketing Internship</a></li>
+                                        <?php
+                                        include 'connection/config.php';
+
+                                        $stmt = $pdo->query("SELECT title, slug FROM internships ORDER BY id DESC");
+                                        $internships = $stmt->fetchAll();
+
+                                        foreach($internships as $row):
+                                        ?>
+                                            <li>
+                                                <a href="internships.php?slug=<?= urlencode($row['slug']) ?>">
+                                                    <?= htmlspecialchars($row['title']) ?>
+                                                </a>
+                                            </li>
+                                        <?php endforeach; ?>
                                     </ul>
                                 </li>
                             </ul>

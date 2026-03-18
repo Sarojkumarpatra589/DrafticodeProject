@@ -3,18 +3,18 @@ include 'connection/config.php';
 
 // ✅ GET SLUG
 if(!isset($_GET['slug'])){
-    die("Course not found");
+    die("Internship not found");
 }
 
 $slug = $_GET['slug'];
 
-// ✅ FETCH COURSE
-$stmt = $pdo->prepare("SELECT * FROM courses WHERE slug=?");
+// ✅ FETCH INTERNSHIP
+$stmt = $pdo->prepare("SELECT * FROM internships WHERE slug=?");
 $stmt->execute([$slug]);
-$course = $stmt->fetch();
+$internship = $stmt->fetch();
 
-if(!$course){
-    die("Course not found");
+if(!$internship){
+    die("Internship not found");
 }
 ?>
 
@@ -24,8 +24,10 @@ if(!$course){
 <head>
   <meta charset="utf-8" />
 
-  <!-- ✅ TITLE -->
-  <title><?= htmlspecialchars($course['course_name']) ?></title>
+  <!-- ✅ SEO META -->
+  <title><?= htmlspecialchars($internship['meta_title'] ?? $internship['title']) ?></title>
+  <meta name="keywords" content="<?= htmlspecialchars($internship['meta_keywords'] ?? '') ?>">
+  <meta name="description" content="<?= htmlspecialchars($internship['meta_description'] ?? '') ?>">
 
   <!-- Styles -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -56,7 +58,7 @@ if(!$course){
                 <div class="col-lg-12">
                     <div class="breadcumb-content">
                         <div class="breadcumb-title">
-                            <h1 class="title fs-1"><?= htmlspecialchars($course['course_name']) ?></h1>
+                            <h1 class="title fs-1"><?= htmlspecialchars($internship['title']) ?></h1>
                         </div>
                         <ul class="breadcume-pull">
                             <li>
@@ -64,7 +66,7 @@ if(!$course){
                                     Home <span><i class="fas fa-angle-right"></i></span>
                                 </a>
                             </li>
-                            <li><?= htmlspecialchars($course['course_name']) ?></li>
+                            <li><?= htmlspecialchars($internship['title']) ?></li>
                         </ul>
                     </div>
                 </div>
@@ -75,10 +77,9 @@ if(!$course){
 <!-- End Breadcume Section -->
 
 
-<!-- Course Details Section -->
+<!-- Internship Details Section -->
 <section class="project-details-section">
 	<div class="auto-container">
-
 
 		<div class="row">
 
@@ -87,44 +88,38 @@ if(!$course){
                 <div class="inner-box">
 
                     <div class="project-title">
-                        <h4 class="title">Course Details</h4>
-                        <div class="text">
-                        </div>
+                        <h4 class="title">Internship Details</h4>
                     </div>
 
                     <div class="project-name">
                         <ul class="project">
 
                             <li>Category: 
-                                <span><?= htmlspecialchars($course['category']) ?></span>
+                                <span><?= htmlspecialchars($internship['department'] ?? 'N/A') ?></span>
                             </li>
 
-                            <li>Instructor: 
-                                <span><?= htmlspecialchars($course['instructor']) ?></span>
+                            <li>Company: 
+                                <span><?= htmlspecialchars($internship['company'] ?? 'Drafticode') ?></span>
                             </li>
 
                             <li>Duration: 
-                                <span><?= htmlspecialchars($course['duration']) ?></span>
+                                <span><?= htmlspecialchars($internship['duration'] ?? 'N/A') ?></span>
                             </li>
 
-                            <li>Lessons: 
-                                <span><?= htmlspecialchars($course['lessons']) ?></span>
+                            <li>Total Openings: 
+                                <span><?= htmlspecialchars($internship['openings'] ?? 'N/A') ?></span>
                             </li>
 
-                            <li>Seats: 
-                                <span><?= htmlspecialchars($course['seats']) ?></span>
+                            <li>Stipend: 
+                                <span><?= htmlspecialchars($internship['stipend'] ?? 'N/A') ?></span>
                             </li>
 
-                            <li>Language: 
-                                <span><?= htmlspecialchars($course['language']) ?></span>
+                            <li>Location: 
+                                <span><?= htmlspecialchars($internship['location'] ?? 'N/A') ?></span>
                             </li>
 
-                            <li>Certification: 
-                                <span><?= htmlspecialchars($course['certification']) ?></span>
-                            </li>
-
-                            <li>Price: 
-                                <span><?= htmlspecialchars($course['course_price']) ?></span>
+                            <li>Last Date to Apply: 
+                                <span><?= htmlspecialchars($internship['deadline'] ?? 'N/A') ?></span>
                             </li>
 
                         </ul>
@@ -143,13 +138,10 @@ if(!$course){
 
                             <!-- ✅ CKEDITOR CONTENT -->
 							<div class="project-desc">
-                                <?= $course['description']; ?>
+                                <?= $internship['description']; ?>
                             </div>
 
 						</div>
-
-                        
-
 
 					</div>
 
@@ -161,3 +153,4 @@ if(!$course){
 </section>
 
 <?php include "common/footer.php"; ?>
+
