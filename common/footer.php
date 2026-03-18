@@ -2,28 +2,40 @@
 	<div class="bg bg-pattern-7"></div>
 	<div class="widgets-section">
 		<div class="auto-container">
-			<ul class="contact-list-two">
-				<li>
+			<ul class="contact-list-two row">
+				
+
+				<li class="col-lg-3 col-md-6 col-sm-12">
+					<div class="icon-box"><i class="icon fa fa-phone"></i></div>
+					<div class="content">
+						<div class="subtitle">call emergency</div>
+						<div class="text">
+							<a href="tel:<?php echo $settings['phone']; ?>">
+								<?php echo $settings['phone']; ?>
+							</a>
+						</div>
+					</div>
+				</li>
+				
+				<li class="col-lg-4 col-md-6 col-sm-12">
+					<div class="icon-box"><i class="icon fa fa-envelope"></i></div>
+					<div class="content">
+						<div class="subtitle">send email</div>
+						<div class="text">
+							<a href="mailto:<?php echo $settings['email']; ?>">
+								<?php echo $settings['email']; ?>
+							</a>
+						</div>
+					</div>
+				</li>
+				<li class="col-lg-5 col-md-6 col-sm-12">
 					<div class="icon-box"><i class="icon fa fa-map-marker-alt"></i></div>
 					<div class="content">
 						<div class="subtitle">office address</div>
 						<div class="text"><?php echo $settings['address']; ?></div>
 					</div>
 				</li>
-				<li>
-					<div class="icon-box"><i class="icon fa fa-envelope"></i></div>
-					<div class="content">
-						<div class="subtitle">send email</div>
-						<div class="text"><a href="mailto:<?php echo $settings['email']; ?>"><?php echo $settings['email']; ?></a></div>
-					</div>
-				</li>
-				<li>
-					<div class="icon-box"><i class="icon fa fa-phone"></i></div>
-					<div class="content">
-						<div class="subtitle">call emergency</div>
-						<div class="text"><a href="tel:<?php echo $settings['phone']; ?>"><?php echo $settings['phone']; ?></a></div>
-					</div>
-				</li>
+
 			</ul>
 			<div class="row">
 				<!-- Footer Column -->

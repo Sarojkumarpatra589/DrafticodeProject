@@ -392,121 +392,186 @@ exit();
 }
 
 
-
-
-### ADD PROJECT
 if(isset($_POST['add_project'])){
 
-$title = $_POST['title'];
-$short_description = $_POST['short_description'];
-$description = $_POST['description'];
-$slug = $_POST['slug'];
-$meta_title = $_POST['meta_title'];
-$meta_keywords = $_POST['meta_keywords'];
-$meta_description = $_POST['meta_description'];
+    $title = $_POST['title'];
+    $short_description = $_POST['short_description'];
+    $description = $_POST['description'];
+    $slug = $_POST['slug'];
+    $meta_title = $_POST['meta_title'];
+    $meta_keywords = $_POST['meta_keywords'];
+    $meta_description = $_POST['meta_description'];
 
-if(empty($_FILES['image']['name'])){
-die("Image required");
+    if(empty($_FILES['image']['name'])){
+        die("Image required");
+    }
+
+    $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+    $allowed = ['jpg','jpeg','png','webp','gif'];
+
+    if(!in_array($ext, $allowed)){
+        die("Invalid image");
+    }
+
+    $image = time().rand(100,999).".".$ext;
+
+    move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir.$image);
+
+    // ✅ FIXED (8 placeholders)
+    $stmt = $pdo->prepare("INSERT INTO projects 
+    (title, image, short_description, description, slug, meta_title, meta_keywords, meta_description) 
+    VALUES (?,?,?,?,?,?,?,?)");
+
+    $stmt->execute([
+        $title,
+        $image,
+        $short_description,
+        $description,
+        $slug,
+        $meta_title,
+        $meta_keywords,
+        $meta_description
+    ]);
+
+    $pdo->prepare("INSERT INTO activity_logs(action,module,user,status)
+    VALUES ('Added new project','Projects','Admin','Success')")->execute();
+
+    header("Location: project.php");
+    exit();
 }
 
-$ext = strtolower(pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION));
-$allowed=['jpg','jpeg','png','webp','gif'];
-
-if(!in_array($ext,$allowed)){
-die("Invalid image");
-}
-
-$image = time().rand(100,999).".".$ext;
-
-move_uploaded_file($_FILES['image']['tmp_name'],$uploadDir.$image);
-
-$stmt=$pdo->prepare("INSERT INTO projects(title,image,short_description,description,slug,meta_title,meta_keywords,meta_description) VALUES(?,?,?,?)");
-
-$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description]);
-$pdo->prepare("INSERT INTO activity_logs(action,module,user,status)
-VALUES ('Added new project','Projects','Admin','Success')")->execute();
-header("Location: project.php");
-exit();
-
-}
-
-
-
-### UPDATE PROJECT
 if(isset($_POST['update_project'])){
 
-$id=$_POST['id'];
+    $id = $_POST['id'];
 
-$title=$_POST['title'];
-$short_description=$_POST['short_description'];
-$description=$_POST['description'];
-$slug = $_POST['slug'];
-$meta_title = $_POST['meta_title'];
-$meta_keywords = $_POST['meta_keywords'];
-$meta_description = $_POST['meta_description'];
+    $title = $_POST['title'];
+    $short_description = $_POST['short_description'];
+    $description = $_POST['description'];
+    $slug = $_POST['slug'];
+    $meta_title = $_POST['meta_title'];
+    $meta_keywords = $_POST['meta_keywords'];
+    $meta_description = $_POST['meta_description'];
 
-$image=$_POST['old_image'];
+    $image = $_POST['old_image'];
 
-if(!empty($_FILES['image']['name'])){
+    if(!empty($_FILES['image']['name'])){
 
-$ext=strtolower(pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION));
-$allowed=['jpg','jpeg','png','webp','gif'];
+        $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+        $allowed = ['jpg','jpeg','png','webp','gif'];
 
-if(!in_array($ext,$allowed)){
-die("Invalid image");
+        if(!in_array($ext, $allowed)){
+            die("Invalid image");
+        }
+
+        $image = time().rand(100,999).".".$ext;
+
+        move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir.$image);
+
+        // delete old image
+        if(!empty($_POST['old_image'])){
+            $old = $uploadDir.$_POST['old_image'];
+            if(file_exists($old)){
+                unlink($old);
+            }
+        }
+    }
+
+    // ✅ FIXED QUERY
+    $stmt = $pdo->prepare("UPDATE projects SET 
+        title=?,
+        image=?,
+        short_description=?,
+        description=?,
+        slug=?,
+        meta_title=?,
+        meta_keywords=?,
+        meta_description=?
+        WHERE id=?");
+
+    $stmt->execute([
+        $title,
+        $image,
+        $short_description,
+        $description,
+        $slug,
+        $meta_title,
+        $meta_keywords,
+        $meta_description,
+        $id
+    ]);
+
+    $pdo->prepare("INSERT INTO activity_logs(action,module,user,status)
+    VALUES ('Updated project','Projects','Admin','Success')")->execute();
+
+    header("Location: project.php");
+    exit();
 }
+if(isset($_POST['update_project'])){
 
-$image=time().rand(100,999).".".$ext;
+    $id = $_POST['id'];
 
-move_uploaded_file($_FILES['image']['tmp_name'],$uploadDir.$image);
+    $title = $_POST['title'];
+    $short_description = $_POST['short_description'];
+    $description = $_POST['description'];
+    $slug = $_POST['slug'];
+    $meta_title = $_POST['meta_title'];
+    $meta_keywords = $_POST['meta_keywords'];
+    $meta_description = $_POST['meta_description'];
 
-if(!empty($_POST['old_image'])){
-$old=$uploadDir.$_POST['old_image'];
-if(file_exists($old)){
-unlink($old);
+    $image = $_POST['old_image'];
+
+    if(!empty($_FILES['image']['name'])){
+
+        $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+        $allowed = ['jpg','jpeg','png','webp','gif'];
+
+        if(!in_array($ext, $allowed)){
+            die("Invalid image");
+        }
+
+        $image = time().rand(100,999).".".$ext;
+
+        move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir.$image);
+
+        // delete old image
+        if(!empty($_POST['old_image'])){
+            $old = $uploadDir.$_POST['old_image'];
+            if(file_exists($old)){
+                unlink($old);
+            }
+        }
+    }
+
+    // ✅ FIXED QUERY
+    $stmt = $pdo->prepare("UPDATE projects SET 
+        title=?,
+        image=?,
+        short_description=?,
+        description=?,
+        slug=?,
+        meta_title=?,
+        meta_keywords=?,
+        meta_description=?
+        WHERE id=?");
+
+    $stmt->execute([
+        $title,
+        $image,
+        $short_description,
+        $description,
+        $slug,
+        $meta_title,
+        $meta_keywords,
+        $meta_description,
+        $id
+    ]);
+
+    $pdo->prepare("INSERT INTO activity_logs(action,module,user,status)
+    VALUES ('Updated project','Projects','Admin','Success')")->execute();
+
+    header("Location: project.php");
+    exit();
 }
-}
-
-}
-
-$stmt=$pdo->prepare("UPDATE projects SET title=?,image=?,short_description=?,description=?,$slug,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
-
-$stmt->execute([$title,$image,$short_description,$description,$meta_title,$slug,$meta_keywords,$meta_description,$id]);
-
-header("Location: project.php");
-exit();
-
-}
-
-
-
-### DELETE PROJECT
-if(isset($_GET['action']) && $_GET['action']=="delete_project"){
-
-$id=$_GET['id'];
-
-$stmt=$pdo->prepare("SELECT image FROM projects WHERE id=?");
-$stmt->execute([$id]);
-$row=$stmt->fetch();
-
-if($row){
-
-$file=$uploadDir.$row['image'];
-
-if(file_exists($file)){
-unlink($file);
-}
-
-$del=$pdo->prepare("DELETE FROM projects WHERE id=?");
-$del->execute([$id]);
-
-}
-
-header("Location: project.php");
-exit();
-
-}
-
 
 
 ### ADD SERVICE
@@ -874,43 +939,101 @@ $del->execute([$id]);
 header("Location: blog.php");
 exit();
 }
-
-### ADD COURSE
 if(isset($_POST['add_course'])){
 
-$course_name = $_POST['name'];
-$shortdescription = $_POST['category'];
-$description = $_POST['description'];
+    $course_name       = $_POST['name'];
+    $category          = $_POST['category'];
+    $short_description = $_POST['short_description'];
+    $description       = $_POST['description'];
 
-$stmt = $pdo->prepare("INSERT INTO courses(course_name,shortdescription,description) VALUES(?,?,?)");
+    $course_price = $_POST['course_price'];
+    $instructor   = $_POST['instructor'];
+    $duration     = $_POST['duration'];
+    $lessons      = $_POST['lessons'];
+    $seats        = $_POST['seats'];
+    $language     = $_POST['language'];
+    $certification= $_POST['certification'];
 
-$stmt->execute([$course_name,$shortdescription,$description]);
+    $stmt = $pdo->prepare("INSERT INTO courses 
+    (course_name, category, short_description, description, course_price, instructor, duration, lessons, seats, language, certification) 
+    VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
-header("Location: course.php");
-exit();
+    $stmt->execute([
+        $course_name,
+        $category,
+        $short_description,
+        $description,
+        $course_price,
+        $instructor,
+        $duration,
+        $lessons,
+        $seats,
+        $language,
+        $certification
+    ]);
 
+    header("Location: course.php");
+    exit();
 }
-
-
-
-### UPDATE COURSE
 if(isset($_POST['update_course'])){
 
-$id = $_POST['id'];
+    $id = $_POST['id'];
 
-$course_name = $_POST['name'];
-$shortdescription = $_POST['category'];
-$description = $_POST['description'];
+    $course_name       = $_POST['name'];
+    $category          = $_POST['category'];
+    $short_description = $_POST['short_description'];
+    $description       = $_POST['description'];
 
-$stmt = $pdo->prepare("UPDATE courses SET course_name=?,shortdescription=?,description=? WHERE id=?");
+    $course_price = $_POST['course_price'];
+    $instructor   = $_POST['instructor'];
+    $duration     = $_POST['duration'];
+    $lessons      = $_POST['lessons'];
+    $seats        = $_POST['seats'];
+    $language     = $_POST['language'];
+    $certification= $_POST['certification'];
 
-$stmt->execute([$course_name,$shortdescription,$description,$id]);
+    $stmt = $pdo->prepare("UPDATE courses SET 
+        course_name=?,
+        category=?,
+        short_description=?,
+        description=?,
+        course_price=?,
+        instructor=?,
+        duration=?,
+        lessons=?,
+        seats=?,
+        language=?,
+        certification=?
+        WHERE id=?");
 
-header("Location: course.php");
-exit();
+    $stmt->execute([
+        $course_name,
+        $category,
+        $short_description,
+        $description,
+        $course_price,
+        $instructor,
+        $duration,
+        $lessons,
+        $seats,
+        $language,
+        $certification,
+        $id
+    ]);
 
+    header("Location: course.php");
+    exit();
 }
+if(isset($_GET['delete'])){
 
+    $id = $_GET['delete'];
+
+    $stmt = $pdo->prepare("DELETE FROM courses WHERE id=?");
+    $stmt->execute([$id]);
+
+    header("Location: course.php");
+    exit();
+}
 
 
 ### ADD JOB

@@ -158,12 +158,7 @@
     </div>
 </section>
 <!-- End Service Section -->
-```
 
-The only change from before is `col-lg-3` → **`col-lg-6`** on all 4 cards. Since `6 + 6 = 12` (full Bootstrap row width), you get exactly **2 cards per row**, resulting in:
-```
-[ Block 1 ] [ Block 2 ]
-[ Block 3 ] [ Block 4 ]
 
 
 <?php include "common/footer.php"; ?>

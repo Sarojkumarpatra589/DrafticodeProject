@@ -111,11 +111,69 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit') {
 
                                 </div>
                             </div>
+                            <div class="col-md-4">
+        <label class="form-label">Course Price</label>
+        <input type="text" class="form-control" name="course_price"
+            value="<?= $editMode ? $row['course_price'] ?? '' : '' ?>"
+            placeholder="₹ 14,999/-">
+    </div>
 
+    <div class="col-md-4">
+        <label class="form-label">Instructor</label>
+        <input type="text" class="form-control" name="instructor"
+            value="<?= $editMode ? $row['instructor'] ?? '' : '' ?>">
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Duration</label>
+        <input type="text" class="form-control" name="duration"
+            value="<?= $editMode ? $row['duration'] ?? '' : '' ?>"
+            placeholder="12 Weeks">
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">Lessons</label>
+        <input type="number" class="form-control" name="lessons"
+            value="<?= $editMode ? $row['lessons'] ?? '' : '' ?>">
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">Seats</label>
+        <input type="number" class="form-control" name="seats"
+            value="<?= $editMode ? $row['seats'] ?? '' : '' ?>">
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">Language</label>
+        <input type="text" class="form-control" name="language"
+            value="<?= $editMode ? $row['language'] ?? '' : '' ?>"
+            placeholder="English, Hindi">
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">Certification</label>
+        <input type="text" class="form-control" name="certification"
+            value="<?= $editMode ? $row['certification'] ?? '' : '' ?>"
+            placeholder="Physical">
+    </div>
+  
+    <div class="col-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Courses Short Details</label>
+
+                                    <textarea
+                                        class="form-control"
+                                        name="description1"
+                                        id="description1"
+                                        rows="5"
+                                        style="min-height:140px"><?= $editMode ? htmlspecialchars($row['short_description'] ?? '') : '' ?></textarea>
+
+                                </div>
+                            </div>
 
                             <div class="col-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Courses</label>
+                                    <label class="form-label">Courses Details</label>
 
                                     <textarea
                                         class="form-control"
@@ -132,6 +190,18 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit') {
 
                             <script>
                                 CKEDITOR.replace('description', {
+                                    height: 300
+                                });
+
+                                // update textarea when form submits
+                                document.querySelector("form").addEventListener("submit", function() {
+                                    for (let instance in CKEDITOR.instances) {
+                                        CKEDITOR.instances[instance].updateElement();
+                                    }
+                                });
+                            </script>
+                            <script>
+                                CKEDITOR.replace('description1', {
                                     height: 300
                                 });
 
