@@ -1486,14 +1486,15 @@ if (isset($_POST['add_pricing'])) {
     $price        = $_POST['price'];
     $idealfor     = $_POST['idealfor'];
     $delivery     = $_POST['delivery_time'];
+    $package_type     = $_POST['package_type'];
 
-    $stmt = $pdo->prepare("INSERT INTO pricing (package_id, price, idealfor, delivery_time) VALUES (?,?,?,?)");
-    $stmt->execute([$package_id, $price, $idealfor, $delivery]);
+    $stmt = $pdo->prepare("INSERT INTO pricing (package_id, price, idealfor, delivery_time,package_type) VALUES (?,?,?,?,?)");
+    $stmt->execute([$package_id, $price, $idealfor, $delivery,$package_type]);
 
     $pricing_id = $pdo->lastInsertId();
 
     // 🔥 Redirect to add features page
-    header("Location: add_features.php?pricing_id=" . $pricing_id);
+    header("Location: add_features.php?last_id=" . $pricing_id);
     exit();
 }
 
@@ -1506,11 +1507,12 @@ if (isset($_POST['update_pricing'])) {
     $price        = $_POST['price'];
     $idealfor     = $_POST['idealfor'];
     $delivery     = $_POST['delivery_time'];
+    $package_type     = $_POST['package_type'];
 
-    $stmt = $pdo->prepare("UPDATE pricing SET package_id=?, price=?, idealfor=?, delivery_time=? WHERE id=?");
-    $stmt->execute([$package_id, $price, $idealfor, $delivery, $id]);
+    $stmt = $pdo->prepare("UPDATE pricing SET package_id=?, price=?, idealfor=?, delivery_time=?,package_type=? WHERE id=?");
+    $stmt->execute([$package_id, $price, $idealfor, $delivery,$package_type, $id]);
 
-    header("Location: pricing.php?success=updated");
+    header("Location: package.php?success=updated");
     exit();
 }
 
@@ -1526,54 +1528,70 @@ if (isset($_GET['delete_pricing'])) {
     header("Location: pricing.php?success=deleted");
     exit();
 }
+if ($_POST['action'] == 'add_feature') {
 
-/* ================= ADD PACKAGE WITH FEATURES ================= */
-if (isset($_POST['add_package'])) {
+    $package_id = $_POST['package_id'];
+    $feature    = $_POST['feature'];
 
-    $package_name = $_POST['package_name'] ?? null;
-    $features     = $_POST['features'] ?? [];
+    $stmt = $pdo->prepare("INSERT INTO features (package_id, features) VALUES (?, ?)");
+    $stmt->execute([$package_id, $feature]);
 
-    // 1. Insert package
-    $stmt = $pdo->prepare("INSERT INTO packages (package_name) VALUES (?)");
-    $stmt->execute([$package_name]);
+    echo json_encode([
+        'id' => $pdo->lastInsertId()
+    ]);
+}
+if ($_POST['action'] == 'update_feature') {
 
-    $package_id = $pdo->lastInsertId();
+    $id      = $_POST['id'];
+    $feature = $_POST['feature'];
 
-    // 2. Insert features
-    if (!empty($features)) {
-        $stmt2 = $pdo->prepare("INSERT INTO features (package_id, features) VALUES (?, ?)");
+    $stmt = $pdo->prepare("UPDATE features SET features=? WHERE id=?");
+    $stmt->execute([$feature, $id]);
+}
+if ($_POST['action'] == 'delete_feature') {
 
-        foreach ($features as $feature) {
-            if (!empty(trim($feature))) {
-                $stmt2->execute([$package_id, $feature]);
-            }
-        }
-    }
+    $id = $_POST['id'];
 
-    // 🔥 Redirect to addons page
-    header("Location: add_addons.php?package_id=" . $package_id);
+    $stmt = $pdo->prepare("DELETE FROM features WHERE id=?");
+    $stmt->execute([$id]);
+}
+
+/* ================= ADD ADDON ================= */
+if (isset($_POST['action']) && $_POST['action'] == 'add_addon') {
+
+    $package_id = $_POST['package_id'];
+    $addon      = $_POST['addon'];
+
+    $stmt = $pdo->prepare("INSERT INTO addons (package_id, addons) VALUES (?, ?)");
+    $stmt->execute([$package_id, $addon]);
+
+    echo json_encode([
+        'id' => $pdo->lastInsertId()
+    ]);
     exit();
 }
-/* ================= UPDATE PACKAGE ================= */
-if (isset($_POST['update_package'])) {
 
-    $package_id = $_POST['id'];
-    $features   = $_POST['features'] ?? [];
 
-    // 1. Delete old features
-    $pdo->prepare("DELETE FROM features WHERE package_id=?")->execute([$package_id]);
+/* ================= DELETE ADDON ================= */
+if (isset($_POST['action']) && $_POST['action'] == 'delete_addon') {
 
-    // 2. Insert updated features
-    if (!empty($features)) {
-        $stmt = $pdo->prepare("INSERT INTO features (package_id, features) VALUES (?, ?)");
+    $id = $_POST['id'];
 
-        foreach ($features as $feature) {
-            if (!empty(trim($feature))) {
-                $stmt->execute([$package_id, $feature]);
-            }
-        }
-    }
+    $stmt = $pdo->prepare("DELETE FROM addons WHERE id=?");
+    $stmt->execute([$id]);
 
-    header("Location: package.php?success=updated");
+    exit();
+}
+
+
+/* ================= UPDATE ADDON ================= */
+if (isset($_POST['action']) && $_POST['action'] == 'update_addon') {
+
+    $id    = $_POST['id'];
+    $addon = $_POST['addon'];
+
+    $stmt = $pdo->prepare("UPDATE addons SET addons=? WHERE id=?");
+    $stmt->execute([$addon, $id]);
+
     exit();
 }

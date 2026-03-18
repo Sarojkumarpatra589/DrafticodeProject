@@ -91,6 +91,11 @@ $packages = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <td>
 
                                     <div class="d-flex gap-1">
+                                        <!-- VIEW -->
+    <a href="view_package.php?id=<?= $row['id'] ?>"
+        class="btn-icon view">
+        <i class="fas fa-eye"></i>
+    </a>
 
                                         <a href="add_package.php?action=edit_package&id=<?= $row['id'] ?>"
                                             class="btn-icon edit">

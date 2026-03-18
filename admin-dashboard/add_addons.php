@@ -1,33 +1,34 @@
 <?php
 include 'connection/config.php';
 
-$editMode = false;
-$row = [];
 $addons = [];
+$package_id = null;
 
-if (isset($_GET['action']) && $_GET['action'] == "edit_package") {
-    $editMode = true;
-    $id = $_GET['id'];
+if (isset($_GET['last_id'])) {
 
-    // Fetch package
-    $stmt = $pdo->prepare("SELECT * FROM packages WHERE id=?");
-    $stmt->execute([$id]);
-    $row = $stmt->fetch();
+    $pricing_id = $_GET['last_id'];
 
-    // Fetch package addons
-    $stmt2 = $pdo->prepare("SELECT * FROM addons WHERE package_id=? ORDER BY id ASC");
-    $stmt2->execute([$id]);
-    $addons = $stmt2->fetchAll();
+    // Get package_id from pricing
+    $stmt = $pdo->prepare("SELECT * FROM pricing WHERE id=?");
+    $stmt->execute([$pricing_id]);
+    $pricing = $stmt->fetch();
+
+    if ($pricing) {
+        $package_id = $pricing['package_id'];
+
+        // Fetch addons
+        $stmt2 = $pdo->prepare("SELECT * FROM addons WHERE package_id=? ORDER BY id ASC");
+        $stmt2->execute([$package_id]);
+        $addons = $stmt2->fetchAll();
+    }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><?= $editMode ? 'Update Addons' : 'Add Addons' ?></title>
+<title>Add Addons</title>
 
 <link rel="icon" type="image/png" href="assets/images/fav.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
@@ -42,7 +43,7 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_package") {
 <div id="main-content">
 
 <div class="page-header">
-  <h1 class="page-title"><?= $editMode ? 'Update Addons' : 'Add Addons' ?></h1>
+  <h1 class="page-title">Add Addons</h1>
 </div>
 
 <div class="row justify-content-center">
@@ -53,15 +54,14 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_package") {
       <div class="section-header">
         <h3 class="section-title">
           <i class="fas fa-plus-circle me-2 text-primary-custom"></i>
-          <?= $editMode ? 'Update Addons' : 'Add New Addons' ?>
+          Add New Addons
         </h3>
       </div>
 
-      <form method="POST" action="function.php">
+      <form>
 
-        <?php if ($editMode) { ?>
-          <input type="hidden" name="id" value="<?= $row['id'] ?>">
-        <?php } ?>
+        <!-- Hidden -->
+        <input type="hidden" id="package_id" value="<?= $package_id ?>">
 
         <div class="row g-3">
 
@@ -71,20 +71,25 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_package") {
               <label class="form-label">Add Addons</label>
               <div class="d-flex gap-2">
                 <input type="text" id="addonInput" class="form-control" placeholder="Enter addon">
-                <button type="button" id="addAddonBtn" class="btn btn-success"><i class="fas fa-plus"></i> Add</button>
+                <button type="button" id="addAddonBtn" class="btn btn-success">
+                  <i class="fas fa-plus"></i> Add
+                </button>
               </div>
             </div>
 
             <!-- Addons List -->
             <ul class="list-group" id="addonsList">
               <?php foreach ($addons as $addon) { ?>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <li class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $addon['id'] ?>">
                   <span class="addon-text"><?= htmlspecialchars($addon['addons']) ?></span>
                   <div>
-                    <button type="button" class="btn btn-sm btn-primary edit-addon me-1"><i class="fas fa-edit"></i></button>
-                    <button type="button" class="btn btn-sm btn-danger delete-addon"><i class="fas fa-trash"></i></button>
+                    <button type="button" class="btn btn-sm btn-primary edit-addon me-1">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger delete-addon">
+                      <i class="fas fa-trash"></i>
+                    </button>
                   </div>
-                  <input type="hidden" name="addons[]" value="<?= htmlspecialchars($addon['addons']) ?>">
                 </li>
               <?php } ?>
             </ul>
@@ -92,14 +97,10 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_package") {
 
         </div>
 
-        <div class="d-flex gap-2 pt-2">
-          <button type="submit"
-                  name="<?= $editMode ? 'update_addons' : 'add_addons' ?>"
-                  class="btn btn-primary">
-            <i class="fas fa-save me-2"></i>
-            <?= $editMode ? 'Update' : 'Save' ?>
-          </button>
-          <button type="reset" class="btn btn-secondary">Reset</button>
+        <div class="d-flex gap-2 pt-3">
+          <a href="package.php" class="btn btn-primary">
+            <i class="fas fa-arrow-right me-2"></i> Finish
+          </a>
         </div>
 
       </form>
@@ -115,37 +116,71 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_package") {
 <script>
 $(document).ready(function() {
 
-  // Add Addon
+  // ADD ADDON
   $('#addAddonBtn').click(function() {
+
     var addon = $('#addonInput').val().trim();
+    var package_id = $('#package_id').val();
+
     if (addon === '') return;
-    
-    var listItem = `<li class="list-group-item d-flex justify-content-between align-items-center">
-                      <span class="addon-text">${addon}</span>
-                      <div>
-                        <button type="button" class="btn btn-sm btn-primary edit-addon me-1"><i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-sm btn-danger delete-addon"><i class="fas fa-trash"></i></button>
-                      </div>
-                      <input type="hidden" name="addons[]" value="${addon}">
-                    </li>`;
-    $('#addonsList').append(listItem);
-    $('#addonInput').val('');
+
+    $.post('function.php', {
+        action: 'add_addon',
+        addon: addon,
+        package_id: package_id
+    }, function(response) {
+
+        var data = JSON.parse(response);
+
+        var listItem = `<li class="list-group-item d-flex justify-content-between align-items-center" data-id="${data.id}">
+                          <span class="addon-text">${addon}</span>
+                          <div>
+                            <button type="button" class="btn btn-sm btn-primary edit-addon me-1">
+                              <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger delete-addon">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </div>
+                        </li>`;
+
+        $('#addonsList').append(listItem);
+        $('#addonInput').val('');
+    });
   });
 
-  // Delete Addon
+  // DELETE ADDON
   $(document).on('click', '.delete-addon', function() {
-    $(this).closest('li').remove();
+
+    var li = $(this).closest('li');
+    var id = li.data('id');
+
+    $.post('function.php', {
+        action: 'delete_addon',
+        id: id
+    }, function() {
+        li.remove();
+    });
   });
 
-  // Edit Addon
+  // EDIT ADDON
   $(document).on('click', '.edit-addon', function() {
+
     var li = $(this).closest('li');
+    var id = li.data('id');
     var textSpan = li.find('.addon-text');
-    var currentText = textSpan.text();
-    var newText = prompt('Edit addon:', currentText);
+
+    var newText = prompt('Edit addon:', textSpan.text());
+
     if (newText !== null && newText.trim() !== '') {
-      textSpan.text(newText);
-      li.find('input[name="addons[]"]').val(newText);
+
+        $.post('function.php', {
+            action: 'update_addon',
+            id: id,
+            addon: newText
+        }, function() {
+            textSpan.text(newText);
+        });
     }
   });
 

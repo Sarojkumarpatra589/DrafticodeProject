@@ -1,23 +1,26 @@
 <?php
 include 'connection/config.php';
 
-$editMode = false;
-$row = [];
 $features = [];
+$package_id = null;
 
-if (isset($_GET['action']) && $_GET['action'] == "edit_package") {
-    $editMode = true;
-    $id = $_GET['id'];
+if (isset($_GET['last_id'])) {
 
-    // Fetch package
-    $stmt = $pdo->prepare("SELECT * FROM packages WHERE id=?");
-    $stmt->execute([$id]);
-    $row = $stmt->fetch();
+    $pricing_id = $_GET['last_id'];
 
-    // Fetch package features
-    $stmt2 = $pdo->prepare("SELECT * FROM features WHERE package_id=? ORDER BY id ASC");
-    $stmt2->execute([$id]);
-    $features = $stmt2->fetchAll();
+    // Get package_id from pricing
+    $stmt = $pdo->prepare("SELECT * FROM pricing WHERE id=?");
+    $stmt->execute([$pricing_id]);
+    $pricing = $stmt->fetch();
+
+    if ($pricing) {
+        $package_id = $pricing['package_id'];
+
+        // Fetch features
+        $stmt2 = $pdo->prepare("SELECT * FROM features WHERE package_id=? ORDER BY id ASC");
+        $stmt2->execute([$package_id]);
+        $features = $stmt2->fetchAll();
+    }
 }
 ?>
 
@@ -27,7 +30,7 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_package") {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><?= $editMode ? 'Update Package' : 'Add Package' ?></title>
+<title>add featyures</title>
 
 <link rel="icon" type="image/png" href="assets/images/fav.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
@@ -42,7 +45,7 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_package") {
 <div id="main-content">
 
 <div class="page-header">
-  <h1 class="page-title"><?= $editMode ? 'Update Package' : 'Add Package' ?></h1>
+  <h1 class="page-title">Add features</h1>
 </div>
 
 <div class="row justify-content-center">
@@ -53,25 +56,18 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_package") {
       <div class="section-header">
         <h3 class="section-title">
           <i class="fas fa-plus-circle me-2 text-primary-custom"></i>
-          <?= $editMode ? 'Update Package' : 'Add New Package' ?>
+         Add features
         </h3>
       </div>
 
       <form method="POST" action="function.php">
+        <input type="hidden" id="package_id" value="<?= $package_id ?>">
+<input type="hidden" id="pricing_id" value="<?= $_GET['last_id'] ?>">
 
-        <?php if ($editMode) { ?>
-          <input type="hidden" name="id" value="<?= $row['id'] ?>">
-        <?php } ?>
 
         <div class="row g-3">
 
-          <!-- Package Name -->
-          <div class="col-md-12">
-            
-              <input type="hidden" name="package_id" value="<?= $editMode ? $row['id'] : '' ?>">
-           
-          </div>
-
+         
           <!-- Features Section -->
           <div class="col-md-12">
             <div class="mb-3">
@@ -85,27 +81,23 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_package") {
             <!-- Features List -->
             <ul class="list-group" id="featuresList">
               <?php foreach ($features as $feature) { ?>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <span class="feature-text"><?= htmlspecialchars($feature['features']) ?></span>
-                  <div>
-                    <button type="button" class="btn btn-sm btn-primary edit-feature me-1"><i class="fas fa-edit"></i></button>
-                    <button type="button" class="btn btn-sm btn-danger delete-feature"><i class="fas fa-trash"></i></button>
-                  </div>
-                  <input type="hidden" name="features[]" value="<?= htmlspecialchars($feature['features']) ?>">
-                </li>
-              <?php } ?>
+<li class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $feature['id'] ?>">
+  <span class="feature-text"><?= htmlspecialchars($feature['features']) ?></span>
+  <div>
+    <button type="button" class="btn btn-sm btn-primary edit-feature me-1"><i class="fas fa-edit"></i></button>
+    <button type="button" class="btn btn-sm btn-danger delete-feature"><i class="fas fa-trash"></i></button>
+  </div>
+</li>
+<?php } ?>
             </ul>
           </div>
 
         </div>
 
         <div class="d-flex gap-2 pt-2">
-          <button type="submit"
-                  name="<?= $editMode ? 'update_package' : 'add_package' ?>"
-                  class="btn btn-primary">
-            <i class="fas fa-save me-2"></i>
-            <?= $editMode ? 'Update' : 'Next' ?>
-          </button>
+          <a href="add_addons.php?last_id=<?= $_GET['last_id'] ?>" class="btn btn-primary">
+  Next
+</a>
         </div>
 
       </form>
@@ -119,65 +111,72 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_package") {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script>
-let editMode = false;
-let currentEditItem = null;
+$(document).ready(function() {
 
-// Add OR Update Feature
-$('#addFeatureBtn').click(function() {
+  // ADD FEATURE (SAVE IN DB)
+  $('#addFeatureBtn').click(function() {
 
-  var feature = $('#featureInput').val().trim();
-  if (feature === '') return;
+    var feature = $('#featureInput').val().trim();
+    var package_id = $('#package_id').val();
 
-  // 👉 UPDATE MODE
-  if (editMode) {
-    currentEditItem.find('.feature-text').text(feature);
-    currentEditItem.find('input[name="features[]"]').val(feature);
+    if (feature === '') return;
 
-    editMode = false;
-    currentEditItem = null;
-    $('#addFeatureBtn').html('<i class="fas fa-plus"></i> Add');
-  }
+    $.post('function.php', {
+        action: 'add_feature',
+        feature: feature,
+        package_id: package_id
+    }, function(response) {
 
-  // 👉 ADD MODE
-  else {
-    var listItem = `<li class="list-group-item d-flex justify-content-between align-items-center">
-                      <span class="feature-text">${feature}</span>
-                      <div>
-                        <button type="button" class="btn btn-sm btn-primary edit-feature me-1">
-                          <i class="fas fa-edit"></i>
-                        </button>
-                        <button type="button" class="btn btn-sm btn-danger delete-feature">
-                          <i class="fas fa-trash"></i>
-                        </button>
-                      </div>
-                      <input type="hidden" name="features[]" value="${feature}">
-                    </li>`;
+        var data = JSON.parse(response);
 
-    $('#featuresList').append(listItem);
-  }
+        var listItem = `<li class="list-group-item d-flex justify-content-between align-items-center" data-id="${data.id}">
+                          <span class="feature-text">${feature}</span>
+                          <div>
+                            <button type="button" class="btn btn-sm btn-primary edit-feature me-1"><i class="fas fa-edit"></i></button>
+                            <button type="button" class="btn btn-sm btn-danger delete-feature"><i class="fas fa-trash"></i></button>
+                          </div>
+                        </li>`;
 
-  $('#featureInput').val('');
-});
+        $('#featuresList').append(listItem);
+        $('#featureInput').val('');
+    });
+  });
 
+  // DELETE FEATURE
+  $(document).on('click', '.delete-feature', function() {
 
-// Delete Feature
-$(document).on('click', '.delete-feature', function() {
-  $(this).closest('li').remove();
-});
+    var li = $(this).closest('li');
+    var id = li.data('id');
 
+    $.post('function.php', {
+        action: 'delete_feature',
+        id: id
+    }, function() {
+        li.remove();
+    });
+  });
 
-// Edit Feature (NO PROMPT NOW 🚀)
-$(document).on('click', '.edit-feature', function() {
+  // EDIT FEATURE
+  $(document).on('click', '.edit-feature', function() {
 
-  editMode = true;
-  currentEditItem = $(this).closest('li');
+    var li = $(this).closest('li');
+    var id = li.data('id');
+    var textSpan = li.find('.feature-text');
 
-  let text = currentEditItem.find('.feature-text').text();
+    var newText = prompt('Edit feature:', textSpan.text());
 
-  $('#featureInput').val(text).focus();
+    if (newText !== null && newText.trim() !== '') {
 
-  // Change button text
-  $('#addFeatureBtn').html('<i class="fas fa-save"></i> Update');
+        $.post('function.php', {
+            action: 'update_feature',
+            id: id,
+            feature: newText
+        }, function() {
+            textSpan.text(newText);
+        });
+    }
+  });
+
 });
 </script>
 

@@ -90,6 +90,18 @@ $packages = $pdo->query("SELECT id, package_name FROM packages ORDER BY package_
                          required>
                 </div>
               </div>
+              <!-- Price -->
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <label class="form-label">package_type</label>
+                  <input type="text"
+                         class="form-control"
+                         name="package_type"
+                         value="<?= $editMode ? htmlspecialchars($row['package_type']) : '' ?>"
+                         placeholder="Enter package_type"
+                         required>
+                </div>
+              </div>
 
               <!-- Ideal For -->
               <div class="col-md-12">
