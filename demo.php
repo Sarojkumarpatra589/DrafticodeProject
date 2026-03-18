@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from php.kodesolution.com/2025/onicx-php/project-details.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Mar 2026 05:49:46 GMT -->
+<!-- Mirrored from php.kodesolution.com/2025/onicx-php/project.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Mar 2026 05:49:45 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
   <meta charset="utf-8" />
-  <title>Onicx - Digital Agency PHP Template | Project Details</title>
+  <title>Onicx - Digital Agency PHP Template | Page Projects</title>
 
   <!-- Stylesheets -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -26,8 +26,9 @@
 <div class="preloader">
     <div class="loader"></div>
 </div>
-  
+
 <?php include "common/header.php"; ?>
+
 
 
 <!-- Breadcume Section -->
@@ -38,11 +39,11 @@
                 <div class="col-lg-12">
                     <div class="breadcumb-content">
                       <div class="breadcumb-title">
-                        <h1 class="title">Project Details</h1>
+                        <h1 class="title">Page Projects</h1>
                       </div>
                       <ul class="breadcume-pull">
                         <li><a class="title-line" href="index-2.html">Home <span><i class="fas fa-angle-right"></i></span></a></li>
-                        <li>Project Details</li>
+                        <li>Page Projects</li>
                       </ul>
                     </div>
                 </div>
@@ -57,102 +58,231 @@
 
 
 
-<!-- project Section -->
-<section class="project-details-section">
-	<div class="auto-container">
-        <div class="image-box">
-            <figure class="image"><img src="images/resource/project-details.jpg" alt="Image"></figure>
+<!-- Project Section -->
+<section class="project-section-five">
+<div class="auto-container">
+</div>
+<div class="outer-box">
+    <!-- Project Swiper -->
+    <div class="swiper project-swiper-two">
+        <div class="swiper-wrapper">
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide mb-30">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-1.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide mb-30">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-2.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide mb-30">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-3.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide mb-30">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-4.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide mb-30">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-1.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide mb-30">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-2.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide mb-30">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-3.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide mb-30">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2-4.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
         </div>
-		<div class="row">
-            <div class="project-column col-lg-4">
-                 <div class="inner-box">
-                        <div class="project-title">
-                            <h4 class="title">Project Details</h4>
-                            <div class="text">But I must explain to you how all about
-                                                 of denouncing pleasure and praising
-                                                 and I will give you a complete </div>
-                        </div>
-                        <div class="project-name">
-                            <ul class="project">
-                                <li>Client Name: <span>Kodesolution.com</span></li>
-                                <li>Project Date: <span>15.03.2026</span></li>
-                                <li>Location: <span>Design Studio USA </span></li>
-                                <li>Website: <span>www.example.com</span></li>
-                            </ul>
-                        </div> 
-                 </div>
-			</div>	
-			<div class="content-column col-lg-8">
-				<div class="inner-box">
-					<div class="col-lg-12">						
-						<div class="project-content">
-							<p class="project-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupida non proident</p>
-							<p class="project-desc">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut	</p>
-						</div>
-                        <div class="expert-title">
-							<h2 class="title">Completed Projects Overview</h2>
-                            <p class="project-desc">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat</p>
-						</div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="icon-box">
-                                    <i class="icon fa fa-check-circle"></i>
-                                    <div class="icon-content">
-                                        <h6 class="title">Social Media Marketing Projects</h6>
-                                        <div class="text">Develop a month-long content calendar<br> with reels stories and carousel</div>
-                                    </div>
-                                </div>
-                                <div class="icon-box">
-                                    <i class="icon fa fa-check-circle"></i>
-                                    <div class="icon-content">
-                                        <h6 class="title">Strategy & Analytics Projects</h6>
-                                        <div class="text">Develop a month-long content calendar<br> with reels stories and carousel</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="icon-box">
-                                    <i class="icon fa fa-check-circle"></i>
-                                    <div class="icon-content">
-                                        <h6 class="title">SEO & Content Marketing Projects</h6>
-                                        <div class="text">Develop a month-long content calendar<br> with reels stories and carousel</div>
-                                    </div>
-                                </div>
-                                <div class="icon-box">
-                                    <i class="icon fa fa-check-circle"></i>
-                                    <div class="icon-content">
-                                        <h6 class="title">PPC & Paid Media Projects</h6>
-                                        <div class="text">Develop a month-long content calendar<br> with reels stories and carousel</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-							<p class="project-desc">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form by injected humour, or randomised words</p>							
-						</div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="image-box-inner">
-                                     <figure class="image"><img src="images/resource/proj2.png" alt="Image"></figure>
-                                </div>                        
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="image-box-inner">
-                                     <figure class="image"><img src="images/resource/proj.png" alt="Image"></figure>
-                                </div>                       
-                            </div>
-                        </div>
-                        <div class="project-btn">
-                            <a href="project-details.html" class="btn"><i class="icon fa fa-angle-left"></i>Previous</a>
-                            <a href="project-details.html" class="btn">Next<i class="icon fa fa-angle-right "></i></a>
-                        </div>
-					</div>
-				</div>
-			</div>						
-		</div>
-	</div>
+    </div>
+    <div class="swiper project-swiper-two">
+        <div class="swiper-wrapper">
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.5.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.6.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.7.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.8.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.5.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.6.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.7.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Block -->
+            <div class="project-block-four swiper-slide">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <figure class="image"><a href="project-details.html"><img src="images/resource/project2.8.jpg" alt="Image"></a></figure>
+                    </div>
+                    <div class="content-box">
+                        <div class="btn-box"><a href="project-details.html" class="readmore"><i class="fa fa-arrow-right"></i></a></div>
+                        <h4 class="title"><a href="project-details.html">future management Development</a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>       
+</div>
 </section>
-<!-- End Team Section -->
+<!-- End Project Section -->
 
 
 <?php include "common/footer.php"; ?>
