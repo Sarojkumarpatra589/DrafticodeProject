@@ -573,6 +573,41 @@ if(isset($_POST['update_project'])){
     exit();
 }
 
+/* ================= DELETE PROJECT ================= */
+if (isset($_GET['action']) && $_GET['action'] == 'delete_project') {
+
+    $id = $_GET['id'] ?? null;
+
+    if (!$id) {
+        die("Invalid ID");
+    }
+
+    // 🔹 Get project image first
+    $stmt = $pdo->prepare("SELECT image FROM projects WHERE id=?");
+    $stmt->execute([$id]);
+    $project = $stmt->fetch();
+
+    // 🔹 Delete image from folder
+    if ($project && !empty($project['image'])) {
+
+        $filePath = $uploadDir . $project['image'];
+
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+    }
+
+    // 🔹 Delete project from DB
+    $stmt = $pdo->prepare("DELETE FROM projects WHERE id=?");
+    $stmt->execute([$id]);
+
+    // 🔹 Log activity
+    $pdo->prepare("INSERT INTO activity_logs(action,module,user,status)
+    VALUES ('Deleted project','Projects','Admin','Success')")->execute();
+
+    header("Location: project.php");
+exit();
+}
 
 ### ADD SERVICE
 if(isset($_POST['add_service'])){
@@ -1494,7 +1529,7 @@ if (isset($_POST['add_pricing'])) {
     $pricing_id = $pdo->lastInsertId();
 
     // 🔥 Redirect to add features page
-    header("Location: add_features.php?last_id=" . $pricing_id);
+   header("Location: add_features.php?last_id=" . urlencode($pricing_id) . "&package_type=" . urlencode($package_type));
     exit();
 }
 
@@ -1527,14 +1562,14 @@ if (isset($_GET['delete_pricing'])) {
 
     header("Location: pricing.php?success=deleted");
     exit();
-}
-if ($_POST['action'] == 'add_feature') {
+}if ($_POST['action'] == 'add_feature') {
 
-    $package_id = $_POST['package_id'];
-    $feature    = $_POST['feature'];
+    $package_id   = $_POST['package_id'];
+    $package_type = $_POST['package_type']; // ✅ NEW
+    $feature      = $_POST['feature'];
 
-    $stmt = $pdo->prepare("INSERT INTO features (package_id, features) VALUES (?, ?)");
-    $stmt->execute([$package_id, $feature]);
+    $stmt = $pdo->prepare("INSERT INTO features (package_id, package_type, features) VALUES (?, ?, ?)");
+    $stmt->execute([$package_id, $package_type, $feature]);
 
     echo json_encode([
         'id' => $pdo->lastInsertId()

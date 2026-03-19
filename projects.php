@@ -12,7 +12,7 @@
 
       <link href="css/style.css" rel="stylesheet">
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
   <link rel="icon" href="images/favicon.png" type="image/x-icon" />
 
@@ -59,56 +59,46 @@
 
 <!-- Project Section -->
 <section class="project-section-five">
-<div class="auto-container"></div>
+  <div class="auto-container">
+    <div class="row">
 
-<div class="outer-box">
+      <?php
+      $projects = $pdo->query("SELECT * FROM projects ORDER BY id DESC")->fetchAll();
+      foreach ($projects as $project) { ?>
 
-    <!-- Project Swiper -->
-    <div class="swiper project-swiper-two">
-        <div class="swiper-wrapper">
+        <!-- Project Block -->
+        <div class="project-block-four col-lg-4 col-md-6 col-sm-12 mb-30">
+          <div class="inner-box">
+            
+            <div class="image-box">
+              <a href="project_details.php?slug=<?= urlencode($project['slug']) ?>">
+                <img src="upload/<?= htmlspecialchars($project['image']) ?>" alt="Image">
+              </a>
+            </div>
 
-            <?php
-            $projects = $pdo->query("SELECT * FROM projects ORDER BY id DESC")->fetchAll();
-            foreach ($projects as $project) { ?>
+            <div class="content-box">
+              <div class="btn-box">
+                <a href="project_details.php?slug=<?= urlencode($project['slug']) ?>" class="readmore">
+                  <i class="fa fa-arrow-right"></i>
+                </a>
+              </div>
 
-                <!-- Project Block -->
-                <div class="project-block-four swiper-slide mb-30">
-                    <div class="inner-box">
+              <h4 class="title">
+                <a href="project_details.php?slug=<?= urlencode($project['slug']) ?>">
+                  <?= htmlspecialchars($project['title']) ?>
+                </a>
+              </h4>
+            </div>
 
-                        <!-- Image -->
-                        <div class="image-box">
-                            <figure class="image">
-                                <a href="project_details.php?slug=<?= urlencode($project['slug']) ?>">
-                                    <img src="upload/<?= htmlspecialchars($project['image']) ?>" alt="Image">
-                                </a>
-                            </figure>
-                        </div>
-
-                        <!-- Content -->
-                        <div class="content-box">
-                            <div class="btn-box">
-                                <a href="project_details.php?slug=<?= urlencode($project['slug']) ?>" class="readmore">
-                                    <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </div>
-
-                            <h4 class="title">
-                                <a href="project_details.php?slug=<?= urlencode($project['slug']) ?>">
-                                    <?= htmlspecialchars($project['title']) ?>
-                                </a>
-                            </h4>
-                        </div>
-
-                    </div>
-                </div>
-
-            <?php } ?>
-
+          </div>
         </div>
-    </div>
 
-</div>
+      <?php } ?>
+
+    </div>
+  </div>
 </section>
 <!-- End Project Section -->
+
 
 <?php include "common/footer.php"; ?>
