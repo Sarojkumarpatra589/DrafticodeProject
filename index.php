@@ -31,7 +31,11 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
+<style>
+    .content-box .text-service p{
+        color:white;
+    }
+</style>
 <body>
     <div class="page-wrapper">
         <!-- Preloader -->
@@ -162,7 +166,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <ul class="list-style-two two-column">
                                     <li><i class="fa fa-check-circle"></i> Innovative Solutions</li>
                                     <li><i class="fa fa-check-circle"></i> User-Friendly Interface</li>
-                                    <li><i class="fa fa-check-circle"></i> Secure Transactions</li>
+                                    <li><i class="fa fa-check-circle"></i> Social Media Growth</li>
                                     <li><i class="fa fa-check-circle"></i> Real-Time Analytics</li>
                                 </ul>
                             </div>
@@ -187,12 +191,11 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                             </div>
 
                             <div class="btn-box">
-                                <a class="theme-btn-main" href="page-contact.html">
+                                <a class="theme-btn-main" href="about.php">
                                     <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
                                     <span class="theme-btn">Discover More</span>
                                     <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>
                                 </a>
-                                <div class="sign"><img src="images/icons/sign.png" alt="Image"></div>
                             </div>
                         </div>
                     </div>
@@ -204,7 +207,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                             <figure class="image"><img src="images/resource/about2-1.jpg" alt="Image"></figure>
                             <figure class="image-two"><img src="images/resource/about2-2.jpg" alt="Image"></figure>
                             <div class="btn-box">
-                                <a href="#">
+                                <a href="about.php">
                                     <svg viewBox="0 0 100 100" width="100" height="100" class="circular-text">
                                         <defs>
                                             <path id="circle"
@@ -274,7 +277,7 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
                                     </a>
                                 </h4>
 
-                                <div class="text">
+                                <div class="text text-service">
                                     <?= $service['short_description'] ?>
                                 </div>
 
@@ -319,8 +322,8 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
                                 <div class="inner-box">
                                     <div class="icon-box"><i class="icon flaticon-success"></i></div>
                                     <div class="count-box"><span class="count-text" data-speed="3000"
-                                            data-stop="1230">0</span>+</div>
-                                    <div class="text">Successful Projects</div>
+                                            data-stop="30">0</span>+</div>
+                                    <div class="text">Active Projects</div>
                                 </div>
                             </div>
                             <!-- Counter Block -->
@@ -329,8 +332,8 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
                                 <div class="inner-box">
                                     <div class="icon-box"><i class="icon flaticon-marketing"></i></div>
                                     <div class="count-box"><span class="count-text" data-speed="3000"
-                                            data-stop="98">0</span>%</div>
-                                    <div class="text">Best Result Outcome</div>
+                                            data-stop="40">0</span>+</div>
+                                    <div class="text">Satisfied Customers</div>
                                 </div>
                             </div>
                             <!-- Counter Block -->
@@ -339,8 +342,8 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
                                 <div class="inner-box">
                                     <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
                                     <div class="count-box"><span class="count-text" data-speed="3000"
-                                            data-stop="64">0</span>%</div>
-                                    <div class="text">Cover Marketing</div>
+                                            data-stop="100">0</span>%</div>
+                                    <div class="text">Certification</div>
                                 </div>
                             </div>
                             <!-- Counter Block -->
@@ -349,8 +352,8 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
                                 <div class="inner-box">
                                     <div class="icon-box"><i class="icon flaticon-diplomat"></i></div>
                                     <div class="count-box"><span class="count-text" data-speed="3000"
-                                            data-stop="2890">0</span>+</div>
-                                    <div class="text">Satisfied Customers</div>
+                                            data-stop="5">0</span>+</div>
+                                    <div class="text">Years Experience</div>
                                 </div>
                             </div>
                         </div>
@@ -364,8 +367,8 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
                                     <path id="circle" d="M 50, 50m -37, 0a 37,37 0 1,1 74,0a 37,37 0 1,1 -74,0" />
                                 </defs>
                                 <text>
-                                    <textPath xlink:href="#circle">Since 1885 Since 1885 Since 1885 Since 1885 Since
-                                        1885</textPath>
+                                    <textPath xlink:href="#circle">Since 2018 Since 2018 Since 2018 Since 2018 Since
+                                        2018</textPath>
                                 </text>
                             </svg>
                             <div class="icon-box"><i class="icon flaticon-technology"></i></div>
@@ -599,7 +602,7 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </section>
 <!-- End Faq Section -->
  
-        <!-- Testimonial Section -->
+    <!-- Testimonial Section -->
         <section class="testimonial-section-two">
             <div class="bg bg-pattern-11"></div>
             <div class="auto-container">
@@ -611,9 +614,7 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <div class="sec-title">
                                 <div class="sub-title">Testimonials</div>
                                 <h2 class="text-reveal-anim">What They’re Talking <br> About Company?</h2>
-                                <div class="text">There are many variations of passages of Lorem Ipsum available, but
-                                    the majority have suffered alteration in some form, by injected humour, or
-                                    randomised words which don't look even slightly believable. </div>
+                                <div class="text">Discover what our clients have to say about their experience working with us and how our solutions have helped their businesses grow. </div>
                             </div>
 
                             <div class="outer-box">
@@ -753,7 +754,7 @@ $testimonials = $pdo->query("SELECT * FROM testimonial ORDER BY id DESC")->fetch
                                 </div>
                             </div>
                             <div class="btn-box">
-                                <a class="theme-btn-main" href="page-contact.html">
+                                <a class="theme-btn-main" href="contact.php">
                                     <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
                                     <span class="theme-btn">Discover More</span>
                                     <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>

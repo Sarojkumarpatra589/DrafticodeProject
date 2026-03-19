@@ -17,7 +17,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
   <!-- Stylesheets -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
  <link href="css/style.css" rel="stylesheet">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
   <link rel="shortcut icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
 <link rel="icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
@@ -104,7 +104,8 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                 </div>
             </div>
         </section>
-        <!-- End Client Section -->
+
+<!-- End Client Section -->
 
 <!-- About Section -->
 <section class="about-section">
@@ -118,7 +119,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                     <div class="sec-title">
                         <div class="sub-title">About Us</div>
                         <h2 class="text-reveal-anim">Welcome to Our Smart <br> Digital Agency</h2>
-                        <div class="text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</div>
+                        <div class="text">Drafticode is a professional digital marketing company based in Bhubaneswar, helping businesses across India grow through innovative strategies and modern digital solutions. Our expert team combines creativity, strategic thinking, and data-driven insights to deliver impactful results.</div>
                     </div>
                     <div class="icon-outer-box row">
                         <div class="icon-box col-lg-6 col-md-6 col-sm-6">
@@ -154,16 +155,17 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                     </div>
 
                     <ul class="list-style-two">
-                        <li><i class="fa fa-check-circle"></i> Many variations of passages of Lorem Ipsum</li>
-                        <li><i class="fa fa-check-circle"></i> Many variations of passages of Lorem</li>
+                        <li><i class="fa fa-check-circle"></i>Transforming businesses digitally
+Results that truly matter.</li>
+                        <li><i class="fa fa-check-circle"></i> Marketing solutions for growth
+Creativity, strategy, and technology.</li>
                     </ul>
                     <div class="btn-box">
-                        <a class="theme-btn-main" href="page-contact.html">
+                        <a class="theme-btn-main" href="contact.php">
                             <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
                             <span class="theme-btn">Discover More</span>
                             <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>
                         </a>
-                        <div class="sign"><img src="images/icons/sign.png" alt="Image"></div>
                     </div>
                 </div>
             </div>
@@ -176,7 +178,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                         <figure class="image"><img src="images/resource/about1-1.jpg" alt="Image"></figure>
                         <div class="exp-box">
                             <div class="icon-8"></div>
-                            <h2 class="count">28</h2>
+                            <h2 class="count">7</h2>
                             <div class="text">years of<br>experience</div>
                         </div>
                         <div class="icon-box">
@@ -254,6 +256,92 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
         <!-- End Team Section -->
 
 
+        <!-- project Section -->
+<section class="project-section-four">
+    <div class="icon-21 bounce-x"></div>
+    <div class="shape-8"></div>
+    <div class="auto-container">
+    <div class="sec-title">
+        <div class="sub-title">COMPANY ROADMAP</div>
+        <h2 class="text-reveal-anim">Journey from start to now</h2>
+    </div>
+    <div class="row g-4 align-items-center">
+        <!-- Content Column -->
+        <div class="content-column col-lg-6 col-md-12 col-sm-12 order-2 wow fadeInRight">
+        <div class="inner-column">
+            <div class="icon-box">
+            <div class="inner-box">
+                <div class="number">01</div>
+                <i class="icon flaticon-laptop"></i>
+            </div>
+            <div class="content-box">
+                <h4 class="title">2018 – Establishment</h4>
+                <div class="text">
+                Founded with a clear vision to provide innovative digital marketing and web solutions.
+                </div>
+            </div>
+            </div>
+            <div class="icon-box">
+            <div class="inner-box">
+                <div class="number">02</div>
+                <i class="icon flaticon-laptop"></i>
+            </div>
+            <div class="content-box">
+                <h4 class="title">2020 – Strategic Growth</h4>
+                <div class="text">
+                Strengthened our market presence by expanding services and building a diverse client portfolio.
+                </div>
+            </div>
+            </div>
+            <div class="icon-box">
+            <div class="inner-box">
+                <div class="number">03</div>
+                <i class="icon flaticon-laptop"></i>
+            </div>
+            <div class="content-box">
+                <h4 class="title">2023 – Service Expansion</h4>
+                <div class="text">
+                Advanced our capabilities with data-driven marketing strategies and creative digital solutions.
+                </div>
+            </div>
+            </div>
+            <div class="icon-box mb-0">
+            <div class="inner-box">
+                <div class="number">04</div>
+                <i class="icon flaticon-laptop"></i>
+            </div>
+            <div class="content-box">
+                <h4 class="title">2025 – Continued Excellence</h4>
+                <div class="text">
+                Delivering high-impact digital experiences while driving measurable growth for businesses across India.
+                </div>
+            </div>
+            </div>
+            <div class="icon-7"></div>
+        </div>
+        </div>
+
+        <!-- Image Column -->
+        <div class="image-column col-lg-6 col-md-12 col-sm-12 wow fadeInLeft" data-wow-delay="300ms">
+        <div class="inner-column">
+            <div class="image-box">
+            <figure class="image">
+                <img src="images/resource/h6-work.jpg" alt="Image">
+            </figure>
+            <div class="exp-box">
+                <div class="icon-8"></div>
+                <h2 class="count">7</h2>
+                <div class="text">years of<br>experience</div>
+            </div>
+            <div class="icon-7"></div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- End project Section -->
+
 <!-- Call To Action -->
 <section class="call-to-action-two pull-down">
     <div class="bg bg-image" style="background-image: url(images/background/1.jpg);"></div>
@@ -272,50 +360,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                     </div>
                 </div>
             </div>
-            <div class="info-box">
-                <div class="info-box-inner">
-                    <div class="image"><img src="images/icons/trustpilot.png" alt="Image"></div>
-                    <div class="content">
-                        <div class="author-images">
-                            <div class="thumb"><img src="images/resource/thumb-1.jpg" alt="Image"></div>
-                            <div class="thumb"><img src="images/resource/thumb-2.jpg" alt="Image"></div>
-                            <div class="thumb"><img src="images/resource/thumb-3.jpg" alt="Image"></div>
-                            <div class="thumb"><img src="images/resource/thumb-4.jpg" alt="Image"></div>
-                        </div>
-                        <div class="info">
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fal fa-star"></i>
-                            </div>
-                            <div class="text">450+ Reviews</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="info-box-inner">
-                    <div class="image"><img src="images/icons/google.png" alt="Image"></div>
-                    <div class="content">
-                        <div class="author-images">
-                            <div class="thumb"><img src="images/resource/thumb-5.jpg" alt="Image"></div>
-                            <div class="thumb"><img src="images/resource/thumb-6.jpg" alt="Image"></div>
-                            <div class="thumb"><img src="images/resource/thumb-7.jpg" alt="Image"></div>
-                            <div class="thumb"><img src="images/resource/thumb-8.jpg" alt="Image"></div>
-                        </div>
-                        <div class="info">
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fal fa-star"></i>
-                            </div>
-                            <div class="text">450+ Reviews</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </section>
@@ -327,92 +372,72 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
     <div class="shape-20"></div>
     <div class="auto-container">
         <div class="row">
-            <!-- Content Column -->
-            <div class="content-column col-xl-6 col-lg-12 col-md-12 col-sm-12 wow fadeInLeft">
-                <div class="inner-column">
-                    <div class="sec-title light">
-                        <div class="sub-title">Contact us</div>
-                        <h2 class="text-reveal-anim">Get in Touch</h2>
-                    </div>
-                    <!-- Contact Form -->
-                    <div class="contact-form">
-                        <form method="post" action="#" id="contact-form">
-                            <div class="row">
-                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                    <input type="text" name="name" placeholder="Your Name" required>
-                                </div>
-                    
-                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                    <input type="email" name="email" placeholder="Email Address" required>
-                                </div>
-                    
-                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                    <input type="text" name="subject" placeholder="Subject" required>
-                                </div>
-                    
-                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                    <input type="tel" name="tel" placeholder="Phone" required>
-                                </div>
-                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                    <textarea name="message" placeholder="Write a Message" required></textarea>
-                                </div>
-                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                    <div class="btn-box">
-                                        <button class="theme-btn-main">
-                                            <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
-                                            <span class="theme-btn">Send
-                                                a message</span>
-                                            <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!--End Contact Form -->
-                </div>
-            </div>
-
-            <!-- Image Column -->
-            <div class="image-column col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                <div class="inner-column">
-                    <figure class="image reveal bounce-x"><img src="images/resource/contact2-1.png" alt="Image"></figure>
-                    <div class="icon-27 zoom-one"></div>
-                    <div class="icon-28 bounce-y"></div>
-                    <div class="icon-29 bounce-y"></div>
-                </div>
-            </div>
+            
         </div>
     </div>
 </section>
     <!-- End Contact Section -->
 
-<!-- Map Section -->
-<section class="map-section">
+    <!-- progress-bar Section -->
+<section class="progress-bar-section mb-5">
+    <div class="bg bg-pattern-21"></div>
+    <div class="icon-47"></div>
     <div class="auto-container">
-        <div class="content">
-            <div class="contact-list-box">
-                <h5 class="title">Contact Info</h5>
-                <ul class="contact-list-three">
-                    <li>
-                        <div class="icon-box"><i class="icon fa fa-map-marker-alt"></i></div>
-                        <div class="text">Gregory Cartwright, 4059 Carling Avenue, Ugglebarnby</div>
-                    </li>
-                    <li>
-                        <div class="icon-box"><i class="icon fal fa-phone"></i></div>
-                        <div class="text"><a href="tel:+6108-666-0112">+6108-666-0112</a></div>
-                    </li>
-                    <li>
-                        <div class="icon-box"><i class="icon fal fa-envelope"></i></div>
-                        <div class="text"><a href="mailto:info@gmail.com">info@gmail.com</a></div>
-                    </li>
-                </ul>
+    <div class="row">
+        <div class="content-column col-lg-4 col-md-12 col-sm-12 wow fadeInLeft">
+        <div class="inner-column">
+            <div class="progress-card">
+            <div class="circle" data-percent="90">
+                <div class="inner"><span>90%</span></div>
+            </div>
+            <div class="progress-content">
+                <h3 class="title">Automation Features</h3>
+                <div class="text">
+                Driving Business Forward<br>with Trusted Strategies
+                </div>
+            </div>
             </div>
         </div>
+        </div>
+        <div class="content-column col-lg-4 col-md-12 col-sm-12 wow fadeInDown">
+        <div class="inner-column">
+            <div class="progress-card">
+            <div class="circle" data-percent="85">
+                <div class="inner"><span>85%</span></div>
+            </div>
+            <div class="progress-content">
+                <h3 class="title">Automation Features</h3>
+                <div class="text">
+                Always Available, Always On,<br>
+                No Downtime
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="content-column col-lg-4 col-md-12 col-sm-12 wow fadeInRight">
+        <div class="inner-column">
+            <div class="progress-card">
+            <div class="circle" data-percent="80">
+                <div class="inner"><span>80%</span></div>
+            </div>
+            <div class="progress-content">
+                <h3 class="title">24/7 Support</h3>
+                <div class="text">
+                Stopping Problems in Their <br>
+                Tracks Variable
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
     </div>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805184.6331292129!2d144.49266890254142!3d-37.97123689954809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1574408946759!5m2!1sen!2s" allowfullscreen=""></iframe>
+    </div>
 </section>
-<!-- End Map Section -->
+<!-- End progress-bar Section -->
+
+
+
 
 
 <?php include "common/footer.php"; ?>
