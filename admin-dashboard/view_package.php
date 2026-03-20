@@ -7,170 +7,280 @@ if (!$id) {
     die("Invalid Package ID");
 }
 
-/* ================= FETCH PACKAGE ================= */
+/* PACKAGE */
 $stmt = $pdo->prepare("SELECT * FROM packages WHERE id=?");
 $stmt->execute([$id]);
 $package = $stmt->fetch();
 
-/* ================= FETCH PRICING ================= */
-$stmt2 = $pdo->prepare("SELECT * FROM pricing WHERE package_id=?");
-$stmt2->execute([$id]);
-$pricing = $stmt2->fetchAll();
+/* TYPES */
+$stmt = $pdo->prepare("SELECT * FROM package_type WHERE pack_id=?");
+$stmt->execute([$id]);
+$types = $stmt->fetchAll();
 
-/* ================= FETCH FEATURES ================= */
-$stmt3 = $pdo->prepare("SELECT * FROM features WHERE package_id=?");
-$stmt3->execute([$id]);
-$features = $stmt3->fetchAll();
+/* IDEAL */
+$stmt = $pdo->prepare("SELECT * FROM ideal_for WHERE pack_id=?");
+$stmt->execute([$id]);
+$ideals = $stmt->fetchAll();
 
-/* ================= FETCH ADDONS ================= */
-$stmt4 = $pdo->prepare("SELECT * FROM addons WHERE package_id=?");
-$stmt4->execute([$id]);
-$addons = $stmt4->fetchAll();
+/* FEATURES */
+$stmt = $pdo->prepare("SELECT * FROM features WHERE pack_id=?");
+$stmt->execute([$id]);
+$features = $stmt->fetchAll();
+
+/* ADDONS */
+$stmt = $pdo->prepare("SELECT * FROM addons WHERE pack_id=?");
+$stmt->execute([$id]);
+$addons = $stmt->fetchAll();
+
+/* GROUP FUNCTION */
+function groupByType($data) {
+    $arr = [];
+    foreach ($data as $d) {
+        $arr[$d['pack_type_id']][] = $d;
+    }
+    return $arr;
+}
+
+$idealGroup   = groupByType($ideals);
+$featureGroup = groupByType($features);
+$addonGroup   = groupByType($addons);
+
+/* SEO TABLES */
+$seoTables = [
+    'website_review',
+    'onpage_seo',
+    'local_seo',
+    'content_marketing',
+    'email_outreach',
+    'offpage_seo',
+    'monthly_reporting',
+    'client_support'
+];
+
+$seoData = [];
+
+foreach ($seoTables as $table) {
+    $stmt = $pdo->prepare("SELECT * FROM $table WHERE pack_id=?");
+    $stmt->execute([$id]);
+    $seoData[$table] = groupByType($stmt->fetchAll());
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>View Package</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+.pricing-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    height: 100%;
+}
+.pricing-card:hover { transform: translateY(-5px); }
+
+.pricing-header {
+    color: #fff;
+    text-align: center;
+    padding: 25px;
+}
+.price { font-size: 28px; font-weight: bold; }
+
+.pricing-body { padding: 20px; background: #fff; }
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 6px 0;
+}
+</style>
+
 </head>
 
 <body>
 
-<div class="container mt-4">
+<div class="container-fluid mt-5">
 
-<h2><?= htmlspecialchars($package['package_name']) ?></h2>
+<h2 class="text-center mb-4 fw-bold">
+<?= htmlspecialchars($package['package_name']) ?>
+</h2>
 
-<!-- ================= PRICING ================= -->
-<h4 class="mt-4">Pricing</h4>
+<hr>
 
-<table class="table table-bordered">
-<thead>
-<tr>
-    <th>Price</th>
-    <th>Package Type</th>
-    <th>Ideal For</th>
-    <th>Delivery Time</th>
-    <th>Action</th>
-</tr>
-</thead>
+<div class="row">
 
-<tbody>
-<?php foreach ($pricing as $p) { ?>
-<tr>
-    <td><?= htmlspecialchars($p['price']) ?></td>
-     <td><?= htmlspecialchars($p['package_type']) ?></td>
-    <td><?= htmlspecialchars($p['idealfor']) ?></td>
-    <td><?= htmlspecialchars($p['delivery_time']) ?></td>
-    <td>
-        <a href="add_pricing.php?action=edit_pricing&id=<?= $p['id'] ?>" class="btn btn-sm btn-primary">
-            <i class="fas fa-edit"></i>
-        </a>
-        <a href="function.php?action=delete_pricing&id=<?= $p['id'] ?>"
-           class="btn btn-sm btn-danger"
-           onclick="return confirm('Delete pricing?')">
-            <i class="fas fa-trash"></i>
-        </a>
-    </td>
-</tr>
-<?php } ?>
-</tbody>
-</table>
+<?php
+$colors = ['#f7b731','#fa8231','#eb3b5a','#a55eea'];
+$i = 0;
 
-<!-- ================= FEATURES ================= -->
-<h4 class="mt-4">Features</h4>
+foreach ($types as $t):
 
-<ul class="list-group">
-<?php foreach ($features as $f) { ?>
-<li class="list-group-item d-flex justify-content-between align-items-center">
-    
-    <span><?= htmlspecialchars($f['features']) ?></span>
+$color = $colors[$i % count($colors)];
+?>
 
-    <div>
-        <button class="btn btn-sm btn-primary edit-feature"
-            data-id="<?= $f['id'] ?>"
-            data-text="<?= htmlspecialchars($f['features']) ?>">
-            <i class="fas fa-edit"></i>
-        </button>
+<div class="col-md-3 mb-4">
 
-        <a href="function.php?action=delete_feature&id=<?= $f['id'] ?>"
-           class="btn btn-sm btn-danger"
-           onclick="return confirm('Delete feature?')">
-            <i class="fas fa-trash"></i>
-        </a>
-    </div>
+<div class="pricing-card">
 
-</li>
-<?php } ?>
-</ul>
+<div class="pricing-header position-relative" style="background: <?= $color ?>">
 
-<!-- ================= ADDONS ================= -->
-<h4 class="mt-4">Addons</h4>
+<!-- TYPE ACTION -->
+<div style="position:absolute; top:10px; right:10px;">
+    <a href="add_package_type.php?action=edit&id=<?= $t['id'] ?>&pack_id=<?= $id ?>" class="text-white me-2">
+        <i class="fas fa-edit"></i>
+    </a>
+    <a href="function.php?action=delete_package_type&id=<?= $t['id'] ?>&pack_id=<?= $id ?>"
+       class="text-white"
+       onclick="return confirm('Delete?')">
+        <i class="fas fa-trash"></i>
+    </a>
+</div>
 
-<ul class="list-group">
-<?php foreach ($addons as $a) { ?>
-<li class="list-group-item d-flex justify-content-between align-items-center">
+<h4><?= htmlspecialchars($t['pack_type']) ?></h4>
 
-    <span><?= htmlspecialchars($a['addons']) ?></span>
-
-    <div>
-        <button class="btn btn-sm btn-primary edit-addon"
-            data-id="<?= $a['id'] ?>"
-            data-text="<?= htmlspecialchars($a['addons']) ?>">
-            <i class="fas fa-edit"></i>
-        </button>
-
-        <a href="function.php?action=delete_addon&id=<?= $a['id'] ?>"
-           class="btn btn-sm btn-danger"
-           onclick="return confirm('Delete addon?')">
-            <i class="fas fa-trash"></i>
-        </a>
-    </div>
-
-</li>
-<?php } ?>
-</ul>
-
-<div class="mt-4">
-    <a href="package.php" class="btn btn-secondary">Back</a>
+<div class="price">
+₹ <?= htmlspecialchars($t['price']) ?>
 </div>
 
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<div class="pricing-body">
 
-<script>
-// EDIT FEATURE
-$(document).on('click', '.edit-feature', function() {
+<!-- IDEAL -->
+<?php if (!empty($idealGroup[$t['id']])): ?>
+<?php foreach ($idealGroup[$t['id']] as $ideal): ?>
+<div class="list-item">
+<span><b><?= htmlspecialchars($ideal['ideal_for']) ?>:</b> <?= htmlspecialchars($ideal['ideal_value']) ?></span>
 
-    var id = $(this).data('id');
-    var text = $(this).data('text');
+<div>
+<a href="add_idealfor.php?action=edit&id=<?= $ideal['id'] ?>&pack_id=<?= $id ?>&pack_type_id=<?= $t['id'] ?>" class="text-primary">
+<i class="fas fa-edit"></i>
+</a>
 
-    var newText = prompt('Edit feature:', text);
+<a href="function.php?action=delete_ideal&id=<?= $ideal['id'] ?>&pack_id=<?= $id ?>&pack_type_id=<?= $t['id'] ?>" class="text-danger" onclick="return confirm('Delete?')">
+<i class="fas fa-trash"></i>
+</a>
+</div>
+</div>
+<?php endforeach; ?>
+<hr>
+<?php endif; ?>
 
-    if (newText && newText.trim() !== '') {
-        window.location.href = "function.php?action=update_feature&id=" + id + "&value=" + encodeURIComponent(newText);
-    }
-});
+<!-- FEATURES -->
+<?php if (!empty($featureGroup[$t['id']])): ?>
+<p><strong>FEATURES</strong></p>
 
-// EDIT ADDON
-$(document).on('click', '.edit-addon', function() {
+<?php foreach ($featureGroup[$t['id']] as $f): ?>
+<div class="list-item">
+<span>
+<i class="fas <?= (isset($f['status']) && $f['status']==0) ? 'fa-times-circle text-danger' : 'fa-check-circle text-success' ?>"></i>
+<?= htmlspecialchars($f['features']) ?>
+</span>
 
-    var id = $(this).data('id');
-    var text = $(this).data('text');
+<div>
+<a href="add_features.php?action=edit&id=<?= $f['id'] ?>&pack_id=<?= $id ?>&pack_type_id=<?= $t['id'] ?>" class="text-primary">
+<i class="fas fa-edit"></i>
+</a>
 
-    var newText = prompt('Edit addon:', text);
+<a href="function.php?action=delete_feature&id=<?= $f['id'] ?>&pack_id=<?= $id ?>&pack_type_id=<?= $t['id'] ?>" class="text-danger" onclick="return confirm('Delete?')">
+<i class="fas fa-trash"></i>
+</a>
+</div>
+</div>
+<?php endforeach; ?>
+<?php endif; ?>
 
-    if (newText && newText.trim() !== '') {
-        window.location.href = "function.php?action=update_addon&id=" + id + "&value=" + encodeURIComponent(newText);
-    }
-});
-</script>
+<!-- ADDONS -->
+<?php if (!empty($addonGroup[$t['id']])): ?>
+<hr>
+<p><strong>ADDONS</strong></p>
+
+<?php foreach ($addonGroup[$t['id']] as $a): ?>
+<div class="list-item">
+<span><?= htmlspecialchars($a['addons']) ?></span>
+
+<div>
+<a href="add_addons.php?action=edit&id=<?= $a['id'] ?>&pack_id=<?= $id ?>&pack_type_id=<?= $t['id'] ?>" class="text-primary">
+<i class="fas fa-edit"></i>
+</a>
+
+<a href="function.php?action=delete_addon&id=<?= $a['id'] ?>&pack_id=<?= $id ?>&pack_type_id=<?= $t['id'] ?>" class="text-danger" onclick="return confirm('Delete?')">
+<i class="fas fa-trash"></i>
+</a>
+</div>
+</div>
+<?php endforeach; ?>
+<?php endif; ?>
+
+<!-- SEO SECTION -->
+<?php if (stripos($package['package_name'], 'seo') !== false): ?>
+
+<hr>
+
+<?php
+$seoTitles = [
+'website_review'=>'WEBSITE REVIEW & ANALYSIS',
+'onpage_seo'=>'ON PAGE SEO ANALYSIS',
+'local_seo'=>'LOCAL SEO SETUP',
+'content_marketing'=>'CONTENT MARKETING',
+'email_outreach'=>'EMAIL OUTREACH',
+'offpage_seo'=>'OFF PAGE SEO',
+'monthly_reporting'=>'MONTHLY REPORTING',
+'client_support'=>'CLIENT SUPPORT'
+];
+
+foreach ($seoTitles as $table=>$heading):
+
+if (!empty($seoData[$table][$t['id']])):
+?>
+
+<p><strong><?= $heading ?></strong></p>
+
+<?php foreach ($seoData[$table][$t['id']] as $item): ?>
+<div class="list-item">
+<span>
+<i class="fas <?= (isset($item['status']) && $item['status']==0) ? 'fa-times-circle text-danger' : 'fa-check-circle text-success' ?>"></i>
+<?= htmlspecialchars($item['value']) ?>
+</span>
+
+<div>
+<a href="add_<?= $table ?>.php?action=edit&id=<?= $item['id'] ?>&pack_id=<?= $id ?>&pack_type_id=<?= $t['id'] ?>" class="text-primary">
+<i class="fas fa-edit"></i>
+</a>
+
+<a href="function.php?action=delete_dynamic&id=<?= $item['id'] ?>&table=<?= $table ?>&pack_id=<?= $id ?>&pack_type_id=<?= $t['id'] ?>" class="text-danger" onclick="return confirm('Delete?')">
+<i class="fas fa-trash"></i>
+</a>
+</div>
+</div>
+<?php endforeach; ?>
+
+<hr>
+
+<?php endif; endforeach; ?>
+
+<?php endif; ?>
+
+</div>
+</div>
+</div>
+
+<?php $i++; endforeach; ?>
+
+</div>
+
+<div class="text-center mt-4">
+<a href="package.php" class="btn btn-secondary">Back</a>
+</div>
+
+</div>
 
 </body>
 </html>

@@ -1514,119 +1514,212 @@ if (isset($_GET['delete_package'])) {
 
 
 
-/* ================= ADD PRICING ================= */
-if (isset($_POST['add_pricing'])) {
+if (isset($_POST['add_package_type'])) {
 
-    $package_id   = $_POST['package_id'];
-    $price        = $_POST['price'];
-    $idealfor     = $_POST['idealfor'];
-    $delivery     = $_POST['delivery_time'];
-    $package_type     = $_POST['package_type'];
+    $pack_id  = $_POST['pack_id'];
+    $type     = $_POST['pack_type'];
+    $price    = $_POST['price'];
 
-    $stmt = $pdo->prepare("INSERT INTO pricing (package_id, price, idealfor, delivery_time,package_type) VALUES (?,?,?,?,?)");
-    $stmt->execute([$package_id, $price, $idealfor, $delivery,$package_type]);
+    $stmt = $pdo->prepare("INSERT INTO package_type (pack_id, pack_type, price) VALUES (?, ?, ?)");
+    $stmt->execute([$pack_id, $type, $price]);
 
-    $pricing_id = $pdo->lastInsertId();
-
-    // 🔥 Redirect to add features page
-   header("Location: add_features.php?last_id=" . urlencode($pricing_id) . "&package_type=" . urlencode($package_type));
-    exit();
+    header("Location: add_package_type.php?pack_id=" . $pack_id);
+    exit;
 }
 
+if (isset($_POST['update_package_type'])) {
 
-/* ================= UPDATE PRICING ================= */
-if (isset($_POST['update_pricing'])) {
+    $id       = $_POST['id'];
+    $pack_id  = $_POST['pack_id'];
+    $type     = $_POST['pack_type'];
+    $price    = $_POST['price'];
 
-    $id           = $_POST['id'];
-    $package_id   = $_POST['package_id'];
-    $price        = $_POST['price'];
-    $idealfor     = $_POST['idealfor'];
-    $delivery     = $_POST['delivery_time'];
-    $package_type     = $_POST['package_type'];
+    $stmt = $pdo->prepare("UPDATE package_type SET pack_type=?, price=? WHERE id=?");
+    $stmt->execute([$type, $price, $id]);
 
-    $stmt = $pdo->prepare("UPDATE pricing SET package_id=?, price=?, idealfor=?, delivery_time=?,package_type=? WHERE id=?");
-    $stmt->execute([$package_id, $price, $idealfor, $delivery,$package_type, $id]);
-
-    header("Location: package.php?success=updated");
-    exit();
+    header("Location: add_package_type.php?pack_id=" . $pack_id);
+    exit;
 }
 
+if (isset($_GET['action']) && $_GET['action'] == 'delete_package_type') {
 
-/* ================= DELETE PRICING ================= */
-if (isset($_GET['delete_pricing'])) {
+    $id = $_GET['id'];
+    $pack_id = $_GET['pack_id'];
 
-    $id = $_GET['delete_pricing'];
-
-    $stmt = $pdo->prepare("DELETE FROM pricing WHERE id=?");
+    $stmt = $pdo->prepare("DELETE FROM package_type WHERE id=?");
     $stmt->execute([$id]);
 
-    header("Location: pricing.php?success=deleted");
-    exit();
-}if ($_POST['action'] == 'add_feature') {
-
-    $package_id   = $_POST['package_id'];
-    $package_type = $_POST['package_type']; // ✅ NEW
-    $feature      = $_POST['feature'];
-
-    $stmt = $pdo->prepare("INSERT INTO features (package_id, package_type, features) VALUES (?, ?, ?)");
-    $stmt->execute([$package_id, $package_type, $feature]);
-
-    echo json_encode([
-        'id' => $pdo->lastInsertId()
-    ]);
-}
-if ($_POST['action'] == 'update_feature') {
-
-    $id      = $_POST['id'];
-    $feature = $_POST['feature'];
-
-    $stmt = $pdo->prepare("UPDATE features SET features=? WHERE id=?");
-    $stmt->execute([$feature, $id]);
-}
-if ($_POST['action'] == 'delete_feature') {
-
-    $id = $_POST['id'];
-
-    $stmt = $pdo->prepare("DELETE FROM features WHERE id=?");
-    $stmt->execute([$id]);
-}
-
-/* ================= ADD ADDON ================= */
-if (isset($_POST['action']) && $_POST['action'] == 'add_addon') {
-
-    $package_id = $_POST['package_id'];
-    $addon      = $_POST['addon'];
-
-    $stmt = $pdo->prepare("INSERT INTO addons (package_id, addons) VALUES (?, ?)");
-    $stmt->execute([$package_id, $addon]);
-
-    echo json_encode([
-        'id' => $pdo->lastInsertId()
-    ]);
-    exit();
+    header("Location: add_package_type.php?pack_id=" . $pack_id);
+    exit;
 }
 
 
-/* ================= DELETE ADDON ================= */
-if (isset($_POST['action']) && $_POST['action'] == 'delete_addon') {
 
-    $id = $_POST['id'];
+if(isset($_POST['add_ideal'])){
 
-    $stmt = $pdo->prepare("DELETE FROM addons WHERE id=?");
-    $stmt->execute([$id]);
+$pack_id = $_POST['pack_id'];
+$type_id = $_POST['pack_type_id'];
+$ideal_for = $_POST['ideal_for'];
+$value = $_POST['ideal_value'];
 
-    exit();
+$stmt = $pdo->prepare("INSERT INTO ideal_for (pack_id, pack_type_id, ideal_for, ideal_value) VALUES (?,?,?,?)");
+$stmt->execute([$pack_id,$type_id,$ideal_for,$value]);
+
+header("Location: add_idealfor.php?pack_id=$pack_id&pack_type_id=$type_id");
+exit;
 }
 
+if(isset($_POST['update_ideal'])){
 
-/* ================= UPDATE ADDON ================= */
-if (isset($_POST['action']) && $_POST['action'] == 'update_addon') {
+$id = $_POST['id'];
+$pack_id = $_POST['pack_id'];
+$type_id = $_POST['pack_type_id'];
+$ideal_for = $_POST['ideal_for'];
+$value = $_POST['ideal_value'];
 
-    $id    = $_POST['id'];
-    $addon = $_POST['addon'];
+$stmt = $pdo->prepare("UPDATE ideal_for SET ideal_for=?, ideal_value=? WHERE id=?");
+$stmt->execute([$ideal_for,$value,$id]);
 
-    $stmt = $pdo->prepare("UPDATE addons SET addons=? WHERE id=?");
-    $stmt->execute([$addon, $id]);
+header("Location: add_idealfor.php?pack_id=$pack_id&pack_type_id=$type_id");
+exit;
+}
 
-    exit();
+if(isset($_GET['action']) && $_GET['action']=='delete_ideal'){
+
+$id = $_GET['id'];
+$pack_id = $_GET['pack_id'];
+$type_id = $_GET['pack_type_id'];
+
+$stmt = $pdo->prepare("DELETE FROM ideal_for WHERE id=?");
+$stmt->execute([$id]);
+
+header("Location: add_idealfor.php?pack_id=$pack_id&pack_type_id=$type_id");
+exit;
+}
+
+if(isset($_POST['add_feature'])){
+
+$pack_id = $_POST['pack_id'];
+$type_id = $_POST['pack_type_id'];
+$feature = $_POST['feature'];
+
+$stmt = $pdo->prepare("INSERT INTO features (pack_id, pack_type_id, features) VALUES (?,?,?)");
+$stmt->execute([$pack_id,$type_id,$feature]);
+
+header("Location: add_features.php?pack_id=$pack_id&pack_type_id=$type_id");
+exit;
+}
+
+if(isset($_POST['update_feature'])){
+
+$id = $_POST['id'];
+$pack_id = $_POST['pack_id'];
+$type_id = $_POST['pack_type_id'];
+$feature = $_POST['feature'];
+
+$stmt = $pdo->prepare("UPDATE features SET features=? WHERE id=?");
+$stmt->execute([$feature,$id]);
+
+header("Location: add_features.php?pack_id=$pack_id&pack_type_id=$type_id");
+exit;
+}
+if(isset($_GET['action']) && $_GET['action']=='delete_feature'){
+
+$id = $_GET['id'];
+$pack_id = $_GET['pack_id'];
+$type_id = $_GET['pack_type_id'];
+
+$stmt = $pdo->prepare("DELETE FROM features WHERE id=?");
+$stmt->execute([$id]);
+
+header("Location: add_features.php?pack_id=$pack_id&pack_type_id=$type_id");
+exit;
+}
+
+if(isset($_POST['add_addon'])){
+
+$pack_id = $_POST['pack_id'];
+$type_id = $_POST['pack_type_id'];
+$addon = $_POST['addon'];
+
+$stmt = $pdo->prepare("INSERT INTO addons (pack_id, pack_type_id, addons) VALUES (?,?,?)");
+$stmt->execute([$pack_id,$type_id,$addon]);
+
+header("Location: add_addons.php?pack_id=$pack_id&pack_type_id=$type_id");
+exit;
+}
+
+if(isset($_POST['update_addon'])){
+
+$id = $_POST['id'];
+$pack_id = $_POST['pack_id'];
+$type_id = $_POST['pack_type_id'];
+$addon = $_POST['addon'];
+
+$stmt = $pdo->prepare("UPDATE addons SET addons=? WHERE id=?");
+$stmt->execute([$addon,$id]);
+
+header("Location: add_addons.php?pack_id=$pack_id&pack_type_id=$type_id");
+exit;
+}
+
+if(isset($_GET['action']) && $_GET['action']=='delete_addon'){
+
+$id = $_GET['id'];
+$pack_id = $_GET['pack_id'];
+$type_id = $_GET['pack_type_id'];
+
+$stmt = $pdo->prepare("DELETE FROM addons WHERE id=?");
+$stmt->execute([$id]);
+
+header("Location: add_addons.php?pack_id=$pack_id&pack_type_id=$type_id");
+exit;
+}
+
+/* ADD */
+if(isset($_POST['add_dynamic'])){
+
+$table = $_POST['table'];
+$pack = $_POST['pack_id'];
+$type = $_POST['pack_type_id'];
+$value = $_POST['value'];
+$status = $_POST['status'];
+
+$stmt = $pdo->prepare("INSERT INTO $table (pack_id,pack_type_id,value,status) VALUES (?,?,?,?)");
+$stmt->execute([$pack,$type,$value,$status]);
+
+header("Location: add_$table.php?pack_id=$pack&pack_type_id=$type");
+exit;
+}
+
+/* UPDATE */
+if(isset($_POST['update_dynamic'])){
+
+$table = $_POST['table'];
+$id = $_POST['id'];
+$pack = $_POST['pack_id'];
+$type = $_POST['pack_type_id'];
+$value = $_POST['value'];
+$status = $_POST['status'];
+
+$stmt = $pdo->prepare("UPDATE $table SET value=?, status=? WHERE id=?");
+$stmt->execute([$value,$status,$id]);
+
+header("Location: add_$table.php?pack_id=$pack&pack_type_id=$type");
+exit;
+}
+
+/* DELETE */
+if(isset($_GET['action']) && $_GET['action']=="delete_dynamic"){
+
+$table = $_GET['table'];
+$id = $_GET['id'];
+$pack = $_GET['pack_id'];
+$type = $_GET['pack_type_id'];
+
+$stmt = $pdo->prepare("DELETE FROM $table WHERE id=?");
+$stmt->execute([$id]);
+
+header("Location: add_$table.php?pack_id=$pack&pack_type_id=$type");
+exit;
 }

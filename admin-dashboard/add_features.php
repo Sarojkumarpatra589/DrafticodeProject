@@ -1,184 +1,180 @@
 <?php
 include 'connection/config.php';
 
-$features = [];
-$package_id = null;
+$editMode = false;
+$row = [];
 
-if (isset($_GET['last_id'])) {
+$pack_id = $_GET['pack_id'] ?? null;
+$pack_type_id = $_GET['pack_type_id'] ?? null;
 
-    $pricing_id = $_GET['last_id'];
+/* PACKAGE */
+$stmt = $pdo->prepare("SELECT * FROM packages WHERE id=?");
+$stmt->execute([$pack_id]);
+$package = $stmt->fetch();
 
-    // Get package_id from pricing
-    $stmt = $pdo->prepare("SELECT * FROM pricing WHERE id=?");
-    $stmt->execute([$pricing_id]);
-    $pricing = $stmt->fetch();
+/* TYPE */
+$stmt = $pdo->prepare("SELECT * FROM package_type WHERE id=?");
+$stmt->execute([$pack_type_id]);
+$type = $stmt->fetch();
 
-    if ($pricing) {
-        $package_id = $pricing['package_id'];
+/* EDIT */
+if (isset($_GET['action']) && $_GET['action'] == "edit") {
+    $editMode = true;
+    $id = $_GET['id'];
 
-        // Fetch features
-        $stmt2 = $pdo->prepare("SELECT * FROM features WHERE package_id=? ORDER BY id ASC");
-        $stmt2->execute([$package_id]);
-        $features = $stmt2->fetchAll();
-    }
+    $stmt = $pdo->prepare("SELECT * FROM features WHERE id=?");
+    $stmt->execute([$id]);
+    $row = $stmt->fetch();
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>add featyures</title>
+<title><?= $editMode ? 'Update Feature' : 'Add Feature' ?></title>
 
-<link rel="icon" type="image/png" href="assets/images/fav.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="assets/css/admin.css">
 </head>
 
 <body>
+
 <?php include 'common/sidebar.php' ?>
 <?php include 'common/topbar.php' ?>
 
 <div id="main-content">
 
 <div class="page-header">
-  <h1 class="page-title">Add features</h1>
+<h1 class="page-title"><?= $editMode ? 'Update Feature' : 'Add Feature' ?></h1>
 </div>
 
 <div class="row justify-content-center">
-  <div class="col-lg-12">
+<div class="col-lg-12">
 
-    <div class="admin-card">
+<!-- FORM -->
+<div class="admin-card">
 
-      <div class="section-header">
-        <h3 class="section-title">
-          <i class="fas fa-plus-circle me-2 text-primary-custom"></i>
-         Add features
-        </h3>
-      </div>
+<div class="section-header">
+<h3 class="section-title">
+<i class="fas fa-plus-circle me-2 text-primary-custom"></i>
+<?= $editMode ? 'Update Feature' : 'Add Feature' ?>
+</h3>
 
-      <form method="POST" action="function.php">
-        <input type="hidden" id="package_id" value="<?= $package_id ?>">
-<input type="hidden" id="pricing_id" value="<?= $_GET['last_id'] ?>">
-
-
-        <div class="row g-3">
-
-         
-          <!-- Features Section -->
-          <div class="col-md-12">
-            <div class="mb-3">
-              <label class="form-label">Add Features</label>
-              <div class="d-flex gap-2">
-                <input type="text" id="featureInput" class="form-control" placeholder="Enter feature">
-                <button type="button" id="addFeatureBtn" class="btn btn-success"><i class="fas fa-plus"></i> Add</button>
-              </div>
-            </div>
-
-            <!-- Features List -->
-            <ul class="list-group" id="featuresList">
-              <?php foreach ($features as $feature) { ?>
-<li class="list-group-item d-flex justify-content-between align-items-center" data-id="<?= $feature['id'] ?>">
-  <span class="feature-text"><?= htmlspecialchars($feature['features']) ?></span>
-  <div>
-    <button type="button" class="btn btn-sm btn-primary edit-feature me-1"><i class="fas fa-edit"></i></button>
-    <button type="button" class="btn btn-sm btn-danger delete-feature"><i class="fas fa-trash"></i></button>
-  </div>
-</li>
-<?php } ?>
-            </ul>
-          </div>
-
-        </div>
-
-        <div class="d-flex gap-2 pt-2">
-          <a href="add_addons.php?last_id=<?= $_GET['last_id'] ?>" class="btn btn-primary">
-  Next
-</a>
-        </div>
-
-      </form>
-
-    </div>
-  </div>
+<div>
+<strong>Package:</strong> <?= htmlspecialchars($package['package_name']) ?><br>
+<strong>Type:</strong> <?= htmlspecialchars($type['pack_type']) ?>
+</div>
 </div>
 
-<?php include 'common/footer.php' ?>
+<form method="POST" action="function.php">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<input type="hidden" name="pack_id" value="<?= $pack_id ?>">
+<input type="hidden" name="pack_type_id" value="<?= $pack_type_id ?>">
 
-<script>
-$(document).ready(function() {
+<?php if ($editMode) { ?>
+<input type="hidden" name="id" value="<?= $row['id'] ?>">
+<?php } ?>
 
-  // ADD FEATURE (SAVE IN DB)
-  $('#addFeatureBtn').click(function() {
+<div class="row g-3">
 
-    var feature = $('#featureInput').val().trim();
-    var package_id = $('#package_id').val();
+<div class="col-md-12">
+<label class="form-label">Feature</label>
+<input type="text"
+       name="feature"
+       class="form-control"
+       value="<?= $editMode ? htmlspecialchars($row['features']) : '' ?>"
+       placeholder="Enter feature"
+       required>
+</div>
 
-    if (feature === '') return;
+</div>
 
-    $.post('function.php', {
-        action: 'add_feature',
-        feature: feature,
-        package_id: package_id
-    }, function(response) {
+<div class="d-flex gap-2 pt-2">
+<button type="submit"
+        name="<?= $editMode ? 'update_feature' : 'add_feature' ?>"
+        class="btn btn-primary">
+<i class="fas fa-save me-2"></i>
+<?= $editMode ? 'Update' : 'Save' ?>
+</button>
 
-        var data = JSON.parse(response);
+<button type="reset" class="btn btn-secondary">Reset</button>
+</div>
 
-        var listItem = `<li class="list-group-item d-flex justify-content-between align-items-center" data-id="${data.id}">
-                          <span class="feature-text">${feature}</span>
-                          <div>
-                            <button type="button" class="btn btn-sm btn-primary edit-feature me-1"><i class="fas fa-edit"></i></button>
-                            <button type="button" class="btn btn-sm btn-danger delete-feature"><i class="fas fa-trash"></i></button>
-                          </div>
-                        </li>`;
+</form>
 
-        $('#featuresList').append(listItem);
-        $('#featureInput').val('');
-    });
-  });
+</div>
 
-  // DELETE FEATURE
-  $(document).on('click', '.delete-feature', function() {
+<!-- LIST -->
+<div class="admin-card mt-4">
 
-    var li = $(this).closest('li');
-    var id = li.data('id');
+<div class="section-header">
+<h3 class="section-title">
+<i class="fas fa-list me-2 text-primary-custom"></i>
+Features List
+</h3>
+</div>
 
-    $.post('function.php', {
-        action: 'delete_feature',
-        id: id
-    }, function() {
-        li.remove();
-    });
-  });
+<table class="table table-bordered">
 
-  // EDIT FEATURE
-  $(document).on('click', '.edit-feature', function() {
+<thead>
+<tr>
+<th>#</th>
+<th>Feature</th>
+<th>Action</th>
+</tr>
+</thead>
 
-    var li = $(this).closest('li');
-    var id = li.data('id');
-    var textSpan = li.find('.feature-text');
+<tbody>
 
-    var newText = prompt('Edit feature:', textSpan.text());
+<?php
+$stmt = $pdo->prepare("SELECT * FROM features WHERE pack_id=? AND pack_type_id=?");
+$stmt->execute([$pack_id, $pack_type_id]);
+$data = $stmt->fetchAll();
 
-    if (newText !== null && newText.trim() !== '') {
+foreach ($data as $k => $d) {
+?>
 
-        $.post('function.php', {
-            action: 'update_feature',
-            id: id,
-            feature: newText
-        }, function() {
-            textSpan.text(newText);
-        });
-    }
-  });
+<tr>
+<td><?= $k + 1 ?></td>
 
-});
-</script>
+<td><?= htmlspecialchars($d['features']) ?></td>
+
+<td>
+<div class="d-flex gap-1">
+
+<a href="add_features.php?action=edit&id=<?= $d['id'] ?>&pack_id=<?= $pack_id ?>&pack_type_id=<?= $pack_type_id ?>"
+class="btn-icon edit">
+<i class="fas fa-edit"></i>
+</a>
+
+<a href="function.php?action=delete_feature&id=<?= $d['id'] ?>&pack_id=<?= $pack_id ?>&pack_type_id=<?= $pack_type_id ?>"
+class="btn-icon delete"
+onclick="return confirm('Delete?')">
+<i class="fas fa-trash"></i>
+</a>
+
+</div>
+</td>
+
+</tr>
+
+<?php } ?>
+
+</tbody>
+</table>
+
+<div class="d-flex justify-content-end mt-3">
+<a href="package.php" class="btn btn-success">
+<i class="fas fa-check me-1"></i> Finish
+</a>
+</div>
+
+</div>
+
+</div>
+</div>
 
 </body>
 </html>

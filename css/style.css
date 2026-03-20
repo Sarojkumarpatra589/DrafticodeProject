@@ -19604,19 +19604,22 @@ Main Header-style-three
   z-index: 3;
   border: 1px solid #e6e0fa;
   background-color: var(--theme-color-white);
-  clip-path: path("M345 535.5H25C11.469 535.5 0.5 524.531 0.5 511V151.709C0.500112 144.269 3.88073 137.233 9.68848 132.583L167.963 5.87402C172.308 2.39541 177.708 0.5 183.274 0.5H345C358.531 0.5 369.5 11.469 369.5 25V511C369.5 524.319 358.871 535.157 345.633 535.492L345 535.5Z");
+  /* clip-path: path("M345 535.5H25C11.469 535.5 0.5 524.531 0.5 511V151.709C0.500112 144.269 3.88073 137.233 9.68848 132.583L167.963 5.87402C172.308 2.39541 177.708 0.5 183.274 0.5H345C358.531 0.5 369.5 11.469 369.5 25V511C369.5 524.319 358.871 535.157 345.633 535.492L345 535.5Z"); */
   -webkit-transition: all 400ms ease;
   transition: all 400ms ease;
+ 
 }
 @media (max-width: 1199.98px) {
   .pricing-block .inner-box .content {
     padding: 30px 20px;
+    
   }
 }
 @media (max-width: 991.98px) {
   .pricing-block .inner-box .content {
     clip-path: none;
     border-radius: 150px 20px 20px 20px;
+    
   }
 }
 .pricing-block .inner-box .content:before {

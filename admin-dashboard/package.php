@@ -8,130 +8,160 @@ $packages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>All packages</title>
 
-    <title>All packages</title>
-
-    <link rel="icon" type="image/png" href="assets/images/fav.png">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <link rel="stylesheet" href="assets/css/admin.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/admin.css">
 </head>
 
 <body>
 
-    <?php include 'common/sidebar.php' ?>
-    <?php include 'common/topbar.php' ?>
+<?php include 'common/sidebar.php' ?>
+<?php include 'common/topbar.php' ?>
 
-    <div id="main-content">
+<div id="main-content">
 
-        <div class="page-header">
-            <div>
-                <h1 class="page-title">All packages</h1>
+<div class="admin-card">
 
-                <nav>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item">packages</li>
-                        <li class="breadcrumb-item active">All Packages</li>
-                    </ol>
-                </nav>
+<div class="section-header">
+<h3 class="section-title">Packages</h3>
+<a href="add_package.php" class="btn btn-primary btn-sm">Add Package</a>
+</div>
 
-            </div>
-        </div>
+<table class="admin-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Package Name</th>
+<th>Package Type</th>
+<th>Add Ideal</th>
+<th>Actions</th>
+</tr>
+</thead>
 
-        <div class="admin-card">
+<tbody>
 
-            <div class="section-header">
+<?php $i=1; foreach ($packages as $row) { ?>
 
-                <h3 class="section-title">
-                    <i class="fas fa-handshake me-2 text-primary-custom"></i>packages
-                </h3>
+<tr>
+<td>#<?= $i++ ?></td>
 
-                <a href="add_package.php" class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus me-1"></i>Add package
-                </a>
+<td><?= htmlspecialchars($row['package_name']) ?></td>
 
-            </div>
+<!-- PACKAGE TYPE DROPDOWN -->
+<td>
+<select class="form-select form-select-sm pack-type-dropdown"
+        data-pack="<?= $row['id'] ?>">
 
-            <div class="table-responsive">
+<option value="">Select Type</option>
 
-                <table class="admin-table">
+<?php
+$stmt2 = $pdo->prepare("SELECT * FROM package_type WHERE pack_id=?");
+$stmt2->execute([$row['id']]);
+$types = $stmt2->fetchAll();
 
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Packeage Name</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
+foreach ($types as $t) {
+?>
+<option value="<?= $t['id'] ?>">
+    <?= htmlspecialchars($t['pack_type']) ?>
+</option>
+<?php } ?>
 
-                    <tbody>
+</select>
+</td>
 
-                        <?php
-                        $i = 1;
+<!-- ADD IDEAL BUTTON -->
+<td>
 
-                        foreach ($packages as $row) {
-                        ?>
+<?php
+$packageName = strtolower($row['package_name']);
+?>
 
-                            <tr>
+<!-- SMM -->
+<?php if ($packageName == 'smm') { ?>
 
-                                <td class="table-id">#<?= $i++ ?></td>
+    <button class="btn btn-info btn-sm add-feature-btn" data-pack="<?= $row['id'] ?>">Feature</button>
 
+<?php } ?>
 
-                                <td class="fw-700"><?= htmlspecialchars($row['package_name']) ?></td>
+<!-- SEO -->
+<?php if ($packageName == 'seo') { ?>
 
-                                <td>
+    <button class="btn btn-dark btn-sm add-web-btn" data-pack="<?= $row['id'] ?>">Website Review</button>
+    <button class="btn btn-secondary btn-sm add-onpage-btn" data-pack="<?= $row['id'] ?>">OnPage SEO</button>
+    <button class="btn btn-primary btn-sm add-local-btn" data-pack="<?= $row['id'] ?>">Local SEO</button>
+    <button class="btn btn-danger btn-sm add-content-btn" data-pack="<?= $row['id'] ?>">Content</button>
+    <button class="btn btn-success btn-sm add-email-btn" data-pack="<?= $row['id'] ?>">Email</button>
+    <button class="btn btn-warning btn-sm add-offpage-btn" data-pack="<?= $row['id'] ?>">OffPage</button>
+    <button class="btn btn-info btn-sm add-report-btn" data-pack="<?= $row['id'] ?>">Report</button>
+    <button class="btn btn-dark btn-sm add-support-btn" data-pack="<?= $row['id'] ?>">Support</button>
 
-                                    <div class="d-flex gap-1">
-                                        <!-- VIEW -->
-    <a href="view_package.php?id=<?= $row['id'] ?>"
-        class="btn-icon view">
-        <i class="fas fa-eye"></i>
-    </a>
+<?php } ?>
 
-                                        <a href="add_package.php?action=edit_package&id=<?= $row['id'] ?>"
-                                            class="btn-icon edit">
+<!-- DEVELOPMENT -->
+<?php if ($packageName == 'development') { ?>
 
-                                            <i class="fas fa-edit"></i>
+    <button class="btn btn-success btn-sm add-ideal-btn" data-pack="<?= $row['id'] ?>">Ideal</button>
+    <button class="btn btn-info btn-sm add-feature-btn" data-pack="<?= $row['id'] ?>">Feature</button>
+    <button class="btn btn-warning btn-sm add-addon-btn" data-pack="<?= $row['id'] ?>">Addon</button>
 
-                                        </a>
+<?php } ?>
 
-                                        <a href="function.php?action=delete_package&id=<?= $row['id'] ?>"
-                                            class="btn-icon delete"
-                                            onclick="return confirm('Delete package?')">
+</td>
 
-                                            <i class="fas fa-trash"></i>
+<td>
+<a href="view_package.php?id=<?= $row['id'] ?>" class="btn-icon view"><i class="fas fa-eye"></i></a>
+<a href="add_package.php?action=edit_package&id=<?= $row['id'] ?>" class="btn-icon edit"><i class="fas fa-edit"></i></a>
+<a href="function.php?action=delete_package&id=<?= $row['id'] ?>" class="btn-icon delete" onclick="return confirm('Delete?')"><i class="fas fa-trash"></i></a>
+<a href="add_package_type.php?pack_id=<?= $row['id'] ?>"
+                                            class="btn-icon"
+                                            title="Add Package Type">
+                                            <i class="fas fa-layer-group"></i>
+                                            </a>
+</td>
 
-                                        </a>
+</tr>
 
-                                    </div>
+<?php } ?>
 
-                                </td>
+</tbody>
+</table>
 
-                            </tr>
+</div>
+</div>
+<script>
+function goPage(className, page){
+document.querySelectorAll(className).forEach(btn=>{
+btn.addEventListener('click',function(){
 
-                        <?php } ?>
+let packId=this.dataset.pack;
+let typeId=document.querySelector(`select[data-pack='${packId}']`).value;
 
-                    </tbody>
+if(!typeId){ alert('Select type'); return; }
 
-                </table>
+window.location.href=`${page}?pack_id=${packId}&pack_type_id=${typeId}`;
+});
+});
+}
 
-            </div>
+// EXISTING
+goPage('.add-web-btn','add_website_review.php');
+goPage('.add-onpage-btn','add_onpage_seo.php');
+goPage('.add-local-btn','add_local_seo.php');
+goPage('.add-content-btn','add_content_marketing.php');
+goPage('.add-email-btn','add_email_outreach.php');
+goPage('.add-offpage-btn','add_offpage_seo.php');
+goPage('.add-report-btn','add_monthly_reporting.php');
+goPage('.add-support-btn','add_client_support.php');
 
-        </div>
-
-    </div>
-
-    <?php include 'common/footer.php' ?>
+// 🔥 ADD THESE (MISSING)
+goPage('.add-ideal-btn','add_idealfor.php');
+goPage('.add-feature-btn','add_features.php');
+goPage('.add-addon-btn','add_addons.php');
+</script>
 
 </body>
-
 </html>
