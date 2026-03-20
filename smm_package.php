@@ -39,6 +39,11 @@ function groupByType($data)
 
 $featureGroup = groupByType($features);
 $addonGroup   = groupByType($addons);
+
+
+$stmt = $pdo->prepare("SELECT * FROM settings LIMIT 1");
+$stmt->execute();
+$settings = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -46,12 +51,33 @@ $addonGroup   = groupByType($addons);
 
 <head>
     <meta charset="utf-8" />
-    <title>SMM Package</title>
+    <title>SMM Package - Drafticode</title>
+
+		<!-- All in One SEO 4.9.4.1 - aioseo.com -->
+	<meta name="description" content="Social Media Marketing Select the Ideal Social Media Marketing Strategy Find the perfect plan tailored to your needs! Whether you&#039;re looking for basic features, premium options, or custom solutions, we have flexible pricing packages to fit your requirements. Select the plan that works best for you and start enjoying exceptional services today. Affordable Yet Effective" />
+	<meta name="robots" content="max-image-preview:large" />
+	<link rel="canonical" href="https://drafticode.com/smm-package-2/" />
+	<meta name="generator" content="All in One SEO (AIOSEO) 4.9.4.1" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="Drafticode - drafticode" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="SMM Package - Drafticode" />
+		<meta property="og:description" content="Social Media Marketing Select the Ideal Social Media Marketing Strategy Find the perfect plan tailored to your needs! Whether you&#039;re looking for basic features, premium options, or custom solutions, we have flexible pricing packages to fit your requirements. Select the plan that works best for you and start enjoying exceptional services today. Affordable Yet Effective" />
+		<meta property="og:url" content="https://drafticode.com/smm-package-2/" />
+		<meta property="article:published_time" content="2025-04-21T07:09:48+00:00" />
+		<meta property="article:modified_time" content="2026-03-16T09:52:20+00:00" />
+		<meta property="article:publisher" content="https://www.facebook.com/drafticode/" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@swatiselly" />
+		<meta name="twitter:title" content="SMM Package - Drafticode" />
+		<meta name="twitter:description" content="Social Media Marketing Select the Ideal Social Media Marketing Strategy Find the perfect plan tailored to your needs! Whether you&#039;re looking for basic features, premium options, or custom solutions, we have flexible pricing packages to fit your requirements. Select the plan that works best for you and start enjoying exceptional services today. Affordable Yet Effective" />
+		<meta name="twitter:creator" content="@swatiselly" />
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+        <link rel="shortcut icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
+<link rel="icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <style id="pricing-perfect-align">

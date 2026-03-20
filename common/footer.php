@@ -41,7 +41,7 @@
 				<!-- Footer Column -->
 				<div class="footer-column col-lg-3 col-md-6 col-sm-6">
 					<div class="footer-widget about-widget">
-						<figure class="image bg-white d-flex justify-content-center"><a href="index-2.html"><img src="upload/<?php echo $settings['logo']; ?>" alt="Image"></a>
+						<figure class="image bg-white d-flex justify-content-center"><a href="index.php"><img src="upload/<?php echo $settings['logo']; ?>" alt="Image"></a>
 						</figure>
 						<div class="text">Empowering brands with cutting-edge digital solutions to drive growth
 							and innovation.</div>
@@ -69,13 +69,14 @@
 					<div class="footer-widget links-widget">
 						<h5 class="widget-title">Quick Links</h5>
 						<ul class="user-links">
-							<li><a href="about.html">Home</a></li>
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="service.html">Our Projects</a></li>
-							<li><a href="project.html">pricing</a></li>
-							<li><a href="page-contact.html">Contact</a></li>
-							<li><a href="blog.html">Team</a></li>
-							<li><a href="blog.html">Blog</a></li>
+							<li><a href="index.php">Home</a></li>
+							<li><a href="about.php">About Us</a></li>
+							<li><a href="service.php">Our services</a></li>
+							<li><a href="ourproducts.php">Our Products</a></li>
+							<li><a href="project.php">Our Projects</a></li>
+							<li><a href="projects.php">pricing</a></li>
+							<li><a href="blog.php">Blog</a></li>
+							<li><a href="contact.php">Contact</a></li>
 							
 						</ul>
 					</div>
@@ -85,13 +86,16 @@
 					<div class="footer-widget links-widget two">
 						<h5 class="widget-title">Services</h5>
 						<ul class="user-links">
-							<li><a href="team.html">Content Marketing</a></li>
-							<li><a href="team.html">E-commerce Solutions</a></li>
-							<li><a href="team.html">Search Engine Optimization</a></li>
-							<li><a href="team.html">Social Media Marketing</a></li>
-							<li><a href="team.html">Website Design & Dev</a></li>
-							<li><a href="team.html">Website Security Audit</a></li>
-							<li><a href="team.html">SEO Audit</a></li>
+							<?php 
+							$serviceshead = $pdo->query("SELECT title, slug FROM services ORDER BY id DESC")->fetchAll();
+							foreach($serviceshead as $servicehead): ?>
+												<li>
+								<a href="service_details.php?slug=<?= $servicehead['slug'] ?>">
+									<?= htmlspecialchars($servicehead['title']) ?>
+								</a>
+							</li>
+							<?php endforeach; ?>
+							
 						</ul>
 					</div>
 				</div>

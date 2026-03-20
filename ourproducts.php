@@ -1,3 +1,11 @@
+
+<?php
+include 'connection/config.php';
+
+$stmt = $pdo->prepare("SELECT * FROM settings LIMIT 1");
+$stmt->execute();
+$settings = $stmt->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +13,27 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
   <meta charset="utf-8" />
-  <title>Onicx - Digital Agency PHP Template | products</title>
+ <title>Our Products - Drafticode</title>
+
+		<!-- All in One SEO 4.9.4.1 - aioseo.com -->
+	<meta name="description" content="OUR PRODUCTS OUR Products Latest Products &quot;Showcasing innovative solutions and creative designs that push boundaries and deliver impactful results.&quot; OneTap Card OneTap Card In today’s fast-paced digital world, first impressions matter more than ever. At Onetap,..." />
+	<meta name="robots" content="max-image-preview:large" />
+	<link rel="canonical" href="https://drafticode.com/our-products/" />
+	<meta name="generator" content="All in One SEO (AIOSEO) 4.9.4.1" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="Drafticode - drafticode" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Our Products - Drafticode" />
+		<meta property="og:description" content="OUR PRODUCTS OUR Products Latest Products &quot;Showcasing innovative solutions and creative designs that push boundaries and deliver impactful results.&quot; OneTap Card OneTap Card In today’s fast-paced digital world, first impressions matter more than ever. At Onetap,..." />
+		<meta property="og:url" content="https://drafticode.com/our-products/" />
+		<meta property="article:published_time" content="2025-01-26T04:47:11+00:00" />
+		<meta property="article:modified_time" content="2025-01-30T10:12:22+00:00" />
+		<meta property="article:publisher" content="https://www.facebook.com/drafticode/" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@swatiselly" />
+		<meta name="twitter:title" content="Our Products - Drafticode" />
+		<meta name="twitter:description" content="OUR PRODUCTS OUR Products Latest Products &quot;Showcasing innovative solutions and creative designs that push boundaries and deliver impactful results.&quot; OneTap Card OneTap Card In today’s fast-paced digital world, first impressions matter more than ever. At Onetap,..." />
+		<meta name="twitter:creator" content="@swatiselly" />
 
   <!-- Stylesheets -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -13,8 +41,8 @@
       <link href="css/style.css" rel="stylesheet">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-  <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
+<link rel="icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
 
   <!-- Responsive -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />

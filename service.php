@@ -1,3 +1,11 @@
+
+<?php
+include 'connection/config.php';
+
+$stmt = $pdo->prepare("SELECT * FROM settings LIMIT 1");
+$stmt->execute();
+$settings = $stmt->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +13,27 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
   <meta charset="utf-8" />
-  <title>Onicx - Digital Agency PHP Template | Services</title>
+  <title>Performance Marketing Company | Digital Marketing Company Near Me</title>
+
+		<!-- All in One SEO 4.9.4.1 - aioseo.com -->
+	<meta name="description" content="Boost your ROI with the leading performance marketing company. Looking for a digital marketing company near me? Partner with us for measurable growth and smart strategy." />
+	<meta name="robots" content="max-image-preview:large" />
+	<link rel="canonical" href="https://drafticode.com/performance-marketing-company/" />
+	<meta name="generator" content="All in One SEO (AIOSEO) 4.9.4.1" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="Drafticode - drafticode" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Performance Marketing Company | Digital Marketing Company Near Me" />
+		<meta property="og:description" content="Boost your ROI with the leading performance marketing company. Looking for a digital marketing company near me? Partner with us for measurable growth and smart strategy." />
+		<meta property="og:url" content="https://drafticode.com/performance-marketing-company/" />
+		<meta property="article:published_time" content="2025-01-26T04:45:55+00:00" />
+		<meta property="article:modified_time" content="2025-07-29T08:40:52+00:00" />
+		<meta property="article:publisher" content="https://www.facebook.com/drafticode/" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@swatiselly" />
+		<meta name="twitter:title" content="Performance Marketing Company | Digital Marketing Company Near Me" />
+		<meta name="twitter:description" content="Boost your ROI with the leading performance marketing company. Looking for a digital marketing company near me? Partner with us for measurable growth and smart strategy." />
+		<meta name="twitter:creator" content="@swatiselly" />
 
   <!-- Stylesheets -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -13,9 +41,8 @@
       <link href="css/style.css" rel="stylesheet">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-  <link rel="icon" href="images/favicon.png" type="image/x-icon" />
-
+  <link rel="shortcut icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
+<link rel="icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
   <!-- Responsive -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />

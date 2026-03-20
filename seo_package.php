@@ -65,6 +65,10 @@ $seoTitles = [
     'monthly_reporting' => 'MONTHLY REPORTING',
     'client_support' => 'CLIENT SUPPORT'
 ];
+
+$stmt = $pdo->prepare("SELECT * FROM settings LIMIT 1");
+$stmt->execute();
+$settings = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -73,11 +77,32 @@ $seoTitles = [
 <head>
     <meta charset="utf-8" />
 
-    <title><?= htmlspecialchars($package['package_name']) ?></title>
+    <title>SEO Package - Drafticode</title>
+
+		<!-- All in One SEO 4.9.4.1 - aioseo.com -->
+	<meta name="description" content="Search Engine Optimization Boost Your Rankings with the Right SEO Package Get noticed online with SEO plans designed to improve visibility, drive traffic, and grow your business—fast and effectively. Monthly SEO Plans: Trusted By 500+ Clients &amp; 97% Success Rate! Drafticode Company offers affordable and effective SEO packages tailored to boost your online visibility and" />
+	<meta name="robots" content="max-image-preview:large" />
+	<link rel="canonical" href="https://drafticode.com/seo-package/" />
+	<meta name="generator" content="All in One SEO (AIOSEO) 4.9.4.1" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="Drafticode - drafticode" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="SEO Package - Drafticode" />
+		<meta property="og:description" content="Search Engine Optimization Boost Your Rankings with the Right SEO Package Get noticed online with SEO plans designed to improve visibility, drive traffic, and grow your business—fast and effectively. Monthly SEO Plans: Trusted By 500+ Clients &amp; 97% Success Rate! Drafticode Company offers affordable and effective SEO packages tailored to boost your online visibility and" />
+		<meta property="og:url" content="https://drafticode.com/seo-package/" />
+		<meta property="article:published_time" content="2025-04-11T09:23:46+00:00" />
+		<meta property="article:modified_time" content="2025-04-21T10:19:21+00:00" />
+		<meta property="article:publisher" content="https://www.facebook.com/drafticode/" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@swatiselly" />
+		<meta name="twitter:title" content="SEO Package - Drafticode" />
+		<meta name="twitter:description" content="Search Engine Optimization Boost Your Rankings with the Right SEO Package Get noticed online with SEO plans designed to improve visibility, drive traffic, and grow your business—fast and effectively. Monthly SEO Plans: Trusted By 500+ Clients &amp; 97% Success Rate! Drafticode Company offers affordable and effective SEO packages tailored to boost your online visibility and" />
+		<meta name="twitter:creator" content="@swatiselly" />
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
+    <link rel="shortcut icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
+<link rel="icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />

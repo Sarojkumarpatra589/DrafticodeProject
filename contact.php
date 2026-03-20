@@ -1,3 +1,10 @@
+<?php
+include 'connection/config.php';
+
+$stmt = $pdo->prepare("SELECT * FROM settings LIMIT 1");
+$stmt->execute();
+$settings = $stmt->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +12,27 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
   <meta charset="utf-8" />
-  <title>Onicx - Digital Agency PHP Template | Contact Us</title>
+  <title>Contact - Drafticode</title>
+
+		<!-- All in One SEO 4.9.4.1 - aioseo.com -->
+	<meta name="description" content="Contact Us Contact Info At Drafticode, we’re here to help! Whether you have questions, need support, or want to explore partnership opportunities feel free to reach out to us. Office Email office@drafticode.com Office Phone +91 79751 89067 Office Location Office 2, B-15, Arihant Plaza, Saheed Nagar Bhubaneswar, Odisha 751007 Get In Touch with Us! Bhubaneswar +91" />
+	<meta name="robots" content="max-image-preview:large" />
+	<link rel="canonical" href="https://drafticode.com/contact/" />
+	<meta name="generator" content="All in One SEO (AIOSEO) 4.9.4.1" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="Drafticode - drafticode" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Contact - Drafticode" />
+		<meta property="og:description" content="Contact Us Contact Info At Drafticode, we’re here to help! Whether you have questions, need support, or want to explore partnership opportunities feel free to reach out to us. Office Email office@drafticode.com Office Phone +91 79751 89067 Office Location Office 2, B-15, Arihant Plaza, Saheed Nagar Bhubaneswar, Odisha 751007 Get In Touch with Us! Bhubaneswar +91" />
+		<meta property="og:url" content="https://drafticode.com/contact/" />
+		<meta property="article:published_time" content="2025-01-22T02:32:40+00:00" />
+		<meta property="article:modified_time" content="2025-04-24T10:58:31+00:00" />
+		<meta property="article:publisher" content="https://www.facebook.com/drafticode/" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@swatiselly" />
+		<meta name="twitter:title" content="Contact - Drafticode" />
+		<meta name="twitter:description" content="Contact Us Contact Info At Drafticode, we’re here to help! Whether you have questions, need support, or want to explore partnership opportunities feel free to reach out to us. Office Email office@drafticode.com Office Phone +91 79751 89067 Office Location Office 2, B-15, Arihant Plaza, Saheed Nagar Bhubaneswar, Odisha 751007 Get In Touch with Us! Bhubaneswar +91" />
+		<meta name="twitter:creator" content="@swatiselly" />
 
   <!-- Stylesheets -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -14,7 +41,8 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-  <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
+<link rel="icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
 
   <!-- Responsive -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />

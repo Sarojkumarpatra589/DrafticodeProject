@@ -1,3 +1,10 @@
+<?php
+include 'connection/config.php';
+
+$stmt = $pdo->prepare("SELECT * FROM settings LIMIT 1");
+$stmt->execute();
+$settings = $stmt->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +12,27 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
   <meta charset="utf-8" />
-  <title>Onicx - Digital Agency PHP Template | Page Projects</title>
+  <title>Projects - Drafticode</title>
 
+		<!-- All in One SEO 4.9.4.1 - aioseo.com -->
+	<meta name="description" content="PROJECTS PROJECTS Latest Projects Stay up-to-date with our latest projects showcasing innovative ideas and creative solutions. From cutting-edge technologies to impactful community initiatives, these projects reflect our dedication to excellence and forward-thinking approaches. Explore how we&#039;re shaping the future, one project at a time. PREETAM INFRASTRUCTURE PATEL DIAGNOSTIC BR ENTERTAINMENT NUTTY BABA KHAWAR ASHE PASHE" />
+	<meta name="robots" content="max-image-preview:large" />
+	<link rel="canonical" href="https://drafticode.com/projects/" />
+	<meta name="generator" content="All in One SEO (AIOSEO) 4.9.4.1" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="Drafticode - drafticode" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Projects - Drafticode" />
+		<meta property="og:description" content="PROJECTS PROJECTS Latest Projects Stay up-to-date with our latest projects showcasing innovative ideas and creative solutions. From cutting-edge technologies to impactful community initiatives, these projects reflect our dedication to excellence and forward-thinking approaches. Explore how we&#039;re shaping the future, one project at a time. PREETAM INFRASTRUCTURE PATEL DIAGNOSTIC BR ENTERTAINMENT NUTTY BABA KHAWAR ASHE PASHE" />
+		<meta property="og:url" content="https://drafticode.com/projects/" />
+		<meta property="article:published_time" content="2025-01-26T04:52:38+00:00" />
+		<meta property="article:modified_time" content="2025-07-14T10:07:22+00:00" />
+		<meta property="article:publisher" content="https://www.facebook.com/drafticode/" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@swatiselly" />
+		<meta name="twitter:title" content="Projects - Drafticode" />
+		<meta name="twitter:description" content="PROJECTS PROJECTS Latest Projects Stay up-to-date with our latest projects showcasing innovative ideas and creative solutions. From cutting-edge technologies to impactful community initiatives, these projects reflect our dedication to excellence and forward-thinking approaches. Explore how we&#039;re shaping the future, one project at a time. PREETAM INFRASTRUCTURE PATEL DIAGNOSTIC BR ENTERTAINMENT NUTTY BABA KHAWAR ASHE PASHE" />
+		<meta name="twitter:creator" content="@swatiselly" />
   <!-- Stylesheets -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -14,7 +40,8 @@
   
   
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-  <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
+<link rel="icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
 
   <!-- Responsive -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />

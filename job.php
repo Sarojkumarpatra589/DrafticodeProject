@@ -1,3 +1,10 @@
+<?php
+include 'connection/config.php';
+
+$stmt = $pdo->prepare("SELECT * FROM settings LIMIT 1");
+$stmt->execute();
+$settings = $stmt->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +12,27 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
   <meta charset="utf-8" />
-  <title>Onicx - Digital Agency PHP Template | Page News</title>
+  <title>Job - Drafticode</title>
+
+		<!-- All in One SEO 4.9.4.1 - aioseo.com -->
+	<meta name="description" content="JOIN US Home - Job Tele-Sales Executive(Finance Sector) Location: Pan India (Candidates must be open to relocation anywhere in India) Gender: Male / Female Experience Required: Minimum 2 years Languages: Hindi and English (both required)Job Description:We are looking for enthusiastic and experienced Tele-Sales Executives to join our growing team. The ideal candidates should have prior experience in financial" />
+	<meta name="robots" content="max-image-preview:large" />
+	<link rel="canonical" href="https://drafticode.com/job/" />
+	<meta name="generator" content="All in One SEO (AIOSEO) 4.9.4.1" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="Drafticode - drafticode" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Job - Drafticode" />
+		<meta property="og:description" content="JOIN US Home - Job Tele-Sales Executive(Finance Sector) Location: Pan India (Candidates must be open to relocation anywhere in India) Gender: Male / Female Experience Required: Minimum 2 years Languages: Hindi and English (both required)Job Description:We are looking for enthusiastic and experienced Tele-Sales Executives to join our growing team. The ideal candidates should have prior experience in financial" />
+		<meta property="og:url" content="https://drafticode.com/job/" />
+		<meta property="article:published_time" content="2025-01-22T02:30:40+00:00" />
+		<meta property="article:modified_time" content="2025-10-30T06:43:47+00:00" />
+		<meta property="article:publisher" content="https://www.facebook.com/drafticode/" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@swatiselly" />
+		<meta name="twitter:title" content="Job - Drafticode" />
+		<meta name="twitter:description" content="JOIN US Home - Job Tele-Sales Executive(Finance Sector) Location: Pan India (Candidates must be open to relocation anywhere in India) Gender: Male / Female Experience Required: Minimum 2 years Languages: Hindi and English (both required)Job Description:We are looking for enthusiastic and experienced Tele-Sales Executives to join our growing team. The ideal candidates should have prior experience in financial" />
+		<meta name="twitter:creator" content="@swatiselly" />
 
   <!-- Stylesheets -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -13,8 +40,8 @@
       <link href="css/style.css" rel="stylesheet">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-  <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
+<link rel="icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
 
   <!-- Responsive -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />

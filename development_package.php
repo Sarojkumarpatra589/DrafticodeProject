@@ -43,18 +43,43 @@ $ideals = $stmt->fetchAll();
 $idealGroup = groupByType($ideals);
 $featureGroup = groupByType($features);
 $addonGroup   = groupByType($addons);
+
+$stmt = $pdo->prepare("SELECT * FROM settings LIMIT 1");
+$stmt->execute();
+$settings = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Development Package</title>
+<title>Website Development Company | Custom Website Development</title>
+
+		<!-- All in One SEO 4.9.4.1 - aioseo.com -->
+	<meta name="description" content="Development Package Build Your Online Presence with the Perfect Development Package Get a professionally designed, user-friendly website tailored to your brand, goals, and audience—all in one complete package. Budget-Friendly Development Packages to Suit Any Business Our budget-friendly website packages are designed to provide high-quality, professional websites tailored to your business needs. Whether you&#039;re a startup, Build your online presence with the top website development company offering custom website development tailored to your business goals and user needs." />
+	<meta name="robots" content="max-image-preview:large" />
+	<link rel="canonical" href="https://drafticode.com/website-development-package/" />
+	<meta name="generator" content="All in One SEO (AIOSEO) 4.9.4.1" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="Drafticode - drafticode" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Website Development Company | Custom Website Development" />
+		<meta property="og:description" content="Development Package Build Your Online Presence with the Perfect Development Package Get a professionally designed, user-friendly website tailored to your brand, goals, and audience—all in one complete package. Budget-Friendly Development Packages to Suit Any Business Our budget-friendly website packages are designed to provide high-quality, professional websites tailored to your business needs. Whether you&#039;re a startup, Build your online presence with the top website development company offering custom website development tailored to your business goals and user needs." />
+		<meta property="og:url" content="https://drafticode.com/website-development-package/" />
+		<meta property="article:published_time" content="2025-04-11T09:25:09+00:00" />
+		<meta property="article:modified_time" content="2025-07-29T08:07:24+00:00" />
+		<meta property="article:publisher" content="https://www.facebook.com/drafticode/" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@swatiselly" />
+		<meta name="twitter:title" content="Website Development Company | Custom Website Development" />
+		<meta name="twitter:description" content="Development Package Build Your Online Presence with the Perfect Development Package Get a professionally designed, user-friendly website tailored to your brand, goals, and audience—all in one complete package. Budget-Friendly Development Packages to Suit Any Business Our budget-friendly website packages are designed to provide high-quality, professional websites tailored to your business needs. Whether you&#039;re a startup, Build your online presence with the top website development company offering custom website development tailored to your business goals and user needs." />
+		<meta name="twitter:creator" content="@swatiselly" />
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+<link rel="shortcut icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
+<link rel="icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 

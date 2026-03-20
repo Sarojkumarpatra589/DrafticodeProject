@@ -12,8 +12,26 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
   <meta charset="utf-8" />
-  <title>Onicx - Digital Agency PHP Template | About Us</title>
-
+  <title>Digital Marketing Company In Bhubaneswar | Online Marketing Agency</title>
+  <!-- All in One SEO 4.9.4.1 - aioseo.com -->
+	<meta name="description" content="About About Company Drafticode is a leading Web Development and Digital Marketing Company committed to propelling businesses into the digital forefront with tailored solutions designed to captivate audiences and drive results. With a focus on innovation, creativity, and cutting-edge technology, we specialize in crafting stunning websites that not only visually impress but also deliver seamless Looking for a top digital marketing company in Bhubaneswar? Our expert online marketing agency drives results through SEO, social media, branding &amp; more." />
+	<meta name="robots" content="max-image-preview:large" />
+	<link rel="canonical" href="https://drafticode.com/digital-marketing-company-in-bhubaneswar/" />
+	<meta name="generator" content="All in One SEO (AIOSEO) 4.9.4.1" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="Drafticode - drafticode" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Digital Marketing Company In Bhubaneswar | Online Marketing Agency" />
+		<meta property="og:description" content="About About Company Drafticode is a leading Web Development and Digital Marketing Company committed to propelling businesses into the digital forefront with tailored solutions designed to captivate audiences and drive results. With a focus on innovation, creativity, and cutting-edge technology, we specialize in crafting stunning websites that not only visually impress but also deliver seamless Looking for a top digital marketing company in Bhubaneswar? Our expert online marketing agency drives results through SEO, social media, branding &amp; more." />
+		<meta property="og:url" content="https://drafticode.com/digital-marketing-company-in-bhubaneswar/" />
+		<meta property="article:published_time" content="2025-01-21T19:26:29+00:00" />
+		<meta property="article:modified_time" content="2025-11-24T05:35:14+00:00" />
+		<meta property="article:publisher" content="https://www.facebook.com/drafticode/" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@swatiselly" />
+		<meta name="twitter:title" content="Digital Marketing Company In Bhubaneswar | Online Marketing Agency" />
+		<meta name="twitter:description" content="About About Company Drafticode is a leading Web Development and Digital Marketing Company committed to propelling businesses into the digital forefront with tailored solutions designed to captivate audiences and drive results. With a focus on innovation, creativity, and cutting-edge technology, we specialize in crafting stunning websites that not only visually impress but also deliver seamless Looking for a top digital marketing company in Bhubaneswar? Our expert online marketing agency drives results through SEO, social media, branding &amp; more." />
+		<meta name="twitter:creator" content="@swatiselly" />
   <!-- Stylesheets -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
  <link href="css/style.css" rel="stylesheet">

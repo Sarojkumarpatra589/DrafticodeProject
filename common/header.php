@@ -116,7 +116,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                 </div>
                 <!-- Btn Box -->
                 <div class="btn-box">
-                    <a href="page-contact.php" class="theme-btn btn-style-three"><span class="btn-title">Get in
+                    <a href="contact.php" class="theme-btn btn-style-three"><span class="btn-title">Get in
                             Touch <i class="fa fa-arrow-right"></i></span></a>
                 </div>
                 <!-- Mobile Nav toggler -->
