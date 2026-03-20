@@ -356,7 +356,7 @@ Creativity, strategy, and technology.</li>
                         <text><textPath xlink:href="#circle">PLAY REEL * PLAY REEL * PLAY REEL * PLAY REEL * PLAY REEL *</textPath></text>
                     </svg>
                     <div class="video-box">
-                        <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" class="play-btn" data-fancybox="gallery" data-caption=""><i class="icon fa fa-play" aria-hidden="true"></i></a>
+                        <a href="https://www.youtube.com/watch?v=CigjudGu5WQ" class="play-btn" data-fancybox="gallery" data-caption=""><i class="icon fa fa-play" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
