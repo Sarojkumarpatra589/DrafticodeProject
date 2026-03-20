@@ -741,7 +741,7 @@ Scroll Top Two style
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
+  /* display: flex; */
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -13567,7 +13567,7 @@ Main Header-style-three
 .client-section .outer-box {
   position: relative;
   border: 1px solid #e6e0fa;
-  padding: 31px 38px;
+  padding: 20px 27px;
   border-radius: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -14267,9 +14267,9 @@ Main Header-style-three
 .project-block .inner-box .image img {
   width: 100%;
   height: 100%;
-  min-height: 400px;
+  /* min-height: 400px;
   -o-object-fit: cover;
-     object-fit: cover;
+     object-fit: cover; */
   -webkit-transition: all 300ms ease;
   transition: all 300ms ease;
 }

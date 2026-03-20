@@ -67,7 +67,7 @@
       foreach ($projects as $project) { ?>
 
         <!-- Project Block -->
-        <div class="project-block-four col-lg-4 col-md-6 col-sm-12 mb-30">
+        <div class="project-block-four  col-lg-4 col-md-6 col-sm-12 mb-30">
           <div class="inner-box">
             
             <div class="image-box">
@@ -97,7 +97,7 @@
 
     </div>
   </div>
-</section>
+</section>  
 <!-- End Project Section -->
 
 

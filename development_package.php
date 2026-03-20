@@ -166,7 +166,7 @@ Best Development Plan
 
 <?php foreach($addonGroup[$t['id']] as $a): ?>
 <li>
-<i class="fas fa-plus text-warning"></i>
+<i class="fas fa-plus "></i>
 <?= htmlspecialchars($a['addons']) ?>
 </li>
 <?php endforeach; ?>
