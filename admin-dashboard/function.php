@@ -869,6 +869,7 @@ if(isset($_GET['action']) && $_GET['action']=="delete_product"){
 if(isset($_POST['add_blog'])){
 
 $title = $_POST['title'];
+$date = $_POST['date'];
 $short_description = $_POST['short_description'];
 $description = $_POST['description'];
 $slug = $_POST['slug'];
@@ -891,9 +892,9 @@ $image = time().rand(100,999).".".$ext;
 
 move_uploaded_file($_FILES['image']['tmp_name'],$uploadDir.$image);
 
-$stmt = $pdo->prepare("INSERT INTO blogs(title,image,short_description,description,slug,meta_title,meta_keywords,meta_description) VALUES(?,?,?,?)");
+$stmt = $pdo->prepare("INSERT INTO blogs(title,image,short_description,description,slug,meta_title,meta_keywords,meta_description,date) VALUES(?,?,?,?,?,?,?,?,?)");
 
-$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description]);
+$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description,$date]);
 
 header("Location: blog.php");
 exit();
@@ -907,6 +908,7 @@ if(isset($_POST['update_blog'])){
 $id = $_POST['id'];
 
 $title = $_POST['title'];
+$date = $_POST['date'];
 $short_description = $_POST['short_description'];
 $description = $_POST['description'];
 $slug = $_POST['slug'];
@@ -939,9 +941,9 @@ unlink($old);
 
 }
 
-$stmt = $pdo->prepare("UPDATE blogs SET title=?,image=?,short_description=?,description=?,slug=?,meta_title=?,meta_keywords=?,meta_description=? WHERE id=?");
+$stmt = $pdo->prepare("UPDATE blogs SET title=?,image=?,short_description=?,description=?,slug=?,meta_title=?,meta_keywords=?,meta_description=?,date=? WHERE id=?");
 
-$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description,$id]);
+$stmt->execute([$title,$image,$short_description,$description,$slug,$meta_title,$meta_keywords,$meta_description,$date,$id]);
 
 header("Location: blog.php");
 exit();

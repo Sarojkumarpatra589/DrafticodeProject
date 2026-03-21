@@ -76,8 +76,18 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
   </section>
 <!-- End Breadcume Section -->
 
-
-
+<style>
+    .client-block .image{
+    height:100px;
+    width: 100%;
+}
+.client-block .image img{
+    
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+}
+</style>
 <!-- Client Section -->
         <section class="client-section pb-0 mb-4 ">
             <div class="shape-4"></div>
@@ -90,41 +100,37 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                         <i class="icon fa fa-arrow-up-right"></i>
                     </div>
 
-                    <div class="marquee-box">
-                        <div class="marquee">
+            <div class="marquee-box">
+    <div class="marquee">
 
-                            <?php
-                            include 'connection/config.php';
+        <?php include 'connection/config.php'; $stmt = $pdo->prepare("SELECT * FROM clients ORDER BY id DESC"); $stmt->execute(); $clients = $stmt->fetchAll(PDO::FETCH_ASSOC); foreach ($clients as $client): ?>
+            <div class="client-block">
+                <div class="inner-box">
+                    <figure class="image">
+                        <img src="upload/<?= htmlspecialchars($client['image']) ?>" alt="Client Logo">
+                    </figure>
+                </div>
+            </div>
+        <?php endforeach; ?>
 
-                            $stmt = $pdo->prepare("SELECT * FROM clients ORDER BY id DESC");
-                            $stmt->execute();
-                            $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        <!-- 🔥 SAME LIST AGAIN -->
+        <?php foreach ($clients as $client): ?>
+            <div class="client-block">
+                <div class="inner-box">
+                    <figure class="image">
+                        <img src="upload/<?= htmlspecialchars($client['image']) ?>" alt="Client Logo">
+                    </figure>
+                </div>
+            </div>
+        <?php endforeach; ?>
 
-                            foreach ($clients as $client):
-                            ?>
-
-                                <!-- Client Block -->
-                                <div class="client-block">
-                                    <div class="inner-box">
-                                        <figure class="image">
-                                            <img src="upload/<?= htmlspecialchars($client['image']) ?>"
-                                                alt="Client Logo"
-                                                style="height:60px; width:auto; object-fit:contain;">
-                                        </figure>
-                                    </div>
-                                </div>
-
-                            <?php endforeach; ?>
-
-                        </div>
-                    </div>
+    </div>
+</div>
 
                 </div>
             </div>
         </section>
-
-<!-- End Client Section -->
-
+        <!-- End Client Section -->
 <!-- About Section -->
 <section class="about-section">
     <div class="shape-2"></div>

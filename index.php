@@ -75,6 +75,33 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
     width: 100%;
     object-fit: fill;
 }
+.marquee-box {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* 🔥 KEY FIX */
+.marquee {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 80s linear infinite !important; /* 🔥 VERY SLOW */
+}
+
+/* spacing */
+.client-block {
+    flex: 0 0 auto;
+    margin-right: 20px;
+}
+
+/* 🔥 DO NOT CHANGE THIS */
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
 </style>
 <body>
     <div class="page-wrapper">
@@ -114,10 +141,10 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                                 <h1 class="title-sp animate-2">Business</h1>
                                                 <h1 class="title animate-2"><?= htmlspecialchars($slider['title']) ?></h1>
                                                 <div class="text animate-3 d-flex justify-content-center text-center" style="width: 80%; margin: 0 auto;">
-    <?= $slider['description'] ?>
-</div>
+                                                    <?= $slider['description'] ?>
+                                                </div>
                                                 <div class="btn-box animate-4">
-                                                    <a class="theme-btn-main" href="page-contact.html">
+                                                    <a class="theme-btn-main" href="contact.php">
                                                         <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
                                                         <span class="theme-btn">Discover More</span>
                                                         <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>
@@ -154,34 +181,32 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                         <i class="icon fa fa-arrow-up-right"></i>
                     </div>
 
-                    <div class="marquee-box">
-                        <div class="marquee">
+            <div class="marquee-box">
+    <div class="marquee">
 
-                            <?php
-                            include 'connection/config.php';
+        <?php include 'connection/config.php'; $stmt = $pdo->prepare("SELECT * FROM clients ORDER BY id DESC"); $stmt->execute(); $clients = $stmt->fetchAll(PDO::FETCH_ASSOC); foreach ($clients as $client): ?>
+            <div class="client-block">
+                <div class="inner-box">
+                    <figure class="image">
+                        <img src="upload/<?= htmlspecialchars($client['image']) ?>" alt="Client Logo">
+                    </figure>
+                </div>
+            </div>
+        <?php endforeach; ?>
 
-                            $stmt = $pdo->prepare("SELECT * FROM clients ORDER BY id DESC");
-                            $stmt->execute();
-                            $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        <!-- 🔥 SAME LIST AGAIN -->
+        <?php foreach ($clients as $client): ?>
+            <div class="client-block">
+                <div class="inner-box">
+                    <figure class="image">
+                        <img src="upload/<?= htmlspecialchars($client['image']) ?>" alt="Client Logo">
+                    </figure>
+                </div>
+            </div>
+        <?php endforeach; ?>
 
-                            foreach ($clients as $client):
-                            ?>
-
-                                <!-- Client Block -->
-                                <div class="client-block">
-                                    <div class="inner-box">
-                                        <figure class="image">
-                                            <img src="upload/<?= htmlspecialchars($client['image']) ?>"
-                                                alt="Client Logo"
-                                                >
-                                        </figure>
-                                    </div>
-                                </div>
-
-                            <?php endforeach; ?>
-
-                        </div>
-                    </div>
+    </div>
+</div>
 
                 </div>
             </div>
@@ -452,9 +477,7 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
                                         </a>
                                     </h4>
                                 </div>
-                               <a href="project_details.php?slug=<?= urlencode($project['slug']) ?>" class="readmore">
-                                <i class="fa fa-arrow-right"></i>
-                                </a>
+                               
                             </div>
                         </div>
                         <?php } ?>
@@ -803,14 +826,10 @@ $testimonials = $pdo->query("SELECT * FROM testimonial ORDER BY id DESC")->fetch
                                                         </a>
                                                     </figure>
 
-                                                    <?php
-                                                    $date = date("d", strtotime($blog['id']));
-                                                    $month = date("M", strtotime($blog['id']));
-                                                    ?>
-
-                                                    <div class="date-box">
-                                                        <div class="date"><?= $date ?></div>
-                                                        <div class="month"><?= $month ?></div>
+                                                   <div class="date-box d-flex flex-column justify-content-center align-items-center text-center">
+                                                        <div class="date small fw-semibold">
+                                                            <?= htmlspecialchars($blog['date']) ?>
+                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -818,10 +837,79 @@ $testimonials = $pdo->query("SELECT * FROM testimonial ORDER BY id DESC")->fetch
                                                 <div class="content-box">
 
                                                     <div class="content">
-
                                                         <ul class="post-meta">
-                                                            <li><i class="icon fa fa-comment"></i> 0 Comment</li>
+                                                            <li></li>
                                                         </ul>
+
+
+                                                        <h4 class="title">
+                                                            <a href="blog_details.php?slug=<?= htmlspecialchars($blog['slug']) ?>">
+                                                                <?= htmlspecialchars($blog['title']) ?>
+                                                            </a>
+                                                        </h4>
+
+                                                        <div class="text">
+                                                            <?php
+                                                            $text = strip_tags($blog['short_description']);
+                                                            $words = explode(" ", $text);
+                                                            echo implode(" ", array_slice($words, 0, 8));
+                                                            if (count($words) > 8) echo "...";
+                                                            ?>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="btn-box">
+
+                                                        <a href="blog_details.php?slug=<?= htmlspecialchars($blog['slug']) ?>" class="text">
+                                                            Read More
+                                                        </a>
+
+                                                        <a href="blog_details.php?slug=<?= htmlspecialchars($blog['slug']) ?>" class="readmore">
+                                                            <i class="fa fa-arrow-right"></i>
+                                                        </a>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    <?php endforeach; ?>
+                                    <?php foreach ($blogs as $blog): ?>
+
+                                        <!-- News Block -->
+                                        <div class="news-block swiper-slide">
+
+                                            <div class="inner-box">
+
+                                                <div class="image-box">
+
+                                                    <figure class="image">
+                                                        <a href="blog_details.php?slug=<?= htmlspecialchars($blog['slug']) ?>">
+                                                            <img src="upload/<?= htmlspecialchars($blog['image']) ?>" alt="Image">
+                                                        </a>
+                                                    </figure>
+
+                                                   
+
+                                                    <div class="date-box d-flex flex-column justify-content-center align-items-center text-center">
+                                                        <div class="date small fw-semibold">
+                                                            <?= htmlspecialchars($blog['date']) ?>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="content-box">
+
+                                                    <div class="content">
+                                                        <ul class="post-meta">
+                                                            <li></li>
+                                                        </ul>
+
 
                                                         <h4 class="title">
                                                             <a href="blog_details.php?slug=<?= htmlspecialchars($blog['slug']) ?>">

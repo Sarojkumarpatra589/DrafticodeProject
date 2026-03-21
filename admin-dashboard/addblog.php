@@ -78,6 +78,19 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_blog") {
 
                 </div>
               </div>
+              <div class="col-md-12">
+                <div class="mb-3">
+
+                  <label class="form-label">Post Date</label>
+
+                  <input type="text"
+                    class="form-control"
+                    name="date"
+                    value="<?= $editMode ? htmlspecialchars($row['date']) : '' ?>"
+                    required>
+
+                </div>
+              </div>
 
 
               <div class="col-12">

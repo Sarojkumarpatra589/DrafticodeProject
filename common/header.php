@@ -102,18 +102,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
             <!-- Main Menu End-->
             <!-- Outer Box -->
             <div class="outer-box">
-                <div class="info-btn">
-                    <i class="icon fa fa-phone"></i>
-                    <div class="header-box">
-                        <h5 class="title">Have Any Questions</h5>
-                        <a href="tel:+92526420009" class="phone">0000 00 111</a>
-                    </div>
-                </div>
-                <div class="ui-btn-box">
-                    <button class="ui-btns search-btn">
-                        <span class="icon lnr lnr-icon-search"></span>
-                    </button>
-                </div>
+               
                 <!-- Btn Box -->
                 <div class="btn-box">
                     <a href="contact.php" class="theme-btn btn-style-three"><span class="btn-title">Get in

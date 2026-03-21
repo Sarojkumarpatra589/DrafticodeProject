@@ -110,10 +110,11 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_service") {
 
                   <label class="form-label">Short Description</label>
 
-                  <textarea
-                    class="form-control"
-                    name="short_description"
-                    rows="3"><?= $editMode ? htmlspecialchars($row['short_description']) : '' ?></textarea>
+                 <textarea
+  id="short_description"   
+  class="form-control"
+  name="short_description"
+  rows="3"><?= $editMode ? htmlspecialchars($row['short_description']) : '' ?></textarea>
 
                 </div>
               </div>

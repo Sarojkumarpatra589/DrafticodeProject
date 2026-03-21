@@ -288,6 +288,13 @@ var THEMEMASCOT = {};
 			slidesPerView: 3,
 			spaceBetween: 30,
 			loop: true,
+			autoplay: {
+			delay: 2000,
+			disableOnInteraction: false,
+			pauseOnMouseEnter: false,
+			},
+
+			speed: 800,
 			navigation: {
 				nextEl: ".swiper-button-next",
 				prevEl: ".swiper-button-prev",
@@ -310,18 +317,27 @@ var THEMEMASCOT = {};
 	}
 
 
-	// Testi Swiper Two
-	if ($('.testi-swiper-two').length) {  
-		var swiper = new Swiper(".testi-swiper-two", {
-			slidesPerView: 1,
-			spaceBetween: 30,
-			loop: true,
-			navigation: {
-				nextEl: ".swiper-button-next",
-				prevEl: ".swiper-button-prev",
-			},
-		});
-	}
+// Testi Swiper Two
+if ($('.testi-swiper-two').length) {  
+    var swiper = new Swiper(".testi-swiper-two", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+
+        /* 🔥 AUTOPLAY */
+        autoplay: {
+            delay: 2000,                // 3 seconds
+            disableOnInteraction: false // keeps running after swipe
+        },
+
+        speed: 1000, // smooth transition
+
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+}
 
 	// Testi Swiper Three
 	if ($('.testi-swiper-three').length) {  
@@ -363,6 +379,13 @@ var THEMEMASCOT = {};
 		  modifier: 1.5,    // Stronger perspective effect
 		  slideShadows: true
 		},
+		 /* 🔥 AUTO SWIPE */
+        autoplay: {
+            delay: 2000,              // time between slides
+            disableOnInteraction: false, // keeps autoplay after touch
+        },
+
+        speed: 1000, // smooth transition
 
 		pagination: {
 		  el: ".swiper-pagination",
