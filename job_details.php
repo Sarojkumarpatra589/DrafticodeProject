@@ -192,7 +192,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                             <div class="btn-box">
                                 <button class="theme-btn btn-style-five"><span class="btn-title">Apply here</span></button>
-                                <a href="page-contact.html" class="readmore"></a>
+                                <a href="contact.php" class="readmore"></a>
                             </div>
                         </div>
                     </div>

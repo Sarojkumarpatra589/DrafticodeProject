@@ -9,8 +9,12 @@ $stmt = $pdo->prepare("SELECT * FROM services WHERE slug = ?");
 $stmt->execute([$slug]);
 $service = $stmt->fetch();
 
-// Fetch all services (sidebar)
-$services = $pdo->query("SELECT title, slug FROM services ORDER BY id DESC")->fetchAll();
+$slug = $_GET['slug'];
+
+$stmt = $pdo->prepare("SELECT title, slug FROM services WHERE slug != ? ORDER BY id DESC");
+$stmt->execute([$slug]);
+
+$services = $stmt->fetchAll();
 
 if (!$service) {
     echo "Service not found";
@@ -94,7 +98,7 @@ if (!$service) {
 								<ul>
 									<?php foreach ($services as $s): ?>
 									<li>
-										<a href="service-details.php?slug=<?= $s['slug'] ?>">
+										<a href="service_details.php?slug=<?= $s['slug'] ?>">
 											<?= htmlspecialchars($s['title']) ?>
 											<i class="icon fas fa-angle-right"></i>
 										</a>

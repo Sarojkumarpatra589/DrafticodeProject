@@ -72,7 +72,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                         <h1 class="title">products</h1>
                       </div>
                       <ul class="breadcume-pull">
-                        <li><a class="title-line" href="index-2.html">Home <span><i class="fas fa-angle-right"></i></span></a></li>
+                        <li><a class="title-line" href="index.php">Home <span><i class="fas fa-angle-right"></i></span></a></li>
                         <li>products</li>
                       </ul>
                     </div>
@@ -109,7 +109,7 @@ $products = $pdo->query("SELECT * FROM products ORDER BY id DESC")->fetchAll();
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image">
-                                    <a href="service_details.php?slug=<?= $service['slug'] ?>">
+                                    <a href="product_details.php?slug=<?= $service['slug'] ?>">
                                         <img src="upload/<?= htmlspecialchars($service['image']) ?>" alt="Image">
                                     </a>
                                 </figure>
@@ -120,7 +120,7 @@ $products = $pdo->query("SELECT * FROM products ORDER BY id DESC")->fetchAll();
 
                             <div class="content-box">
                                 <h4 class="title">
-                                    <a href="service_details.php?slug=<?= $service['slug'] ?>">
+                                    <a href="product_details.php?slug=<?= $service['slug'] ?>">
                                         <?= htmlspecialchars($service['title']) ?>
                                     </a>
                                 </h4>

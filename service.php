@@ -97,7 +97,7 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
 ?>
 
 <section class="service-section">
-    <div class="bg bg-pattern-2"></div>
+    <div class="bg "></div>
 
     <div class="auto-container">
         <div class="row g-4">

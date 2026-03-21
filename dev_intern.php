@@ -41,7 +41,7 @@
                         <h1 class="title">Development Internship</h1>
                       </div>
                       <ul class="breadcume-pull">
-                        <li><a class="title-line" href="index-2.html">Home <span><i class="fas fa-angle-right"></i></span></a></li>
+                        <li><a class="title-line" href="index.php">Home <span><i class="fas fa-angle-right"></i></span></a></li>
                         <li>Web Development Internship</li>
                       </ul>
                     </div>
@@ -120,7 +120,7 @@
             </li>
             </ul>
             <div class="btn-box">
-            <a class="theme-btn-main" href="page-contact.html">
+            <a class="theme-btn-main" href="contact.php">
                 <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
                 <span class="theme-btn">Discover More</span>
                 <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>

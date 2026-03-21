@@ -41,7 +41,7 @@
                         <h1 class="title">Privacy Policy</h1>
                       </div>
                       <ul class="breadcume-pull">
-                        <li><a class="title-line" href="index-2.html">Home <span><i class="fas fa-angle-right"></i></span></a></li>
+                        <li><a class="title-line" href="index.php">Home <span><i class="fas fa-angle-right"></i></span></a></li>
                         <li>Privacy Policy</li>
                       </ul>
                     </div>
