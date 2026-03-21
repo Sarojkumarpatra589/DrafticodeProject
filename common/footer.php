@@ -74,7 +74,6 @@
 							<li><a href="service.php">Our services</a></li>
 							<li><a href="ourproducts.php">Our Products</a></li>
 							<li><a href="project.php">Our Projects</a></li>
-							<li><a href="projects.php">pricing</a></li>
 							<li><a href="blog.php">Blog</a></li>
 							<li><a href="contact.php">Contact</a></li>
 							

@@ -65,7 +65,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                         <h1 class="title">About Us</h1>
                       </div>
                       <ul class="breadcume-pull">
-                        <li><a class="title-line" href="index-2.html">Home <span><i class="fas fa-angle-right"></i></span></a></li>
+                        <li><a class="title-line" href="index.php">Home <span><i class="fas fa-angle-right"></i></span></a></li>
                         <li>About Us</li>
                       </ul>
                     </div>
@@ -264,7 +264,7 @@ Creativity, strategy, and technology.</li>
                                     </h5>
 
                                     <div class="designation">
-                                        <?= htmlspecialchars($row['designation']) ?>
+                                        <?= $row['designation'] ?>
                                     </div>
                                 </div>
 

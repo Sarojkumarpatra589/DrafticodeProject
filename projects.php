@@ -38,7 +38,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 
       <link href="css/style.css" rel="stylesheet">
   
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
   <link rel="shortcut icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
 <link rel="icon" href="upload/<?= htmlspecialchars($settings['favicon']) ?>" >
