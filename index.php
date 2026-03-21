@@ -612,7 +612,7 @@ $testimonials = $pdo->query("SELECT * FROM testimonial ORDER BY id DESC")->fetch
 
                                 <!-- Static Image (optional: make dynamic later) -->
                                 <div class="author-image">
-                                    <img src="images/resource/testi-author-4.jpg" alt="Image">
+                                    <img src="upload/author.gif" alt="Image">
                                 </div>
 
                                 <!-- Testimonial Text -->
