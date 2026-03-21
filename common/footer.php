@@ -100,25 +100,31 @@
 				</div>
 				<!-- Footer Column -->
 				<div class="footer-column col-lg-3 col-md-6 col-sm-6">
-					<div class="footer-widget newsletter-widget">
-						<h4 class="widget-title">Newsletter</h4>
-						<div class="newsletter-form">
-							<form method="post" action="#">
-								<div class="form-group">
-									<input type="email" name="email" class="email" value=""
-										placeholder="Email Address" required>
-									<button type="submit" class="form-btn"><i
-											class="fa fa-paper-plane"></i></button>
-								</div>
-								<div class="form-group checkbox">
-									<label class="custom-checkbox">
-										<input type="checkbox" checked>
-										<span class="checkmark"></span>
-										I agree to all your terms and policies
-									</label>
-								</div>
-							</form>
-						</div>
+					<div class="footer-widget contact-widget">
+						<h5 class="widget-title">Contact Info</h5>
+
+						<ul class="contact-list">
+
+							<li style="color: #9c94b3;">
+								<i class="fa fa-phone"></i>&nbsp;&nbsp;+91 79751 89067
+							</li>
+
+							<li style="color: #9c94b3;">
+								<i class="fa fa-envelope"></i>&nbsp;&nbsp;
+								office@drafticode.com
+							</li>
+
+							<li style="color: #9c94b3;">
+								<i class="fa fa-map-marker-alt"></i>&nbsp;&nbsp;
+								Office 2, B-15, Arihant Plaza, Saheed Nagar, Bhubaneswar, Odisha 751007
+							</li>
+
+							<li style="color: #9c94b3;">
+								<i class="fa fa-clock"></i>&nbsp;&nbsp;
+								Mon - Sat: 9:00 AM - 7:00 PM
+							</li>
+
+						</ul>
 					</div>
 				</div>
 			</div>
