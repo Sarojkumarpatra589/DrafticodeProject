@@ -230,7 +230,7 @@ Creativity, strategy, and technology.</li>
 
                 <div class="sec-title text-center">
                     <div class="sub-title">Our Team</div>
-                    <h2 class="text-reveal-anim">What Success Looks <br> From the Back</h2>
+                    <h2 class="text-reveal-anim">Meet Our Dedicated  <br>Team of Experts</h2>
                 </div>
 
                 <div class="row">
