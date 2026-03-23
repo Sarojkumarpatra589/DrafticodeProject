@@ -910,32 +910,32 @@ if ($('.testi-swiper-two').length) {
 	}
 
 
+function initTextReveal() {
+    const elements = document.querySelectorAll(".text-reveal-anim");
 
-	// Text Invert
-	function initTextReveal() {
-		const tagetedElementContainer =
-			document.querySelectorAll(".text-reveal-anim");
-		if (tagetedElementContainer?.length) {
-			tagetedElementContainer.forEach(e => {
-				var t = new SplitType(e, {
-					types: "chars",
-				});
-				gsap.from(t.chars, {
-					scrollTrigger: {
-						trigger: e,
-						start: "top 75%",
-						end: "top 25%",
-						scrub: !0,
-						duration: 0.5
-					},
-					opacity: 0.1,
-					stagger: 5,
-					ease: "back.out",
-				});
-			});
-		}
-	}
-	initTextReveal();
+    if (elements.length) {
+        elements.forEach(el => {
+
+            const split = new SplitType(el, {
+                types: "words, chars"
+            });
+
+            gsap.from(split.chars, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 75%",
+                    end: "top 25%",
+                    scrub: true
+                },
+                opacity: 0.1,
+                stagger: 0.03, // 🔥 FIXED (was 5)
+                ease: "back.out"
+            });
+
+        });
+    }
+}
+initTextReveal();
 
 
 

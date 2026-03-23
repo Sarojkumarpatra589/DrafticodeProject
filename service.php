@@ -116,7 +116,7 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
                             </figure>
 
                             <div class="icon-box">
-                                <i class="icon flaticon-health-check"></i>
+                                <i class="icon <?= $service['icon'] ?>"></i>
                             </div>
                         </div>
 

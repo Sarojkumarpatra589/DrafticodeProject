@@ -80,6 +80,19 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_service") {
 
                 </div>
               </div>
+               <div class="col-md-12">
+                <div class="mb-3">
+                  <label class="form-label">Service Icon</label>
+
+                  <input type="text"
+                    class="form-control"
+                    name="icon"
+                    value="<?= $editMode ? htmlspecialchars($row['icon']) : '' ?>"
+                    placeholder="Enter service icon"
+                    required>
+
+                </div>
+              </div>
 
               <div class="col-12">
                 <div class="mb-3">
@@ -110,11 +123,11 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_service") {
 
                   <label class="form-label">Short Description</label>
 
-                 <textarea
-  id="short_description"   
-  class="form-control"
-  name="short_description"
-  rows="3"><?= $editMode ? htmlspecialchars($row['short_description']) : '' ?></textarea>
+                  <textarea
+                    id="short_description"
+                    class="form-control"
+                    name="short_description"
+                    rows="3"><?= $editMode ? htmlspecialchars($row['short_description']) : '' ?></textarea>
 
                 </div>
               </div>
@@ -133,18 +146,18 @@ if (isset($_GET['action']) && $_GET['action'] == "edit_service") {
                 </div>
               </div>
               <div class="col-md-12">
-<div class="mb-3">
+                <div class="mb-3">
 
-<label class="form-label">Slug (SEO URL)</label>
+                  <label class="form-label">Slug (SEO URL)</label>
 
-<input type="text"
-class="form-control"
-name="slug"
-value="<?= $editMode ? htmlspecialchars($row['slug'] ?? '') : '' ?>"
-placeholder="example-blog-title">
+                  <input type="text"
+                    class="form-control"
+                    name="slug"
+                    value="<?= $editMode ? htmlspecialchars($row['slug'] ?? '') : '' ?>"
+                    placeholder="example-blog-title">
 
-</div>
-</div>
+                </div>
+              </div>
               <div class="col-md-12">
                 <div class="mb-3">
 

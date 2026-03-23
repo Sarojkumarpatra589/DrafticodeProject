@@ -189,13 +189,13 @@
 include 'connection/config.php';
 
 $stmt = $pdo->query("SELECT COUNT(*) as total FROM contact");
-$row = $stmt->fetch();
+$contact = $stmt->fetch();
 
-$totalMessages = $row['total'];
+$totalMessages = $contact['total'];
 $stmt = $pdo->query("SELECT COUNT(*) as total FROM jobform");
-$row = $stmt->fetch();
+$jobform = $stmt->fetch();
 
-$totaljobapply = $row['total'];
+$totaljobapply = $jobform['total'];
 ?>
           <li class="nav-item">
     <a class="nav-link" href="contact.php">

@@ -44,6 +44,12 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 </head>
+<style>
+    .no-click {
+    pointer-events: none;
+    cursor: default;
+}
+</style>
 <body>
 <div class="page-wrapper">
 <!-- Preloader -->
@@ -367,7 +373,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 
                                 <div class="image-box">
                                     <figure class="image">
-                                        <a href="team-details.php?id=<?= $row['id'] ?>">
+                                        <a href="javascript:void(0)" class="no-click">
                                             <img src="upload/<?= htmlspecialchars($row['image']) ?>" alt="Image">
                                         </a>
                                     </figure>
@@ -375,7 +381,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 
                                 <div class="content-box">
                                     <h5 class="name">
-                                        <a href="team-details.php?id=<?= $row['id'] ?>">
+                                        <a href="javascript:void(0)" class="no-click">
                                             <?= htmlspecialchars($row['name']) ?>
                                         </a>
                                     </h5>
