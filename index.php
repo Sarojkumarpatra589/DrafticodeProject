@@ -146,7 +146,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                                 <div class="btn-box animate-4">
                                                     <a class="theme-btn-main" href="contact.php">
                                                         <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
-                                                        <span class="theme-btn">Discover More</span>
+                                                        <span class="theme-btn">Contact Us</span>
                                                         <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>
                                                     </a>
                                                 </div>
@@ -177,8 +177,8 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                 <div class="outer-box">
 
                     <div class="title-box">
-                        <h5 class="title">Trusted By <br>Top Companies</h5>
-                        <i class="icon fa fa-arrow-up-right"></i>
+                        <h5 class="title">Our Trusted  <br>Clients</h5>
+                        <i class="icon fa fa-arrow-up-right-from-square"></i>
                     </div>
 
             <div class="marquee-box">
@@ -284,7 +284,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                             <textPath xlink:href="#circle">Explore More Explore More</textPath>
                                         </text>
                                     </svg>
-                                    <i class="icon fa fa-arrow-up-right"></i>
+                                    <i class="icon fa fa-arrow-up-right-from-square"></i>
                                 </a>
                             </div>
                             <div class="exp-box">
@@ -333,11 +333,11 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
                                     </a>
                                 </figure>
                                 <div class="icon-box">
-                                    <i class="icon flaticon-health-check"></i>
-                                </div>
+                                <i class="icon <?= $service['icon'] ?>"></i>
+                            </div>
                             </div>
 
-                            <div class="content-box">
+                            <div class="content-box"> 
                                 <h4 class="title">
                                     <a href="service_details.php?slug=<?= $service['slug'] ?>">
                                         <?= htmlspecialchars($service['title']) ?>
@@ -350,7 +350,7 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
 
                                 <div class="btn-box">
                                     <a href="service_details.php?slug=<?= $service['slug'] ?>" class="readmore">
-                                        Discover More
+                                        Read More
                                     </a>
                                 </div>
                             </div>
