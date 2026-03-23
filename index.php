@@ -249,7 +249,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                             <div class="bar progress-line" data-width="86">
                                                 <div class="skill-percentage">
                                                     <div class="count-box"><span class="count-text" data-speed="3000"
-                                                            data-stop="86">0</span>%</div>
+                                                            data-stop="98">0</span>%</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -260,7 +260,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                             <div class="btn-box">
                                 <a class="theme-btn-main" href="about.php">
                                     <span class="theme-btn-arrow-left"><i class="fa fa-arrow-right"></i></span>
-                                    <span class="theme-btn">Discover More</span>
+                                    <span class="theme-btn">Know More</span>
                                     <span class="theme-btn-arrow-right"><i class="fa fa-arrow-right"></i></span>
                                 </a>
                             </div>
@@ -410,7 +410,7 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id DESC")->fetchAll();
                                     <div class="icon-box"><i class="icon flaticon-promotion"></i></div>
                                     <div class="count-box"><span class="count-text" data-speed="3000"
                                             data-stop="100">0</span>%</div>
-                                    <div class="text">Certification</div>
+                                    <div class="text">satisfaction</div>
                                 </div>
                             </div>
                             <!-- Counter Block -->
