@@ -147,7 +147,7 @@ body {
   counter-reset: my-sec-counter;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
-  color: var(--text-color);
+  color: #fff;
   font-size: var(--body-font-size);
   font-family: var(--body-font-family);
   font-weight: var(--body-font-weight);
