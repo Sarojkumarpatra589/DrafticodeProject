@@ -125,86 +125,101 @@ $messageCount = $pdo->query("SELECT COUNT(*) FROM contact")->fetchColumn();
     </div>
 
     <div class="row g-4 mb-4">
-      <!-- Recent Activity -->
-      <div class="col-lg-8">
-        <div class="admin-card">
-          <div class="section-header">
-            <h3 class="section-title"><i class="fas fa-history me-2 text-primary-custom"></i>Recent Activity</h3>
-            <a href="#" class="btn btn-outline-primary btn-sm">View All</a>
-          </div>
-          <table class="admin-table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Action</th>
-                <th>Module</th>
-                <th>User</th>
-                <th>Date</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
+      <?php
+include 'connection/config.php';
 
-              $stmt = $pdo->prepare("SELECT * FROM activity_logs ORDER BY id DESC LIMIT 6");
-              $stmt->execute();
-              $activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// ✅ Fetch latest 6 contact messages
+$stmt = $pdo->prepare("SELECT * FROM contact ORDER BY id DESC LIMIT 6");
+$stmt->execute();
+$messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 
-              $i = 1;
+<!-- Recent Contact Messages -->
+<div class="col-lg-8">
+    <div class="admin-card">
 
-              foreach ($activities as $row) {
+        <div class="section-header">
+            <h3 class="section-title">
+                <i class="fas fa-envelope me-2 text-primary-custom"></i>
+                Recent Messages
+            </h3>
+            <a href="contact.php" class="btn btn-outline-primary btn-sm">View All</a>
+        </div>
 
-              ?>
-                <tr>
+        <div class="table-responsive">
 
-                  <td class="table-id">#<?= $i++ ?></td>
+            <table class="admin-table">
 
-                  <td>
-                    <i class="fas fa-history text-primary me-2"></i>
-                    <?= htmlspecialchars($row['action']) ?>
-                  </td>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
 
-                  <td>
-                    <span class="badge bg-primary bg-opacity-10 text-primary">
-                      <?= htmlspecialchars($row['module']) ?>
-                    </span>
-                  </td>
-
-                  <td>
-                    <?= htmlspecialchars($row['user']) ?>
-                  </td>
-
-                  <td>
-                    <?= date("M d, Y H:i", strtotime($row['created_at'])) ?>
-                  </td>
-
-                  <td>
+                <tbody>
 
                     <?php
-                    $statusClass = "badge-active";
+                    $i = 1;
 
-                    if ($row['status'] == "Deleted") {
-                      $statusClass = "badge-inactive";
-                    }
-
-                    if ($row['status'] == "Unread") {
-                      $statusClass = "badge-pending";
-                    }
+                    foreach ($messages as $row):
                     ?>
 
-                    <span class="badge-status <?= $statusClass ?>">
-                      <?= $row['status'] ?>
-                    </span>
+                    <tr>
 
-                  </td>
+                        <td class="table-id">#<?= $i++ ?></td>
 
-                </tr>
+                        <td class="fw-700">
+                            <?= htmlspecialchars($row['name']) ?>
+                        </td>
 
-              <?php } ?>
-            </tbody>
-          </table>
+                        <td>
+                            <?= htmlspecialchars($row['email']) ?>
+                        </td>
+
+                        <td>
+                            <?= htmlspecialchars($row['phone']) ?>
+                        </td>
+
+                        <td style="max-width:200px;font-size:12.5px;color:var(--text-secondary)">
+                            <?= substr(htmlspecialchars($row['message']), 0, 60) ?>...
+                        </td>
+
+                        <td style="font-size:12.5px">
+                            <?= date("M d, Y", strtotime($row['contacted_at'])) ?>
+                        </td>
+
+                        <td>
+                            <div class="d-flex gap-1">
+                                <a href="function.php?action=delete_message&id=<?= $row['id'] ?>"
+                                   class="btn-icon delete"
+                                   onclick="return confirm('Delete message?')">
+                                   <i class="fas fa-trash"></i>
+                                </a>
+
+                            </div>
+                        </td>
+
+                    </tr>
+
+                    <?php endforeach; ?>
+
+                </tbody>
+
+            </table>
+
         </div>
-      </div>
+
+    </div>
+</div>
+      
+
+      
 
       <!-- Quick Links -->
       <div class="col-lg-4">

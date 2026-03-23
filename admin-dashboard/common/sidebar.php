@@ -185,12 +185,30 @@
         </ul>
         <div class="sidebar-section-label">Management</div>
         <ul class="nav flex-column">
+          <?php
+include 'connection/config.php';
+
+$stmt = $pdo->query("SELECT COUNT(*) as total FROM contact");
+$row = $stmt->fetch();
+
+$totalMessages = $row['total'];
+$stmt = $pdo->query("SELECT COUNT(*) as total FROM jobform");
+$row = $stmt->fetch();
+
+$totaljobapply = $row['total'];
+?>
           <li class="nav-item">
-            <a class="nav-link " href="contact.php">
-              <span class="nav-icon"><i class="fas fa-envelope"></i></span> Messages
-              <span class="badge-count">5</span>
-            </a>
-          </li>
+    <a class="nav-link" href="contact.php">
+        <span class="nav-icon"><i class="fas fa-envelope"></i></span> Messages
+        <span class="badge-count"><?= $totalMessages ?></span>
+    </a>
+</li>
+ <li class="nav-item">
+    <a class="nav-link" href="jobform.php">
+        <span class="nav-icon"><i class="fas fa-envelope"></i></span> Job Applies
+        <span class="badge-count"><?= $totaljobapply ?></span>
+    </a>
+</li>
           <li class="nav-item">
             <a class="nav-link " href="settings.php">
               <span class="nav-icon"><i class="fas fa-sliders-h"></i></span> Settings

@@ -3,7 +3,7 @@ include 'connection/config.php';
 
 /* FETCH CONTACT MESSAGES */
 
-$stmt = $pdo->prepare("SELECT * FROM contact ORDER BY id DESC");
+$stmt = $pdo->prepare("SELECT * FROM jobform ORDER BY id DESC");
 $stmt->execute();
 $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

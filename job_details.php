@@ -53,7 +53,19 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
+<style>
+	.error {
+	color: red;
+	font-size: 12px;
+	margin-top: 4px;
+	display: block;
+}
 
+input.error-border,
+textarea.error-border {
+	border: 1px solid red !important;
+}
+</style>
 <body>
 
 <div class="page-wrapper">
@@ -171,32 +183,49 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                         <h4 class="title">Apply Now</h4>
                     </div>
 
-                <form method="post" action="#" id="contact-form">
-                    <div class="row">
-                        
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                            <input type="text" name="name" placeholder="Your Name" required>
-                        </div>
-            
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                            <input type="email" name="email" placeholder="Email Address" required>
-                        </div>
-            
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                            <input type="text" name="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                            <textarea name="message" placeholder="Write a Message" required></textarea>
-                        </div>
-        
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                            <div class="btn-box">
-                                <button class="theme-btn btn-style-five"><span class="btn-title">Apply here</span></button>
-                                <a href="contact.php" class="readmore"></a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                <form method="post" action="jobapply.php" id="job-form" novalidate>
+	<div class="row">
+
+		<div class="form-group col-lg-12 col-md-12 col-sm-12">
+			<input type="text" name="name" id="name" placeholder="Your Name">
+			<small class="error" id="error-name"></small>
+		</div>
+
+		<div class="form-group col-lg-12 col-md-12 col-sm-12">
+			<input type="email" name="email" id="email" placeholder="Email Address">
+			<small class="error" id="error-email"></small>
+		</div>
+
+		<div class="form-group col-lg-12 col-md-12 col-sm-12">
+			<input type="text" name="subject" id="subject" placeholder="Subject">
+			<small class="error" id="error-subject"></small>
+		</div>
+
+		<div class="form-group col-lg-12 col-md-12 col-sm-12">
+			<input type="tel" name="phone" id="tel" maxlength="11" placeholder="Phone">
+			<small class="error" id="error-tel"></small>
+		</div>
+
+		<div class="form-group col-lg-12 col-md-12 col-sm-12">
+			<textarea name="message" id="message" placeholder="Write a Message"></textarea>
+			<small class="error" id="error-message"></small>
+		</div>
+		<div class="form-group col-lg-12 col-md-12 col-sm-12">
+			<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <div class="g-recaptcha" data-sitekey="6LdcW5QsAAAAAN79ZXLHZlYJY_J3MFpnIXZUihHC"></div>
+    <small class="error" id="error-captcha"></small>
+</div>
+
+		<div class="form-group col-lg-12 col-md-12 col-sm-12">
+			<div class="btn-box">
+				<button type="submit" class="theme-btn btn-style-three upper">
+					<span class="btn-title">Apply Here</span>
+				</button>
+			</div>
+		</div>
+
+	</div>
+</form>
             </div>
             <!--End Contact Form -->
 			</div>
@@ -205,4 +234,104 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 	</div>
 </section>
 
+<script>
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const phoneInput = document.getElementById("tel");
+const subjectInput = document.getElementById("subject");
+const messageInput = document.getElementById("message");
+
+function setError(id, msg) {
+    document.getElementById("error-" + id).innerText = msg;
+}
+
+function clearError(id) {
+    document.getElementById("error-" + id).innerText = "";
+}
+
+// ✅ NAME (only letters, min 3)
+nameInput.addEventListener("input", function () {
+    let val = this.value.replace(/[^A-Za-z\s]/g, '');
+    this.value = val;
+
+    if (val.length < 3) {
+        setError("name", "Minimum 3 letters only");
+    } else {
+        clearError("name");
+    }
+});
+
+// ✅ EMAIL (live format check)
+emailInput.addEventListener("input", function () {
+    let val = this.value;
+    let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!regex.test(val)) {
+        setError("email", "Enter valid email (example@gmail.com)");
+    } else {
+        clearError("email");
+    }
+});
+
+// ✅ PHONE (only number, max 11)
+phoneInput.addEventListener("input", function () {
+    this.value = this.value.replace(/[^0-9]/g, '').slice(0, 11);
+
+    if (this.value.length < 10) {
+        setError("tel", "Phone must be 10–11 digits");
+    } else {
+        clearError("tel");
+    }
+});
+
+// ✅ SUBJECT
+subjectInput.addEventListener("input", function () {
+    if (this.value.length < 3) {
+        setError("subject", "Minimum 3 characters");
+    } else {
+        clearError("subject");
+    }
+});
+
+// ✅ MESSAGE
+messageInput.addEventListener("input", function () {
+    if (this.value.length < 5) {
+        setError("message", "Minimum 5 characters");
+    } else {
+        clearError("message");
+    }
+});
+
+// ✅ FINAL SUBMIT CHECK
+document.getElementById("job-form").addEventListener("submit", function(e){
+
+    let valid = true;
+
+    function check(id, condition, msg){
+        if(condition){
+            setError(id, msg);
+            valid = false;
+        }
+    }
+
+    check("name", nameInput.value.length < 3, "Minimum 3 letters");
+    check("email", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value), "Invalid email");
+    check("tel", phoneInput.value.length < 10, "Phone must be 10–11 digits");
+    check("subject", subjectInput.value.length < 3, "Subject too short");
+    check("message", messageInput.value.length < 5, "Message too short");
+
+    // CAPTCHA
+    let captcha = grecaptcha.getResponse();
+    if (captcha.length === 0) {
+        setError("captcha", "Please verify captcha");
+        valid = false;
+    } else {
+        clearError("captcha");
+    }
+
+    if(!valid){
+        e.preventDefault();
+    }
+});
+</script>
 <?php include "common/footer.php"; ?>
