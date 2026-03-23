@@ -15502,8 +15502,8 @@ Main Header-style-three
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
-  height: 145px;
+  width: 100vw;
+  height: 100%;
   opacity: 0.9;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
