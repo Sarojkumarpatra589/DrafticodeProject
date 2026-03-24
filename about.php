@@ -103,7 +103,7 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 
                             <div class="title-box">
                                 <h5 class="title">Trusted By <br>Top Companies</h5>
-                                <i class="icon fa fa-arrow-up-right"></i>
+                                <i class="icon fa fa-arrow-up-right-from-square"></i>
                             </div>
 
                     <div class="marquee-box">

@@ -136,7 +136,7 @@
 				<div class="copyright-text">
 					© <?php echo date('Y'); ?> Company.com. All Rights Reserved. 
 					Designed & Developed by 
-					<a class="text-warning fw-bold" href="https://drafticode.com/" target="_blank" rel="noopener">Drafticode</a>
+					<a class="text-primary fw-bold" href="https://drafticode.com/" target="_blank" rel="noopener">Drafticode</a>
 				</div>
 				<div class="right-box">
 					<ul class="footer-nav">

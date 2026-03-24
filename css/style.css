@@ -40,8 +40,8 @@ License: copyright commercial
 @import url("tm-bs-mp.css");
 @import url("tm-utility-classes.css");
 :root {
-  --theme-color1: #6c43e3;
-  --theme-color2: #ed8a33;
+  --theme-color1: #931c11;
+  --theme-color2: #000;
   --theme-color3: #1b152c;
   --theme-color4: #736c87;
   --theme-color1-rgb: 108, 67, 227;
@@ -104,7 +104,8 @@ License: copyright commercial
   --large-container-width: 1440px;
   --container-pt: 120px;
   --container-pb: 120px;
-  --gradient-1: linear-gradient(to right, #a051e6 0%, #6b43e3 100%);
+  --gradient-1:#931c11;
+  /* --gradient-1: linear-gradient(to right, #c4652a 0%, #733c3d 100%); */
 }
 
 /*
@@ -11276,7 +11277,7 @@ Main Header-style-three
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #8e4dff;
+  background-color: #931c11;
   -webkit-transform: rotate(45deg) translateY(-50%);
           transform: rotate(45deg) translateY(-50%);
   -webkit-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
@@ -12162,7 +12163,7 @@ Main Header-style-three
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #8e4dff;
+  background-color: #954d35;
   -webkit-transform: rotate(45deg) translateY(-50%);
           transform: rotate(45deg) translateY(-50%);
   -webkit-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
@@ -15725,7 +15726,7 @@ Main Header-style-three
 .service-block .inner-box {
   position: relative;
   overflow: hidden;
-  border-radius: 200px 200px 30px 110px;
+  border-radius: 20px;
   background-color: var(--theme-color3);
 }
 .service-block .inner-box:before {
