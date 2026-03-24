@@ -182,6 +182,17 @@
               </div>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#collapseCourse" data-bs-toggle="collapse" aria-expanded="false">
+              <span class="nav-icon"><i class="fas fa-user-graduate"></i></span> Course
+            </a>
+            <div class="collapse " id="collapseCourse">
+              <div class="sidebar-submenu">
+                <a class="nav-link " href="addcourse.php">Add Course</a>
+                <a class="nav-link " href="course.php">All Course</a>
+              </div>
+            </div>
+          </li>
         </ul>
         <div class="sidebar-section-label">Management</div>
         <ul class="nav flex-column">

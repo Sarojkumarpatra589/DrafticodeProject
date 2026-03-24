@@ -106,15 +106,15 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                     </a>
                                 </figure>
 
-                                <div class="icon-box">
-                                    <i class="icon flaticon-health-check"></i>
+                                <div class="">
+                                   
                                 </div>
                             </div>
                             <div class="content-box">
                                  <!-- Course Name -->
                                 <h4 class="title">
                                     <a href="course_details.php?slug=<?= $course['slug'] ?>">
-                                        <?= htmlspecialchars($course['course_name']) ?>
+                                        <?= $course['course_name'] ?>
                                     </a>
                                 </h4>
                                 <?= $course['short_description'] ?>
