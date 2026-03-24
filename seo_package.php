@@ -238,11 +238,11 @@ $settings = $stmt->fetch(PDO::FETCH_ASSOC);
                                                 <i class="fa fa-arrow-right"></i>
                                             </span>
 
-                                            <a href="https://wa.me/917975189067?text=Hi%20I%20am%20interested%20in%20your%20services" 
-   target="_blank" 
-   class="theme-btn">
-    Get Started Now
-</a>
+                                        <a href="https://wa.me/917975189067?text=<?= urlencode('Hi, I am interested in your SEO ' . $t['pack_type'] . ' package') ?>" 
+                                            target="_blank" 
+                                            class="theme-btn">
+                                                Get Started Now
+                                        </a>
 
                                             <span class="theme-btn-arrow-right">
                                                 <i class="fa fa-arrow-right"></i>

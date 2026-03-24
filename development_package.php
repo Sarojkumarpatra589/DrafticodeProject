@@ -205,7 +205,7 @@ Best Development Plan
 <i class="fa fa-arrow-right"></i>
 </span>
 
-<a href="https://wa.me/917975189067?text=Hi%20I%20am%20interested%20in%20your%20services" 
+<a href="https://wa.me/917975189067?text=<?= urlencode('Hi, I am interested in your development ' . $t['pack_type'] ) ?>" 
    target="_blank" 
    class="theme-btn">
     Get Started Now
